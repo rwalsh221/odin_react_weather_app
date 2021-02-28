@@ -1,38 +1,132 @@
+/* CSS RESET */
+/* https://alligator.io/css/minimal-css-reset/ */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,600&family=Pacifico&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Aguafina+Script&display=swap');
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+/* ol, ul {
+    list-style: none;
+  } */
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* END OF CSS RESET */
+
+body {
+  height: 100%;
+}
+
 .App {
-  text-align: center;
+  /* min-height: max-content; */
+  background-color: red;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* a:active,
+a:link {
+  color: var(--secondary-background-color-yellow);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+a:visited {
+  color: var(--secondary-background-color-blue);
+} */
+
+h1,
+h2 {
+  font-family: 'Aguafina Script', cursive;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+h2 {
+  font-size: 4rem;
+}
+
+/* h3,
+h4 {
+  font-style: italic;
+} */
+
+h3 {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+form {
+  width: 100%;
+}
+
+/* input,
+select {
+  width: 80%;
+  border-radius: 5%;
+  border: 2px solid var(--main-text-color);
+} */
+
+/* input,
+select {
+  background-color: var(--secondary-background-color-yellow);
+} */
+
+/* label {
+  font-size: 1.5rem;
+  font-style: italic;
+} */
+
+/* button {
+ 
+}
+
+button:hover {
+  
+}
+
+button:active {
+  
+} */
+
+/* button:focus {
+  outline-color: var(--secondary-background-color-blue);
+} */
+
+/* @media (max-width: 910px) {
+  h3 {
+    font-size: 2rem;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+} */
