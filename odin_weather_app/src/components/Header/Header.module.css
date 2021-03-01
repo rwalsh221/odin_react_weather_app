@@ -4,3 +4,7 @@
   border-bottom: 5px solid #6b6761;
   min-height: 10vh;
 }
+
+.mainHeading {
+  padding: 1rem;
+}

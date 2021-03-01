@@ -3,11 +3,69 @@
   background-color: #b8b0a7;
 }
 
-.weatherContainer {
+.innerContainer {
   margin: 0 auto;
   width: 95%;
   min-height: inherit;
   border-left: 5px solid #6b6761;
   border-right: 5px solid #6b6761;
   background-color: #ebe1d5;
+  padding: 1rem;
+}
+
+.locationSearch {
+  background-color: var(--main-bg-color-grey-light);
+  /* background-color: red; */
+
+  height: max-content;
+  width: 90%;
+  margin: 2rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.locationSearchInput {
+  background-color: var(--main-bg-color-grey);
+  padding: 0 5rem;
+  width: 80%;
+  height: 4rem;
+  margin: 1rem;
+  border-radius: 2rem;
+  outline: none;
+  border: none;
+  box-shadow: 0px 0px 0px 0.3rem var(--sec-bg-color-brown),
+    0px 0px 0px 0.6rem var(--sec-bg-color-sand),
+    0px 0px 0px 0.9rem var(--sec-bg-color-brown);
+}
+
+.locationSearchBtn {
+  margin: 2rem;
+  height: 4rem;
+  width: 10rem;
+  border-radius: 2rem;
+  border: none;
+  box-shadow: 0px 0px 0px 0.3rem var(--sec-bg-color-brown),
+    0px 0px 0px 0.6rem var(--sec-bg-color-sand),
+    0px 0px 0px 0.9rem var(--sec-bg-color-brown);
+  background-color: var(--main-bg-color-grey);
+}
+
+.weatherContainer {
+  background-color: blue;
+  width: 100%;
+  padding: 2rem;
+  height: max-content;
+}
+
+.weatherLocation {
+  width: 100%;
+  height: 10rem;
+  background-color: cornflowerblue;
+  margin: 4rem auto;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 0px 0.3rem var(--sec-bg-color-brown),
+    0px 0px 0px 0.6rem var(--sec-bg-color-sand),
+    0px 0px 0px 0.9rem var(--sec-bg-color-brown);
 }
