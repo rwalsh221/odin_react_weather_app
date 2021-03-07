@@ -1,0 +1,223 @@
+.weatherLocationContainer {
+  position: relative;
+  /* GRID LAYOUT */
+  display: grid;
+  grid-template-areas:
+    'locationTitle locationTitle locationTitle locationTitle'
+    'weatherIcon temperature temperature weatherType'
+    'chanceRain chanceRain day1 day1'
+    'windSpeed windSpeed day2 day2'
+    'sunriseSunset sunriseSunset day3 day3';
+  grid-template-rows: 2fr 2fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
+  width: 90%;
+  height: max-content;
+  /* background-color: var(--sec-bg-color-sand); */
+  background-color: #404040;
+  margin: 5rem auto;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 0px 0.3rem var(--sec-bg-color-brown),
+    0px 0px 0px 0.6rem var(--sec-bg-color-sand),
+    0px 0px 0px 0.9rem var(--sec-bg-color-brown);
+
+  /* BACKGROUND IMAGE MUST BE DARK */
+  /* background-image: url('https://media.giphy.com/media/hTZqITHNkgmX0fwt1C/giphy.gif'); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+  color: var(--main-bg-color-grey-light);
+
+  /* BACKGROUND GIFS: 
+    RAIN: https://media.giphy.com/media/dI3D3BWfDub0Q/giphy.gif 
+    SUN: https://media.giphy.com/media/EKpmZuydbsmRy/giphy.gif
+    SNOW: https://media.giphy.com/media/XBwWNIY6WY7g4/giphy.gif
+    SNOW: https://media.giphy.com/media/N7ZiLbtDr84Yo/giphy.gif
+    CLOUDY: https://media.giphy.com/media/3o7rc6sa2RvKo8K5EI/giphy.gif
+    STORM: https://media.giphy.com/media/8cdBgACkApvt6/giphy.gif
+    STORM: https://media.giphy.com/media/lkimn0qpby38zMJMY/giphy.gif
+    FOG: https://media.giphy.com/media/l2Je9dUI5LpzfHGTe/giphy.gif
+    FOG: https://media.giphy.com/media/hTZqITHNkgmX0fwt1C/giphy.gif*/
+}
+
+.locationTitle {
+  padding: 1rem;
+  grid-area: locationTitle;
+  /* background-color: cornsilk; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  border-bottom: 2px solid var(--sec-bg-color-sand);
+}
+
+.locationHeader {
+  padding: 0.5rem;
+  line-height: 3rem;
+  margin: 0.5rem;
+  text-decoration: underline;
+}
+
+.locationDate {
+  text-decoration: underline;
+}
+
+.locationHeader ion-icon {
+  transform: translateY(10%);
+  /* color: red; */
+}
+
+.weatherIcon {
+  grid-area: weatherIcon;
+  /* background-color: hotpink; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12rem;
+  border-right: 2px solid var(--sec-bg-color-sand);
+  /* border-bottom: 2px solid var(--sec-bg-color-sand); */
+}
+
+.temperature {
+  grid-area: temperature;
+  /* background-color: chocolate; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.temperature h2 {
+}
+
+.temperature h2,
+.hiLoTemperature {
+  margin: 1rem;
+}
+
+.hiLoTemperature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-10%);
+  border: 2px solid var(--sec-bg-color-sand);
+  padding: 0.5rem;
+}
+
+.weatherType {
+  grid-area: weatherType;
+  /* background-color: crimson; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 2px solid var(--sec-bg-color-sand);
+  /* border-top: 2px solid var(--sec-bg-color-sand); */
+  text-transform: capitalize;
+}
+
+.chanceRain {
+  grid-area: chanceRain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  height: max-content;
+  /* border: 2px solid var(--sec-bg-color-sand); */
+  border-top: 2px solid var(--sec-bg-color-sand);
+  border-bottom: 2px solid var(--sec-bg-color-sand);
+
+  margin: auto;
+  padding: 2rem;
+  width: 100%;
+}
+
+.chanceRain ion-icon,
+.windSpeed ion-icon,
+.sunriseSunset ion-icon {
+  font-size: 4.5rem;
+}
+
+.day1,
+.day2,
+.day3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-left: 2px solid var(--sec-bg-color-sand);
+  /* border-bottom: 2px solid var(--sec-bg-color-sand); */
+
+  padding-left: 2rem;
+}
+
+.day1 ion-icon,
+.day2 ion-icon,
+.day3 ion-icon {
+  font-size: 4.5rem;
+  /* color: red; */
+  justify-self: center;
+}
+
+.day1 {
+  grid-area: day1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 2px solid var(--sec-bg-color-sand);
+  border-bottom: 2px solid var(--sec-bg-color-sand);
+}
+
+.windSpeed {
+  grid-area: windSpeed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid var(--sec-bg-color-sand);
+}
+
+.day2 {
+  grid-area: day2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 2px solid var(--sec-bg-color-sand);
+}
+
+.sunriseSunset {
+  grid-area: sunriseSunset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border-bottom: 2px solid var(--sec-bg-color-sand); */
+}
+.day3 {
+  grid-area: day3;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.futureWeather {
+  grid-area: day1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.btnDelete {
+  position: absolute;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  left: 98.5%;
+  top: -5%;
+  background-color: #de1b2e;
+  color: var(--sec-bg-color-sand);
+  border: 2px solid var(--sec-bg-color-brown);
+  outline: none;
+  font-size: 4rem;
+  padding: 0;
+}
+
+.btnDelete:hover {
+  background-color: var(--sec-bg-color-sand);
+  color: #de1b2e;
+}
