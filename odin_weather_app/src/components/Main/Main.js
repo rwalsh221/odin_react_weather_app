@@ -18,6 +18,27 @@ import WeatherLocationContainer from '../WeatherLocationContainer/WeatherLocatio
 const Main = (props) => {
   const [searchQuery, setSearchQuery] = useState(null);
 
+  const searchQueryfactory = (query) => {
+    const id = new Date();
+
+    return {
+      query: query,
+      id: `${query}#${id.getMilliseconds()}`,
+    };
+  };
+
+  const deleteSearchQueryHandler = (id) => {
+    let copySearchQuery = [...searchQuery];
+    console.log(copySearchQuery);
+    for (let i = 0; i < copySearchQuery.length; i++) {
+      if (copySearchQuery[i].id === id) {
+        copySearchQuery.splice(i, 1);
+      }
+    }
+    console.log(copySearchQuery);
+    setSearchQuery([...copySearchQuery]);
+  };
+
   return (
     <main className={classes.main}>
       <div className={classes.innerContainer}>
@@ -36,7 +57,7 @@ const Main = (props) => {
 
             for (let i = 0; i < e.target.length; i++) {
               if (e.target[i].id === 'locationSearch') {
-                copySearchQuery.push(e.target[i].value);
+                copySearchQuery.push(searchQueryfactory(e.target[i].value));
                 e.target[i].value = '';
               }
               setSearchQuery([...copySearchQuery]);
@@ -71,7 +92,8 @@ const Main = (props) => {
                 return (
                   <WeatherLocationContainer
                     searchQuery={element}
-                    key={element}
+                    key={element.id}
+                    deleteHandler={deleteSearchQueryHandler}
                   />
                 );
               })

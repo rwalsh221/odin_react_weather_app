@@ -19,7 +19,16 @@ const WeatherLocationContainer = (props) => {
       content = (
         <React.Fragment>
           <div className={classes.weatherLocationContainer}>
-            <button className={classes.btnDelete}>X</button>
+            <button
+              className={classes.btnDelete}
+              id={props.searchQuery.id}
+              onClick={(e) => {
+                console.log(e);
+                props.deleteHandler(e.target.id);
+              }}
+            >
+              X
+            </button>
 
             {/* TITLE */}
             <div className={classes.locationTitle}>
@@ -231,7 +240,7 @@ const WeatherLocationContainer = (props) => {
       if (props.searchQuery) {
         try {
           const currentWeather = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${props.searchQuery}&units=metric&appid=${apikey}`
+            `https://api.openweathermap.org/data/2.5/weather?q=${props.searchQuery.query}&units=metric&appid=${apikey}`
           );
 
           let currentWeatherData = await currentWeather.json();
