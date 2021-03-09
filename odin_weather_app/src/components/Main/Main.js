@@ -12,7 +12,7 @@ import WeatherLocationContainer from '../WeatherLocationContainer/WeatherLocatio
 // TODO: FORMAT DESCRIPTION DOOOOONEEEEE
 // TODO: LOCAL STORAGE
 // TODO: DELETE DOOONE
-// TODO: RADIO BUTTON CELECIUS
+// TODO: RADIO BUTTON CELECIUS DOOONE
 // TODO: CHANGE BACKGROUND. USE A MAP
 
 const Main = (props) => {

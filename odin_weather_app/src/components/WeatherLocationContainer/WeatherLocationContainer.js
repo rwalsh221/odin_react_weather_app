@@ -7,6 +7,39 @@ const WeatherLocationContainer = (props) => {
   const [currentWeatherData, setCurrentWeatherData] = useState(null);
   const [futureWeatherData, setFutureWeatherData] = useState(null);
 
+  const backgroundGifHandler = (weatherType) => {
+    let background;
+    console.log(weatherType);
+    switch (weatherType) {
+      case 'Snow':
+        background = 'https://media.giphy.com/media/N7ZiLbtDr84Yo/giphy.gif';
+        break;
+      case 'ThunderStorm':
+        background =
+          'https://media.giphy.com/media/lkimn0qpby38zMJMY/giphy.gif';
+        break;
+      case 'Drizzle':
+        background =
+          'https://media.giphy.com/media/l0IrIkq7Q3iRII0hy/giphy.gif';
+        break;
+      case 'Rain':
+        background = 'https://media.giphy.com/media/dI3D3BWfDub0Q/giphy.gif';
+        break;
+      case 'Clear':
+        background = 'https://media.giphy.com/media/EKpmZuydbsmRy/giphy.gif';
+        break;
+      case 'Cloudy':
+        background =
+          'https://media.giphy.com/media/3o7rc6sa2RvKo8K5EI/giphy.gif';
+        break;
+      default:
+        background =
+          'https://media.giphy.com/media/3o7rc6sa2RvKo8K5EI/giphy.gif';
+    }
+    console.log(background);
+    return background;
+  };
+
   console.log(props.searchQuery);
 
   const apikey = 'b0ea585de7608342c1947e606b266dd4';
@@ -20,7 +53,15 @@ const WeatherLocationContainer = (props) => {
       console.log(futureWeatherData);
       content = (
         <React.Fragment>
-          <div className={classes.weatherLocationContainer}>
+          <div
+            style={{
+              backgroundImage: `url("${backgroundGifHandler(
+                currentWeatherData.weather[0].main
+              )}")`,
+            }}
+            // style={{ backgroundColor: 'red' }}
+            className={classes.weatherLocationContainer}
+          >
             <button
               className={classes.btnDelete}
               id={props.searchQuery.id}

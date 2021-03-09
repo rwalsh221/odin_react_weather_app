@@ -22,7 +22,7 @@
     0px 0px 0px 0.9rem var(--sec-bg-color-brown);
 
   /* BACKGROUND IMAGE MUST BE DARK */
-  background-image: url('https://media.giphy.com/media/EKpmZuydbsmRy/giphy.gif');
+  /* background-image: url('https://media.giphy.com/media/EKpmZuydbsmRy/giphy.gif'); */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
