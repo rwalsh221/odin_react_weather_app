@@ -11,12 +11,14 @@ import WeatherLocationContainer from '../WeatherLocationContainer/WeatherLocatio
 // TODO: REFACTOR MAIN INTO FUCTIONS
 // TODO: FORMAT DESCRIPTION DOOOOONEEEEE
 // TODO: LOCAL STORAGE
-// TODO: DELETE
+// TODO: DELETE DOOONE
 // TODO: RADIO BUTTON CELECIUS
 // TODO: CHANGE BACKGROUND. USE A MAP
 
 const Main = (props) => {
   const [searchQuery, setSearchQuery] = useState(null);
+  const [metric, setMetric] = useState(true);
+  const [imperial, setImperial] = useState(false);
 
   const searchQueryfactory = (query) => {
     const id = new Date();
@@ -72,16 +74,30 @@ const Main = (props) => {
           ></input>
           <div className={classes.searchRadioContainer}>
             <label>
-              <input type={'radio'} name={'celcius'} value={'celcius'}></input>
-              Celcius
+              <input
+                type={'radio'}
+                name={'metric'}
+                value={'metric'}
+                checked={metric}
+                onChange={() => {
+                  setImperial(false);
+                  setMetric(true);
+                }}
+              ></input>
+              Metric
             </label>
             <label>
               <input
                 type={'radio'}
-                name={'fahrenhiet'}
-                value={'fahrenhiet'}
+                name={'imperial'}
+                value={'imperial'}
+                checked={imperial}
+                onChange={(e) => {
+                  setImperial(true);
+                  setMetric(false);
+                }}
               ></input>
-              Fahrenhiet
+              Imperial
             </label>
           </div>
           <button className={classes.locationSearchBtn}>SEARCH</button>
@@ -94,6 +110,7 @@ const Main = (props) => {
                     searchQuery={element}
                     key={element.id}
                     deleteHandler={deleteSearchQueryHandler}
+                    unit={metric ? 'metric' : 'imperial'}
                   />
                 );
               })

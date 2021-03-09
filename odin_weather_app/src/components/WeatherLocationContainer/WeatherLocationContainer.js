@@ -13,6 +13,8 @@ const WeatherLocationContainer = (props) => {
   let content = null;
 
   let setContentHandler = () => {
+    const temperatureUnit = props.unit === 'metric' ? '\u2103' : '\u2109';
+
     if (currentWeatherData) {
       console.log(`rotate(${currentWeatherData.wind.deg})`);
       console.log(futureWeatherData);
@@ -56,10 +58,18 @@ const WeatherLocationContainer = (props) => {
             </div>
             {/* CURRENT WEATHER TEMP */}
             <div className={classes.temperature}>
-              <h2>{currentWeatherData.main.temp.toFixed(0)} &#x2103;</h2>
+              <h2>
+                {currentWeatherData.main.temp.toFixed(0)} {`${temperatureUnit}`}
+              </h2>
               <div className={classes.hiLoTemperature}>
-                <h4>{currentWeatherData.main.temp_max.toFixed(0)} &#x2103;</h4>
-                <h4>{currentWeatherData.main.temp_min.toFixed(0)} &#x2103;</h4>
+                <h4>
+                  {currentWeatherData.main.temp_max.toFixed(0)}
+                  {`${temperatureUnit}`}
+                </h4>
+                <h4>
+                  {currentWeatherData.main.temp_min.toFixed(0)}
+                  {`${temperatureUnit}`}
+                </h4>
               </div>
             </div>
 
@@ -92,13 +102,15 @@ const WeatherLocationContainer = (props) => {
                 <div className={classes.futureHi}>
                   <ion-icon name="chevron-up-outline"></ion-icon>
                   <h5>
-                    {futureWeatherData.daily[1].temp.max.toFixed(0)} &#x2103;
+                    {futureWeatherData.daily[1].temp.max.toFixed(0)}
+                    {`${temperatureUnit}`}
                   </h5>
                 </div>
                 <div className={classes.futureLo}>
                   <ion-icon name="chevron-down-outline"></ion-icon>
                   <h5>
-                    {futureWeatherData.daily[1].temp.min.toFixed(0)} &#x2103;
+                    {futureWeatherData.daily[1].temp.min.toFixed(0)}
+                    {`${temperatureUnit}`}
                   </h5>
                 </div>
               </div>
@@ -134,13 +146,15 @@ const WeatherLocationContainer = (props) => {
                 <div className={classes.futureHi}>
                   <ion-icon name="chevron-up-outline"></ion-icon>
                   <h5>
-                    {futureWeatherData.daily[1].temp.max.toFixed(0)} &#x2103;
+                    {futureWeatherData.daily[1].temp.max.toFixed(0)}
+                    {`${temperatureUnit}`}
                   </h5>
                 </div>
                 <div className={classes.futureLo}>
                   <ion-icon name="chevron-down-outline"></ion-icon>
                   <h5>
-                    {futureWeatherData.daily[1].temp.min.toFixed(0)} &#x2103;
+                    {futureWeatherData.daily[1].temp.min.toFixed(0)}
+                    {`${temperatureUnit}`}
                   </h5>
                 </div>
               </div>
@@ -185,13 +199,15 @@ const WeatherLocationContainer = (props) => {
                 <div className={classes.futureHi}>
                   <ion-icon name="chevron-up-outline"></ion-icon>
                   <h5>
-                    {futureWeatherData.daily[3].temp.max.toFixed(0)} &#x2103;
+                    {futureWeatherData.daily[3].temp.max.toFixed(0)}
+                    {`${temperatureUnit}`}
                   </h5>
                 </div>
                 <div className={classes.futureLo}>
                   <ion-icon name="chevron-down-outline"></ion-icon>
                   <h5>
-                    {futureWeatherData.daily[3].temp.min.toFixed(0)} &#x2103;
+                    {futureWeatherData.daily[3].temp.min.toFixed(0)}
+                    {`${temperatureUnit}`}
                   </h5>
                 </div>
               </div>
@@ -240,7 +256,7 @@ const WeatherLocationContainer = (props) => {
       if (props.searchQuery) {
         try {
           const currentWeather = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${props.searchQuery.query}&units=metric&appid=${apikey}`
+            `https://api.openweathermap.org/data/2.5/weather?q=${props.searchQuery.query}&units=${props.unit}&appid=${apikey}`
           );
 
           let currentWeatherData = await currentWeather.json();
@@ -248,7 +264,7 @@ const WeatherLocationContainer = (props) => {
           console.log(currentWeatherData.coord);
 
           const futureWeather = await fetch(
-            `https://api.openweathermap.org/data/2.5/onecall?lat=${currentWeatherData.coord.lat}&lon=${currentWeatherData.coord.lon}&exclude=minutely,hourly,alerts&units=metric&appid=${apikey}`
+            `https://api.openweathermap.org/data/2.5/onecall?lat=${currentWeatherData.coord.lat}&lon=${currentWeatherData.coord.lon}&exclude=minutely,hourly,alerts&units=${props.unit}&appid=${apikey}`
           );
 
           let futureWeatherData = await futureWeather.json();
@@ -277,7 +293,7 @@ const WeatherLocationContainer = (props) => {
       }
     };
     fetchData();
-  }, [props.searchQuery]);
+  }, [props.searchQuery, props.unit]);
 
   setContentHandler();
 

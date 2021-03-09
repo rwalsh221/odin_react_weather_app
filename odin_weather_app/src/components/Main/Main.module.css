@@ -31,7 +31,7 @@
   padding: 0 5rem;
   width: 80%;
   height: 4rem;
-  margin: 1rem;
+  margin: 2rem;
   border-radius: 2rem;
   outline: none;
   border: none;
@@ -39,6 +39,23 @@
     0px 0px 0px 0.6rem var(--sec-bg-color-sand),
     0px 0px 0px 0.9rem var(--sec-bg-color-brown),
     2px 2px 5px 1px var(--main-bg-color-grey-dark) inset;
+}
+
+.searchRadioContainer {
+  background-color: red;
+  font-size: 3rem;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 4rem;
+  width: 50%;
+  margin: 2rem 0;
+
+  box-shadow: 0px 0px 0px 0.3rem var(--sec-bg-color-brown),
+    0px 0px 0px 0.6rem var(--sec-bg-color-sand),
+    0px 0px 0px 0.9rem var(--sec-bg-color-brown);
+  background-color: var(--main-bg-color-grey);
 }
 
 .locationSearchBtn {
@@ -53,6 +70,10 @@
   background-color: var(--main-bg-color-grey);
   font-size: 2rem;
   padding: 1rem;
+}
+
+.locationSearchBtn:hover {
+  background-color: var(--sec-bg-color-sand);
 }
 
 .weatherContainer {
