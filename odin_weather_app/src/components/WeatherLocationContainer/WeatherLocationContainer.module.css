@@ -22,7 +22,7 @@
     0px 0px 0px 0.9rem var(--sec-bg-color-brown);
 
   /* BACKGROUND IMAGE MUST BE DARK */
-  /* background-image: url('https://media.giphy.com/media/hTZqITHNkgmX0fwt1C/giphy.gif'); */
+  background-image: url('https://media.giphy.com/media/EKpmZuydbsmRy/giphy.gif');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -70,7 +70,7 @@
   /* color: red; */
 }
 
-.weatherIcon {
+.weatherIconContainer {
   grid-area: weatherIcon;
   /* background-color: hotpink; */
   display: flex;
@@ -81,6 +81,18 @@
   /* border-bottom: 2px solid var(--sec-bg-color-sand); */
 }
 
+.weatherIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: max-content;
+  background-color: var(--main-bg-color-grey);
+  border: 5px solid var(--sec-bg-color-sand);
+}
+
+.weatherIcon img {
+  padding: 1rem;
+}
 .temperature {
   grid-area: temperature;
   /* background-color: chocolate; */
@@ -116,6 +128,7 @@
   border-left: 2px solid var(--sec-bg-color-sand);
   /* border-top: 2px solid var(--sec-bg-color-sand); */
   text-transform: capitalize;
+  text-align: center;
 }
 
 .chanceRain {
@@ -124,13 +137,13 @@
   align-items: center;
   justify-content: center;
   width: max-content;
-  height: max-content;
+  height: 100%;
   /* border: 2px solid var(--sec-bg-color-sand); */
   border-top: 2px solid var(--sec-bg-color-sand);
   border-bottom: 2px solid var(--sec-bg-color-sand);
 
   margin: auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   width: 100%;
 }
 
@@ -158,6 +171,22 @@
   font-size: 4.5rem;
   /* color: red; */
   justify-self: center;
+}
+
+.futureImg {
+  justify-self: center;
+  height: 80%;
+  /* width: 50%; */
+  background-color: var(--main-bg-color-grey);
+  border: 5px solid var(--sec-bg-color-sand);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.futureImg img {
+  height: 100%;
+  width: 8rem;
 }
 
 .day1 {
@@ -221,3 +250,75 @@
   background-color: var(--sec-bg-color-sand);
   color: #de1b2e;
 }
+
+.futureHiLo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.futureHi,
+.futureLo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.futureHi ion-icon,
+.futureLo ion-icon {
+  margin-right: 2rem;
+  font-size: 3rem;
+}
+
+@media (max-width: 985px) {
+  .day1,
+  .day2,
+  .day3 {
+    padding: 0.5rem;
+  }
+
+  .futureHi ion-icon,
+  .futureLo ion-icon {
+    margin-right: 1rem;
+  }
+}
+
+@media (max-width: 835px) {
+  .weatherIcon {
+    width: 90%;
+  }
+}
+
+@media (max-width: 615px) {
+  .weatherLocationContainer {
+    width: 100%;
+  }
+
+  .weatherIcon {
+    height: 90%;
+  }
+}
+
+@media (max-width: 616px) {
+  .btnDelete {
+    height: 6rem;
+    width: 6rem;
+    left: 90%;
+    top: 2%;
+  }
+}
+
+@media (max-width: 425px) {
+  .futureImg {
+    border: 2px solid var(--sec-bg-color-sand);
+  }
+
+  .weatherIcon {
+    height: 80%;
+    width: 80%;
+    background-color: var(--main-bg-color-grey);
+    border: 2px solid var(--sec-bg-color-sand);
+  }
+} ;

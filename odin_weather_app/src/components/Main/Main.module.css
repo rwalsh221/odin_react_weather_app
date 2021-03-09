@@ -43,7 +43,7 @@
 
 .locationSearchBtn {
   margin: 2rem;
-  height: 4rem;
+  height: 5rem;
   width: 10rem;
   border-radius: 2rem;
   border: none;
@@ -51,6 +51,8 @@
     0px 0px 0px 0.6rem var(--sec-bg-color-sand),
     0px 0px 0px 0.9rem var(--sec-bg-color-brown);
   background-color: var(--main-bg-color-grey);
+  font-size: 2rem;
+  padding: 1rem;
 }
 
 .weatherContainer {
@@ -58,4 +60,40 @@
   width: 100%;
   padding: 2rem;
   height: max-content;
+}
+
+@media (max-width: 615px) {
+  .locationSearchBtn {
+    width: 14rem;
+    font-size: 3rem;
+  }
+
+  .locationSearchInput {
+    width: 90%;
+  }
+}
+
+@media (max-width: 435px) {
+  .locationSearchBtn {
+    width: 18rem;
+    font-size: 3rem;
+  }
+
+  .locationSearchInput {
+    height: 6rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .innerContainer {
+    width: 98%;
+    padding: 0.1rem;
+  }
+}
+
+@media (max-width: 355px) {
+  .locationSearchBtn {
+    width: 22rem;
+    font-size: 4rem;
+  }
 }

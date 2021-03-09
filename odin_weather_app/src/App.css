@@ -87,12 +87,58 @@ h4 {
   font-size: 2.5rem;
 }
 
+h5 {
+  font-size: 2rem;
+}
+
 form {
   width: 100%;
 }
 
 span {
   font-size: 2rem;
+}
+
+@media (max-width: 985px) {
+  h3 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 835px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media (max-width: 680px) {
+  html {
+    font-size: 45%;
+  }
+}
+
+@media (max-width: 615px) {
+  html {
+    font-size: 40%;
+  }
+}
+
+@media (max-width: 545px) {
+  html {
+    font-size: 35%;
+  }
+}
+
+@media (max-width: 410px) {
+  html {
+    font-size: 30%;
+  }
+}
+
+@media (max-width: 355px) {
+  html {
+    font-size: 25%;
+  }
 }
 
 /* input,

@@ -4,7 +4,8 @@ import classes from './WeatherLocationContainer.module.css';
 import { formatTime, formatDate } from '../../utilities/utilities';
 
 const WeatherLocationContainer = (props) => {
-  const [location, setLocation] = useState(null);
+  const [currentWeatherData, setCurrentWeatherData] = useState(null);
+  const [futureWeatherData, setFutureWeatherData] = useState(null);
 
   console.log(props.searchQuery);
 
@@ -12,67 +13,180 @@ const WeatherLocationContainer = (props) => {
   let content = null;
 
   let setContentHandler = () => {
-    if (location) {
-      console.log();
+    if (currentWeatherData) {
+      console.log(`rotate(${currentWeatherData.wind.deg})`);
+      console.log(futureWeatherData);
       content = (
         <React.Fragment>
-          <button className={classes.btnDelete}>X</button>
-          <div className={classes.locationTitle}>
-            <h2 className={classes.locationHeader}>
-              <ion-icon
-                name="compass-outline"
-                className={classes.compassOutline}
-              ></ion-icon>
-              {location.name}
-            </h2>
-            <h3 className={classes.locationDate}>
-              {formatDate(location.dt, location.timezone)}
-            </h3>
-          </div>
-          <div className={classes.weatherIcon}>
-            <ion-icon name="rainy-outline"></ion-icon>
-          </div>
-          <div className={classes.temperature}>
-            <h2>{location.main.temp.toFixed(0)} &#x2103;</h2>
-            <div className={classes.hiLoTemperature}>
-              <h4>{location.main.temp_max.toFixed(0)} &#x2103;</h4>
-              <h4>{location.main.temp_min.toFixed(0)} &#x2103;</h4>
+          <div className={classes.weatherLocationContainer}>
+            <button className={classes.btnDelete}>X</button>
+
+            {/* TITLE */}
+            <div className={classes.locationTitle}>
+              <h2 className={classes.locationHeader}>
+                <ion-icon
+                  name="compass-outline"
+                  className={classes.compassOutline}
+                ></ion-icon>
+                {currentWeatherData.name}
+              </h2>
+              <h3 className={classes.locationDate}>
+                {formatDate(currentWeatherData.dt, currentWeatherData.timezone)}
+              </h3>
             </div>
-          </div>
-          <h3 className={classes.weatherType}>
-            {location.weather[0].description}
-          </h3>
-          <div className={classes.chanceRain}>
-            <ion-icon name="umbrella-outline"></ion-icon>
-            <h4>&ensp;{location.main.feels_like.toFixed(0)} &#x2103;</h4>
-          </div>
-          <div className={classes.day1}>
-            <h3>Wednesday</h3>
-            <ion-icon name="sunny-outline"></ion-icon>
-            <h3>10 &#x2103; / 12 &#x2103;</h3>
-          </div>
-          <div className={classes.windSpeed}>
-            <ion-icon name="arrow-back-circle-outline"></ion-icon>
-            <h4>&ensp;{location.wind.speed.toFixed(1)} m/s</h4>
-            {/* <h4>N</h4> */}
-          </div>
-          <div className={classes.day2}>
-            <h3>Thursday</h3>
-            <ion-icon name="sunny-outline"></ion-icon>
-            <h3>10 &#x2103; / 12 &#x2103;</h3>
-          </div>
-          {/* GRID ROW 5 */}
-          <div className={classes.sunriseSunset}>
-            <h4>{formatTime(location.sys.sunrise, location.timezone)}&ensp;</h4>
-            <ion-icon name="chevron-up-outline"></ion-icon>
-            <ion-icon name="sunny-outline"></ion-icon>
-            <ion-icon name="chevron-down-outline"></ion-icon>
-            <h4>&ensp;{formatTime(location.sys.sunset, location.timezone)}</h4>
-          </div>
-          <div className={classes.day3}>
-            <h3>Friday</h3>
-            <ion-icon name="sunny-outline"></ion-icon>
-            <h3>10 &#x2103; / 12 &#x2103;</h3>
+
+            {/* CURRENT WEATHER ICON */}
+            <div className={classes.weatherIconContainer}>
+              <div className={classes.weatherIcon}>
+                {/* <ion-icon name="rainy-outline"></ion-icon> */}
+                <img
+                  src={`http://openweathermap.org/img/wn/${futureWeatherData.daily[0].weather[0].icon}@2x.png`}
+                  alt={'weather icon'}
+                ></img>
+              </div>
+            </div>
+            {/* CURRENT WEATHER TEMP */}
+            <div className={classes.temperature}>
+              <h2>{currentWeatherData.main.temp.toFixed(0)} &#x2103;</h2>
+              <div className={classes.hiLoTemperature}>
+                <h4>{currentWeatherData.main.temp_max.toFixed(0)} &#x2103;</h4>
+                <h4>{currentWeatherData.main.temp_min.toFixed(0)} &#x2103;</h4>
+              </div>
+            </div>
+
+            {/* CURRENT WEATHER DESCIPTION */}
+            <h3 className={classes.weatherType}>
+              {currentWeatherData.weather[0].description}
+            </h3>
+
+            {/* CHANCE OF RAIN */}
+            <div className={classes.chanceRain}>
+              <ion-icon name="umbrella-outline"></ion-icon>
+              <h4>&ensp;{futureWeatherData.daily[0].pop * 100} %</h4>
+            </div>
+
+            {/* FUTURE WEATHER DAY 1 */}
+            <div className={classes.day1}>
+              <h3>
+                {formatDate(
+                  futureWeatherData.daily[1].dt,
+                  currentWeatherData.timezone
+                )}
+              </h3>
+              <div className={classes.futureImg}>
+                <img
+                  src={`http://openweathermap.org/img/wn/${futureWeatherData.daily[1].weather[0].icon}@2x.png`}
+                  alt="weather icon"
+                ></img>
+              </div>
+              <div className={classes.futureHiLo}>
+                <div className={classes.futureHi}>
+                  <ion-icon name="chevron-up-outline"></ion-icon>
+                  <h5>
+                    {futureWeatherData.daily[1].temp.max.toFixed(0)} &#x2103;
+                  </h5>
+                </div>
+                <div className={classes.futureLo}>
+                  <ion-icon name="chevron-down-outline"></ion-icon>
+                  <h5>
+                    {futureWeatherData.daily[1].temp.min.toFixed(0)} &#x2103;
+                  </h5>
+                </div>
+              </div>
+            </div>
+
+            {/* WINDSPEED */}
+            <div className={classes.windSpeed}>
+              <ion-icon
+                name="arrow-up-circle-outline"
+                style={{
+                  transform: `rotate(${currentWeatherData.wind.deg}deg)`,
+                }}
+              ></ion-icon>
+              <h4>&ensp;{currentWeatherData.wind.speed.toFixed(1)} m/s</h4>
+            </div>
+
+            {/* FUTURE WEATHER DAY 2 */}
+            <div className={classes.day2}>
+              <h3>
+                {formatDate(
+                  futureWeatherData.daily[2].dt,
+                  currentWeatherData.timezone
+                )}
+              </h3>
+              {/* <ion-icon name="sunny-outline"></ion-icon> */}
+              <div className={classes.futureImg}>
+                <img
+                  src={`http://openweathermap.org/img/wn/${futureWeatherData.daily[2].weather[0].icon}@2x.png`}
+                  alt="weather icon"
+                ></img>
+              </div>
+              <div className={classes.futureHiLo}>
+                <div className={classes.futureHi}>
+                  <ion-icon name="chevron-up-outline"></ion-icon>
+                  <h5>
+                    {futureWeatherData.daily[1].temp.max.toFixed(0)} &#x2103;
+                  </h5>
+                </div>
+                <div className={classes.futureLo}>
+                  <ion-icon name="chevron-down-outline"></ion-icon>
+                  <h5>
+                    {futureWeatherData.daily[1].temp.min.toFixed(0)} &#x2103;
+                  </h5>
+                </div>
+              </div>
+            </div>
+
+            {/* SUNRISE SUNSET */}
+            <div className={classes.sunriseSunset}>
+              <h4>
+                {formatTime(
+                  currentWeatherData.sys.sunrise,
+                  currentWeatherData.timezone
+                )}
+                &ensp;
+              </h4>
+              <ion-icon name="chevron-up-outline"></ion-icon>
+              <ion-icon name="sunny-outline"></ion-icon>
+              <ion-icon name="chevron-down-outline"></ion-icon>
+              <h4>
+                &ensp;
+                {formatTime(
+                  currentWeatherData.sys.sunset,
+                  currentWeatherData.timezone
+                )}
+              </h4>
+            </div>
+
+            {/* FUTURE WEATHER DAY 3 */}
+            <div className={classes.day3}>
+              <h3>
+                {formatDate(
+                  futureWeatherData.daily[3].dt,
+                  currentWeatherData.timezone
+                )}
+              </h3>
+              <div className={classes.futureImg}>
+                <img
+                  src={`http://openweathermap.org/img/wn/${futureWeatherData.daily[3].weather[0].icon}@2x.png`}
+                  alt="weather icon"
+                ></img>
+              </div>
+              <div className={classes.futureHiLo}>
+                <div className={classes.futureHi}>
+                  <ion-icon name="chevron-up-outline"></ion-icon>
+                  <h5>
+                    {futureWeatherData.daily[3].temp.max.toFixed(0)} &#x2103;
+                  </h5>
+                </div>
+                <div className={classes.futureLo}>
+                  <ion-icon name="chevron-down-outline"></ion-icon>
+                  <h5>
+                    {futureWeatherData.daily[3].temp.min.toFixed(0)} &#x2103;
+                  </h5>
+                </div>
+              </div>
+            </div>
           </div>
         </React.Fragment>
       );
@@ -116,12 +230,21 @@ const WeatherLocationContainer = (props) => {
     const fetchData = async () => {
       if (props.searchQuery) {
         try {
-          const response = await fetch(
+          const currentWeather = await fetch(
             `https://api.openweathermap.org/data/2.5/weather?q=${props.searchQuery}&units=metric&appid=${apikey}`
           );
 
-          let data = await response.json();
-          console.log(data);
+          let currentWeatherData = await currentWeather.json();
+
+          console.log(currentWeatherData.coord);
+
+          const futureWeather = await fetch(
+            `https://api.openweathermap.org/data/2.5/onecall?lat=${currentWeatherData.coord.lat}&lon=${currentWeatherData.coord.lon}&exclude=minutely,hourly,alerts&units=metric&appid=${apikey}`
+          );
+
+          let futureWeatherData = await futureWeather.json();
+          console.log(currentWeatherData);
+          console.log(futureWeatherData);
           //   setContentHandler(
           //     data.name,
           //     data.main.temp,
@@ -134,7 +257,10 @@ const WeatherLocationContainer = (props) => {
           //     data.sys.sunset
           //   );
           console.log('?');
-          setLocation({ ...data });
+          if (currentWeatherData.cod === 200) {
+            setFutureWeatherData({ ...futureWeatherData });
+            setCurrentWeatherData({ ...currentWeatherData });
+          }
         } catch (error) {
           console.log('error');
           console.error(error);
@@ -151,11 +277,7 @@ const WeatherLocationContainer = (props) => {
   console.log('render');
   console.log(content);
 
-  return (
-    <React.Fragment>
-      <div className={classes.weatherLocationContainer}>{content}</div>
-    </React.Fragment>
-  );
+  return <React.Fragment>{content ? content : null}</React.Fragment>;
 };
 
 export default WeatherLocationContainer;

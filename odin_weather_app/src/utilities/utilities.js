@@ -22,8 +22,8 @@ export const formatDate = (unixTimeStamp, unixTimeZone) => {
   const month = date.getMonth() + 1;
 
   const year = date.getFullYear();
-
-  return `${day.length > 1 ? day : `0${day}`}/${
-    month.length > 1 ? month : `0${month}`
+  console.log(typeof day);
+  return `${day.toString().length > 1 ? day : `0${day}`}/${
+    month.toString().length > 1 ? month : `0${month}`
   }/${year}`;
 };
