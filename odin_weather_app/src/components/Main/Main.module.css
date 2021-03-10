@@ -15,8 +15,6 @@
 
 .locationSearch {
   background-color: var(--main-bg-color-grey-light);
-  /* background-color: red; */
-
   height: max-content;
   width: 90%;
   margin: 2rem auto;
@@ -77,7 +75,6 @@
 }
 
 .weatherContainer {
-  /* background-color: blue; */
   width: 100%;
   padding: 2rem;
   height: max-content;

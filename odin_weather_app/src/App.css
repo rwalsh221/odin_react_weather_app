@@ -51,15 +51,6 @@ body {
   height: 100%;
 }
 
-/* a:active,
-a:link {
-  color: var(--secondary-background-color-yellow);
-}
-
-a:visited {
-  color: var(--secondary-background-color-blue);
-} */
-
 h1,
 h2 {
   font-family: 'Aguafina Script', cursive;
@@ -72,11 +63,6 @@ h1 {
 h2 {
   font-size: 5rem;
 }
-
-/* h3,
-h4 {
-  font-style: italic;
-} */
 
 h3 {
   font-size: 3.5rem;
@@ -140,42 +126,3 @@ span {
     font-size: 25%;
   }
 }
-
-/* input,
-select {
-  width: 80%;
-  border-radius: 5%;
-  border: 2px solid var(--main-text-color);
-} */
-
-/* input,
-select {
-  background-color: var(--secondary-background-color-yellow);
-} */
-
-/* label {
-  font-size: 1.5rem;
-  font-style: italic;
-} */
-
-/* button {
- 
-}
-
-button:hover {
-  
-}
-
-button:active {
-  
-} */
-
-/* button:focus {
-  outline-color: var(--secondary-background-color-blue);
-} */
-
-/* @media (max-width: 910px) {
-  h3 {
-    font-size: 2rem;
-  }
-} */
