@@ -10,10 +10,10 @@ import WeatherLocationContainer from '../WeatherLocationContainer/WeatherLocatio
 // TODO: RENDER MULTIPLE LOCATIONS. DOOONNNEEE
 // TODO: REFACTOR MAIN INTO FUCTIONS
 // TODO: FORMAT DESCRIPTION DOOOOONEEEEE
-// TODO: LOCAL STORAGE
+// TODO: LOCAL STORAGE NOT DOING
 // TODO: DELETE DOOONE
 // TODO: RADIO BUTTON CELECIUS DOOONE
-// TODO: CHANGE BACKGROUND. USE A MAP
+// TODO: CHANGE BACKGROUND. USE A MAP dooooone
 
 const Main = (props) => {
   const [searchQuery, setSearchQuery] = useState(null);
@@ -29,6 +29,34 @@ const Main = (props) => {
     };
   };
 
+  const searchSubmitHandler = (e) => {
+    e.preventDefault();
+    let copySearchQuery;
+    if (searchQuery) {
+      copySearchQuery = [...searchQuery];
+    } else {
+      copySearchQuery = [];
+    }
+
+    for (let i = 0; i < e.target.length; i++) {
+      if (e.target[i].id === 'locationSearch') {
+        copySearchQuery.push(searchQueryfactory(e.target[i].value));
+        e.target[i].value = '';
+      }
+      setSearchQuery([...copySearchQuery]);
+    }
+  };
+
+  const setRadioHandler = (unit) => {
+    if (unit === 'metric') {
+      setImperial(false);
+      setMetric(true);
+    } else {
+      setImperial(true);
+      setMetric(false);
+    }
+  };
+
   const deleteSearchQueryHandler = (id) => {
     let copySearchQuery = [...searchQuery];
     console.log(copySearchQuery);
@@ -37,8 +65,23 @@ const Main = (props) => {
         copySearchQuery.splice(i, 1);
       }
     }
-    console.log(copySearchQuery);
     setSearchQuery([...copySearchQuery]);
+  };
+
+  const renderWeatherLocation = () => {
+    const content = searchQuery
+      ? searchQuery.map((element) => {
+          return (
+            <WeatherLocationContainer
+              searchQuery={element}
+              key={element.id}
+              deleteHandler={deleteSearchQueryHandler}
+              unit={metric ? 'metric' : 'imperial'}
+            />
+          );
+        })
+      : null;
+    return content;
   };
 
   return (
@@ -48,22 +91,7 @@ const Main = (props) => {
         <form
           className={classes.locationSearch}
           onSubmit={(e) => {
-            e.preventDefault();
-            console.log(e);
-            let copySearchQuery;
-            if (searchQuery) {
-              copySearchQuery = [...searchQuery];
-            } else {
-              copySearchQuery = [];
-            }
-
-            for (let i = 0; i < e.target.length; i++) {
-              if (e.target[i].id === 'locationSearch') {
-                copySearchQuery.push(searchQueryfactory(e.target[i].value));
-                e.target[i].value = '';
-              }
-              setSearchQuery([...copySearchQuery]);
-            }
+            searchSubmitHandler(e);
           }}
         >
           <input
@@ -79,9 +107,8 @@ const Main = (props) => {
                 name={'metric'}
                 value={'metric'}
                 checked={metric}
-                onChange={() => {
-                  setImperial(false);
-                  setMetric(true);
+                onChange={(e) => {
+                  setRadioHandler(e.target.value);
                 }}
               ></input>
               Metric
@@ -93,8 +120,7 @@ const Main = (props) => {
                 value={'imperial'}
                 checked={imperial}
                 onChange={(e) => {
-                  setImperial(true);
-                  setMetric(false);
+                  setRadioHandler(e.target.value);
                 }}
               ></input>
               Imperial
@@ -103,19 +129,7 @@ const Main = (props) => {
           <button className={classes.locationSearchBtn}>SEARCH</button>
         </form>
         <div className={classes.weatherContainer}>
-          {searchQuery
-            ? searchQuery.map((element) => {
-                return (
-                  <WeatherLocationContainer
-                    searchQuery={element}
-                    key={element.id}
-                    deleteHandler={deleteSearchQueryHandler}
-                    unit={metric ? 'metric' : 'imperial'}
-                  />
-                );
-              })
-            : null}
-          {/* <div className={classes.weatherLocation}></div> */}
+          {renderWeatherLocation()}
         </div>
       </div>
     </main>
