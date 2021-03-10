@@ -3,18 +3,6 @@ import React, { useState } from 'react';
 import classes from './Main.module.css';
 import WeatherLocationContainer from '../WeatherLocationContainer/WeatherLocationContainer';
 
-// TODO: CHANGE SYMBOL BASED ON WEATHER DOOOOONNNEEE
-// TODO: FORMAT TEMP NUMBER. DOOOOOONNE
-// TODO: FORMAT TIME. DOOOOONEEE
-// TODO: GET FUTRE WEATHER. DOOOOOONEEEE
-// TODO: RENDER MULTIPLE LOCATIONS. DOOONNNEEE
-// TODO: REFACTOR MAIN INTO FUCTIONS
-// TODO: FORMAT DESCRIPTION DOOOOONEEEEE
-// TODO: LOCAL STORAGE NOT DOING
-// TODO: DELETE DOOONE
-// TODO: RADIO BUTTON CELECIUS DOOONE
-// TODO: CHANGE BACKGROUND. USE A MAP dooooone
-
 const Main = (props) => {
   const [searchQuery, setSearchQuery] = useState(null);
   const [metric, setMetric] = useState(true);
@@ -87,7 +75,6 @@ const Main = (props) => {
   return (
     <main className={classes.main}>
       <div className={classes.innerContainer}>
-        <div></div>
         <form
           className={classes.locationSearch}
           onSubmit={(e) => {
