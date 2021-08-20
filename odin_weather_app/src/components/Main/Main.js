@@ -3,6 +3,10 @@ import React, { useState } from 'react';
 import classes from './Main.module.css';
 import WeatherLocationContainer from '../WeatherLocationContainer/WeatherLocationContainer';
 
+// TODO: ADD ERROR HANDLING FOR CITY NOT FOUND
+// TODO: ADD DEFAULT TEXT TO SEARCH BAR
+// TODO: FIX BTN HOVER ON MOBILE. FIX IN CV APP ASWELL
+
 const Main = (props) => {
   const [searchQuery, setSearchQuery] = useState(null);
   const [metric, setMetric] = useState(true);
