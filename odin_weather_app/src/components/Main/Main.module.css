@@ -80,6 +80,74 @@
   height: max-content;
 }
 
+.circleContainer {
+  background-color: black;
+  height: 20rem;
+  width: 20rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circleTop {
+  background-color: hotpink;
+  border-radius: 50%;
+  height: 20rem;
+  width: 20rem;
+  margin: 0 auto;
+  /* left: 150px;
+  top: 150px;
+  transform: translate(-50%, -50%); */
+  transition: all 1s;
+  transform: rotate(360deg);
+  transform-origin: center;
+  position: absolute;
+  z-index: 2;
+}
+
+.circleHover {
+  /* height: 40rem;
+  width: 40rem; */
+  /* z-index: 1000; */
+  animation: bigSmall 2s ease;
+  height: 0rem;
+  width: 0rem;
+}
+.circleBottom {
+  background-color: cornflowerblue;
+  border-radius: 50%;
+  height: 20rem;
+  width: 20rem;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  transition: all 1s;
+}
+
+.bigCircle {
+  height: 40rem;
+  width: 40rem;
+  top: -10rem;
+}
+
+@keyframes bigSmall {
+  0% {
+    height: 20rem;
+    width: 20rem;
+  }
+
+  50% {
+    height: 40rem;
+    width: 40rem;
+  }
+
+  100% {
+    height: 0rem;
+    width: 0rem;
+  }
+}
+
 @media (max-width: 615px) {
   .locationSearchBtn {
     width: 14rem;

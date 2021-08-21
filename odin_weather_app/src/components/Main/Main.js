@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import classes from './Main.module.css';
 import WeatherLocationContainer from '../WeatherLocationContainer/WeatherLocationContainer';
+import WeatherCardGrid from '../WeatherCardGrid/WeatherCardGrid';
 
 // TODO: ADD ERROR HANDLING FOR CITY NOT FOUND
 // TODO: ADD DEFAULT TEXT TO SEARCH BAR
@@ -11,6 +12,11 @@ const Main = (props) => {
   const [searchQuery, setSearchQuery] = useState(null);
   const [metric, setMetric] = useState(true);
   const [imperial, setImperial] = useState(false);
+  const [hover, setHover] = useState('');
+
+  const setHoverClass = () => {
+    setHover({ bigSmallAnimation: 'circleHover', bigCircle: 'bigCircle' });
+  };
 
   const searchQueryfactory = (query) => {
     const id = new Date();
@@ -120,6 +126,19 @@ const Main = (props) => {
           <button className={classes.locationSearchBtn}>SEARCH</button>
         </form>
         <div className={classes.weatherContainer}>
+          <WeatherCardGrid />
+          <div className={classes.circleContainer}>
+            <div
+              className={`${classes.circleTop} ${
+                classes[hover.bigSmallAnimation]
+              }`}
+              onClick={setHoverClass}
+            ></div>
+            <div
+              className={`${classes.circleBottom} ${classes[hover.bigCircle]}`}
+            ></div>
+          </div>
+
           {renderWeatherLocation()}
         </div>
       </div>

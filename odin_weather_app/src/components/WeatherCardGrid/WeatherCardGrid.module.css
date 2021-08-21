@@ -1,0 +1,19 @@
+.weatherCardGrid {
+  background-color: crimson;
+  height: 70rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  width: 100%;
+  position: relative;
+}
+
+.cardContainer {
+  background-color: black;
+  height: 20rem;
+  width: 20rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
