@@ -10,19 +10,9 @@ const WeatherCardGrid = (props) => {
     style: {},
   });
 
-  // const setHoverClass = () => {
-  //   setHover({ bigSmallAnimation: 'circleHover', bigCircle: 'bigCircle' });
-  //   setHover(true);
-  // };
-
   const onClickAnimation = (element) => {
-    const elementPosition = element.target.getBoundingClientRect();
+    const elementPosition = element.target.getBoundingClientRect(); // GET POSITION OF ELEMENT
 
-    // setElementPosition({
-    //   position: 'fixed',
-    //   top: elementPosition.top,
-    //   left: elementPosition.left,
-    // });
     setAnimationObj({
       clicked: true,
       style: {

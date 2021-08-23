@@ -1,72 +1,186 @@
-.circleTop {
-  background-color: hotpink;
-  border-radius: 50%;
-  height: 20rem;
-  width: 20rem;
-
-  /* left: 150px;
-      top: 150px;
-      transform: translate(-50%, -50%); */
-  transition: all 1s ease;
-  /* transform: rotate(360deg); */
-  /* transform-origin: center; */
-  position: absolute;
-  z-index: 2;
-  left: 0rem;
-  top: 0rem;
-  /* position: fixed; */
+/* VARIABLES */
+.weatherCardBig {
+  --main-bg-color: #484e47;
 }
 
 .circleHover {
-  /* height: 40rem;
-      width: 40rem; */
-  /* z-index: 1000; */
-  /* transform-origin: center; */
-  /* transform: translate(-50, -50%); */
-  /* position: fixed; */
-  /* CENTER POSITION FIXED */
-
-  animation: bigSmall 2s forwards;
-  transition: all 10s;
-  height: 1rem;
-  width: 1rem;
-
-  /* background-color: black; */
-  position: absolute;
-  /* position: fixed; */
-  /* top: 5rem;
-    left: 0 # */
-  /* left: 0rem; */
-  /* left: 10rem; */
+  animation: clickAnimation 2s forwards;
 }
-.circleBottom {
-  background-color: cornflowerblue;
+.weatherCardBig {
+  color: #ff6700;
+  background-color: #ff6700;
   border-radius: 50%;
   height: 20rem;
   width: 20rem;
   position: absolute;
   top: 0;
-  z-index: 1;
-  transition: all 1s;
+  left: 0;
+
+  /* GRID LAYOUT */
+  display: grid;
+  grid-template-areas:
+    'locationTitle locationTitle locationTitle locationTitle'
+    'weatherImage temperature temperature weatherDesc'
+    'chanceRain chanceRain day1 day1'
+    'wind wind day2 day2'
+    'sun sun day3 day3';
+  grid-template-rows: 2fr 2fr 1fr 1fr 2fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 5px;
+  border: 5px solid black;
+  overflow: hidden;
 }
 
-.bigCircle {
-  height: 40rem;
-  width: 40rem;
-  top: -10rem;
+.cardHeading {
+  grid-area: locationTitle;
+  align-self: center;
+  justify-self: center;
+  border: 2px solid black;
+  background-color: var(--main-bg-color);
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }
 
-@keyframes bigSmall {
+.cardHeading h2 {
+  height: min-content;
+  font-size: 8rem;
+  padding-top: 2rem;
+}
+
+.cardDate {
+  text-align: center;
+  font-size: 4rem;
+  text-decoration: underline;
+  font-style: italic;
+  padding: 1rem;
+}
+
+.cardWeatherImage {
+  grid-area: weatherImage;
+  height: 100%;
+  width: 100%;
+  background-color: var(--main-bg-color);
+  border: 2px solid black;
+}
+
+.cardTemperature {
+  grid-area: temperature;
+  background-color: var(--main-bg-color);
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 6rem;
+}
+
+.cardTemperature div {
+  padding: 2rem;
+}
+
+.cardTemperature ul {
+  list-style: none;
+  padding: 1rem;
+  border: 2px solid black;
+}
+
+.cardWeatherDescription {
+  grid-area: weatherDesc;
+  background-color: var(--main-bg-color);
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+}
+
+.cardChanceRain {
+  grid-area: chanceRain;
+  background-color: var(--main-bg-color);
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardWind {
+  grid-area: wind;
+}
+
+.cardWind,
+.cardChanceRain {
+  background-color: var(--main-bg-color);
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 6rem;
+}
+
+.cardWind,
+.cardChanceRain p {
+  font-size: 6rem;
+}
+
+.cardSun {
+  grid-area: sun;
+  background-color: var(--main-bg-color);
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 4rem;
+  padding: 2rem;
+}
+
+.weatherFutureOne {
+  grid-area: day1;
+  background-color: var(--main-bg-color);
+  border: 2px solid black;
+}
+.weatherFutureTwo {
+  grid-area: day2;
+  background-color: var(--main-bg-color);
+  border: 2px solid black;
+}
+
+.weatherFutureOne,
+.weatherFutureTwo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+}
+
+.weatherFutureOne ul,
+.weatherFutureTwo ul,
+.weatherFutureThree ul {
+  list-style: none;
+  font-size: 2rem;
+}
+.weatherFutureThree {
+  grid-area: day3;
+  background-color: var(--main-bg-color);
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 4rem;
+  padding: 2rem;
+}
+
+.weatherFutureImg {
+  background-color: tomato;
+  height: 6rem;
+  width: 6rem;
+  border: 2px solid black;
+}
+@keyframes clickAnimation {
   0% {
     height: 20rem;
     width: 20rem;
-    /* transform: translate(-50%, -50%); */
-
-    /* top: 50%;
-      left: 50%; */
-    /* margin-top: -10rem;  */
-    /* margin-left: -10rem;  */
-    /* scale: (0, 0); */
   }
 
   50% {
@@ -76,10 +190,6 @@
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    /* top: calc(50vh - (40rem / 2));
-      left: calc(50vw - (40rem / 2)); */
-
-    /* scale: (2, 2); */
   }
 
   75% {
@@ -89,8 +199,6 @@
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    transform-origin: center;
   }
 
   100% {
@@ -100,11 +208,5 @@
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    transform-origin: center;
-    /* top: calc(50vh - (10rem / 2));
-      left: calc(50vw - (10rem / 2)); */
-
-    /* scale: (-1, -1); */
   }
 }
