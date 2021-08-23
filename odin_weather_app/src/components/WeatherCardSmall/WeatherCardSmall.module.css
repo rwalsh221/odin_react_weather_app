@@ -27,7 +27,7 @@
   /* transform: rotate(360deg); */
   /* transform-origin: center; */
   position: absolute;
-  z-index: 2;
+  z-index: 2000;
   left: 0rem;
   top: 0rem;
   /* position: fixed; */
@@ -96,6 +96,17 @@
     left: calc(50vw - (40rem / 2)); */
 
     /* scale: (2, 2); */
+  }
+
+  75% {
+    position: fixed;
+    height: 0rem;
+    width: 0rem;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
   }
 
   100% {
