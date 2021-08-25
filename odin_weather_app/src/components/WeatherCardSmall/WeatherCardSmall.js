@@ -1,36 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classes from './WeatherCardSmall.module.css';
 
-const WeatherCardSmall = (props) => {
-  // const [elementPosition, setElementPosition] = useState();
-
-  let elementClassName = props.clicked
-    ? `${classes.circleTop} ${classes.circleHover} ${classes.red}`
-    : `${classes.circleTop}`;
-
-  // const getElementPosition = (element) => {
-  //   const elementPosition = element.target.getBoundingClientRect();
-
-  //   setElementPosition({
-  //     position: 'fixed',
-  //     top: elementPosition.top,
-  //     left: elementPosition.left,
-  //   });
-  // };
-
-  // const animationClickHandler = (element) => {
-  //   getElementPosition(element);
-  //   props.setHoverClass();
-  // };
+const WeatherCardSmall = ({
+  clickedProps,
+  onClickAnimationProps,
+  animationStyleProps,
+}) => {
+  let elementClassName = clickedProps
+    ? `${classes.cardSmallContainer} ${classes.cardSmallContainerHover} ${classes.red}`
+    : `${classes.cardSmallContainer}`;
 
   return (
     <div
-      style={props.animationStyle}
+      style={animationStyleProps}
       className={elementClassName}
       onClick={(e) => {
-        props.onClickAnimation(e);
+        onClickAnimationProps(e);
       }}
-    ></div>
+    >
+      <div className={classes.cardSmall}>
+        <h3 className={classes.cardSmallHeading}>LONDON</h3>
+        <div className={classes.cardSmallImg}></div>
+        <p className={classes.cardSmallTemp}>20&#8451;</p>
+      </div>
+      {/* CARD BACK */}
+      <div className={classes.cardSmallBack}>
+        <h3 className={classes.cardSmallHeading}>LONDON</h3>
+        <div className={classes.cardSmallBtnContainer}>
+          <button>X</button>
+        </div>
+        <p className={classes.cardSmallMore}>Click for more info</p>
+      </div>
+    </div>
   );
 };
 

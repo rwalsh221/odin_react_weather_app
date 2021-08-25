@@ -1,88 +1,116 @@
-.circleContainer {
-  background-color: black;
-  height: 20rem;
-  width: 20rem;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  grid-column: 2;
-  grid-row: 2;
-}
-
-.red {
-  /* background-color: honeydew !important; */
-}
-
-.circleTop {
-  background-color: hotpink;
+.cardSmallContainer {
+  background-color: #484e47;
   border-radius: 50%;
   height: 20rem;
   width: 20rem;
-
-  /* left: 150px;
-    top: 150px;
-    transform: translate(-50%, -50%); */
+  border: 5px solid #ff6700;
   transition: all 1s ease;
-  /* transform: rotate(360deg); */
-  /* transform-origin: center; */
   position: absolute;
   z-index: 2000;
   left: 0rem;
   top: 0rem;
-  /* position: fixed; */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 2px 4px black;
 }
 
-.circleHover {
-  /* height: 40rem;
-    width: 40rem; */
-  /* z-index: 1000; */
-  /* transform-origin: center; */
-  /* transform: translate(-50, -50%); */
-  /* position: fixed; */
-  /* CENTER POSITION FIXED */
-
+.cardSmallContainerHover {
   animation: bigSmall 2s forwards;
   transition: all 10s;
   height: 1rem;
   width: 1rem;
-
-  /* background-color: black; */
   position: absolute;
-  /* position: fixed; */
-  /* top: 5rem;
-  left: 0 # */
-  /* left: 0rem; */
-  /* left: 10rem; */
 }
-.circleBottom {
-  background-color: cornflowerblue;
-  border-radius: 50%;
-  height: 20rem;
-  width: 20rem;
+
+.cardSmall {
+  height: 75%;
+  width: 75%;
+  background-color: hotpink;
+  border-radius: 25%;
+  box-shadow: 2px 2px 4px black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
   position: absolute;
-  top: 0;
+  z-index: 2;
+  transition: all 2s;
+  backface-visibility: hidden;
+}
+
+.cardSmall:hover {
+  transform: rotateY(180deg);
+  transform-style: preserve-3d;
+}
+
+.cardSmall > * {
+  margin: 0.5rem;
+}
+
+.cardSmallHeading {
+  font-size: 2rem;
+}
+
+.cardSmallImg {
+  height: 50%;
+  width: 50%;
+  background-color: whitesmoke;
+  border-radius: 25%;
+}
+
+.cardSmallTemp {
+  font-size: 1.5rem;
+}
+
+/* BACK OF CARD STYLES */
+.cardSmallBack {
+  height: 75%;
+  width: 75%;
+  position: absolute;
+  background-color: red;
   z-index: 1;
-  transition: all 1s;
+  border-radius: 25%;
+  box-shadow: 2px 2px 4px black;
+  transition: all 2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: rotateY(180deg);
+  overflow: hidden;
+
+  /* transform: rotateX(180deg); */
+  /* transform: scaleX(-1); */
+  /* transform: rotateY(180deg); */
 }
 
-.bigCircle {
-  height: 40rem;
-  width: 40rem;
-  top: -10rem;
+.cardSmallBtnContainer {
+  height: 50%;
+  width: 50%;
+  background-color: whitesmoke;
+  border-radius: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardSmall:hover + .cardSmallBack {
+  background-color: rosybrown;
+  transform: rotateY(360deg);
+}
+
+.cardSmallBack > * {
+  margin: 0.5rem;
 }
 
 @keyframes bigSmall {
   0% {
     height: 20rem;
     width: 20rem;
-    /* transform: translate(-50%, -50%); */
-
-    /* top: 50%;
-    left: 50%; */
-    /* margin-top: -10rem;  */
-    /* margin-left: -10rem;  */
-    /* scale: (0, 0); */
+    border: 5px solid #ff6700;
   }
 
   50% {
@@ -92,10 +120,7 @@
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    /* top: calc(50vh - (40rem / 2));
-    left: calc(50vw - (40rem / 2)); */
-
-    /* scale: (2, 2); */
+    border: 5px solid #ff6700;
   }
 
   75% {
@@ -107,6 +132,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     transform-origin: center;
+    border: 5px solid #ff6700;
+    border: none;
   }
 
   100% {
@@ -118,9 +145,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     transform-origin: center;
-    /* top: calc(50vh - (10rem / 2));
-    left: calc(50vw - (10rem / 2)); */
-
-    /* scale: (-1, -1); */
+    border: none;
   }
 }

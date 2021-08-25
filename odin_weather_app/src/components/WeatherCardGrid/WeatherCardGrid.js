@@ -27,9 +27,9 @@ const WeatherCardGrid = (props) => {
     <section className={classes.weatherCardGrid}>
       <div className={classes.cardContainer}>
         <WeatherCardSmall
-          clicked={animationObj.clicked}
-          onClickAnimation={onClickAnimation}
-          animationStyle={animationObj.style}
+          clickedProps={animationObj.clicked}
+          onClickAnimationProps={onClickAnimation}
+          animationStyleProps={animationObj.style}
         />
         <WeatherCardBig
           clicked={animationObj.clicked}
