@@ -24,10 +24,11 @@
   position: absolute;
 }
 
-.cardSmall {
+.cardSmall,
+.cardSmallBack {
+  background-color: #ff6700;
   height: 75%;
   width: 75%;
-  background-color: hotpink;
   border-radius: 25%;
   box-shadow: 2px 2px 4px black;
   display: flex;
@@ -36,17 +37,25 @@
   justify-content: center;
   overflow: hidden;
   position: absolute;
-  z-index: 2;
-  transition: all 2s;
   backface-visibility: hidden;
+  animation-timing-function: cubic-bezier(0.7, 0.05, 1, -0.2);
+  /* transform-style: preserve-3d; */
 }
 
-.cardSmall:hover {
-  transform: rotateY(180deg);
-  transform-style: preserve-3d;
+.cardSmall {
+  animation: rotateCardFront 10s forwards infinite;
+  /* background-color: hotpink; */
+  z-index: 2;
 }
 
-.cardSmall > * {
+.cardSmallBack {
+  /* background-color: red; */
+  z-index: 1;
+  animation: rotateCardBack 10s forwards infinite;
+}
+
+.cardSmall > *,
+.cardSmallBack > * {
   margin: 0.5rem;
 }
 
@@ -67,7 +76,7 @@
 
 /* BACK OF CARD STYLES */
 .cardSmallBack {
-  height: 75%;
+  /* height: 75%;
   width: 75%;
   position: absolute;
   background-color: red;
@@ -81,10 +90,8 @@
   align-items: center;
   transform: rotateY(180deg);
   overflow: hidden;
-
-  /* transform: rotateX(180deg); */
-  /* transform: scaleX(-1); */
-  /* transform: rotateY(180deg); */
+  animation: rotateCardBack 10s forwards infinite;
+  animation-timing-function: cubic-bezier(0.7, 0.05, 1, -0.2); */
 }
 
 .cardSmallBtnContainer {
@@ -97,14 +104,7 @@
   align-items: center;
 }
 
-.cardSmall:hover + .cardSmallBack {
-  background-color: rosybrown;
-  transform: rotateY(360deg);
-}
-
-.cardSmallBack > * {
-  margin: 0.5rem;
-}
+/* ANIMATION FOR POPUP */
 
 @keyframes bigSmall {
   0% {
@@ -146,5 +146,34 @@
     transform: translate(-50%, -50%);
     transform-origin: center;
     border: none;
+  }
+}
+
+/* ANIMATION FOR CARD ROATATE */
+
+@keyframes rotateCardFront {
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  50% {
+    transform: rotateY(180deg);
+  }
+
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+@keyframes rotateCardBack {
+  0% {
+    transform: rotateY(180deg);
+  }
+
+  50% {
+    transform: rotateY(0deg);
+  }
+
+  100% {
+    transform: rotateY(180deg);
   }
 }
