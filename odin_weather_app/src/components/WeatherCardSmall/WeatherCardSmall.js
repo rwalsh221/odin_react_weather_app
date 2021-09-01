@@ -7,7 +7,7 @@ const WeatherCardSmall = ({
   animationStyleProps,
 }) => {
   let elementClassName = clickedProps
-    ? `${classes.cardSmallContainer} ${classes.cardSmallContainerHover} ${classes.red}`
+    ? `${classes.cardSmallContainer} ${classes.cardSmallContainerClick} ${classes.red}`
     : `${classes.cardSmallContainer}`;
 
   return (

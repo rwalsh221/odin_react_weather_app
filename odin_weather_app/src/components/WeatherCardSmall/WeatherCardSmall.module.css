@@ -16,8 +16,8 @@
   box-shadow: 2px 2px 4px black;
 }
 
-.cardSmallContainerHover {
-  animation: bigSmall 2s forwards;
+.cardSmallContainerClick {
+  animation: clickShowPopup 2s forwards;
   transition: all 10s;
   height: 1rem;
   width: 1rem;
@@ -39,17 +39,14 @@
   position: absolute;
   backface-visibility: hidden;
   animation-timing-function: cubic-bezier(0.7, 0.05, 1, -0.2);
-  /* transform-style: preserve-3d; */
 }
 
 .cardSmall {
   animation: rotateCardFront 10s forwards infinite;
-  /* background-color: hotpink; */
   z-index: 2;
 }
 
 .cardSmallBack {
-  /* background-color: red; */
   z-index: 1;
   animation: rotateCardBack 10s forwards infinite;
 }
@@ -74,26 +71,6 @@
   font-size: 1.5rem;
 }
 
-/* BACK OF CARD STYLES */
-.cardSmallBack {
-  /* height: 75%;
-  width: 75%;
-  position: absolute;
-  background-color: red;
-  z-index: 1;
-  border-radius: 25%;
-  box-shadow: 2px 2px 4px black;
-  transition: all 2s;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transform: rotateY(180deg);
-  overflow: hidden;
-  animation: rotateCardBack 10s forwards infinite;
-  animation-timing-function: cubic-bezier(0.7, 0.05, 1, -0.2); */
-}
-
 .cardSmallBtnContainer {
   height: 50%;
   width: 50%;
@@ -106,7 +83,7 @@
 
 /* ANIMATION FOR POPUP */
 
-@keyframes bigSmall {
+@keyframes clickShowPopup {
   0% {
     height: 20rem;
     width: 20rem;

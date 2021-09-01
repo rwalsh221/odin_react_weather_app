@@ -1,0 +1,21 @@
+.searchSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+}
+
+.searchForm {
+  width: 80%;
+  background-color: chocolate;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.searchInput {
+  width: 50%;
+  margin: 0 25%;
+}
