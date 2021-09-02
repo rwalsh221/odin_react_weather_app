@@ -16,6 +16,7 @@
   width: 90%;
   height: max-content;
   background-color: #404040;
+  background-color: orangered;
   margin: 5rem auto;
   border-radius: 1rem;
   box-shadow: 0px 0px 0px 0.3rem var(--sec-bg-color-brown),

@@ -1,6 +1,7 @@
 .main {
   min-height: 90vh;
   background-color: var(--sec-bg-color-sand);
+  background-color: orangered;
 }
 
 .innerContainer {
@@ -10,11 +11,13 @@
   border-left: 5px solid #6b6761;
   border-right: 5px solid #6b6761;
   background-color: #ebe1d5;
+  background-color: orangered;
   padding: 1rem;
 }
 
 .locationSearch {
   background-color: var(--main-bg-color-grey-light);
+  background-color: orangered;
   height: max-content;
   width: 90%;
   margin: 2rem auto;

@@ -11,25 +11,27 @@ const Search = () => {
           name={'searchInput'}
           id={'seachInput'}
         ></input>
-        <ul>
+        <ul className={classes.searchRadio}>
           <li>
-            <label htmlFor={'radioMetric'}>Metric</label>
             <input
               type={'radio'}
               name={'radioMetric'}
               id={'radioMetric'}
             ></input>
+            <label htmlFor={'radioMetric'}>Metric</label>
           </li>
           <li>
-            <label htmlFor={'radioImperial'}>Imperial</label>
             <input
               type={'radio'}
               name={'radioImperial'}
               id={'radioImperial'}
             ></input>
+            <label htmlFor={'radioImperial'}>Imperial</label>
           </li>
         </ul>
-        <button type={'submit'}>Search</button>
+        <button className={classes.searchBtn} type={'submit'}>
+          Search
+        </button>
       </form>
     </section>
   );

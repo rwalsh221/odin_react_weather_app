@@ -8,7 +8,7 @@
 
 .searchForm {
   width: 80%;
-  background-color: chocolate;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,4 +18,47 @@
 .searchInput {
   width: 50%;
   margin: 0 25%;
+  font-size: 5rem;
+  padding: 1rem;
+  border-radius: 2rem;
+  background-color: #484e47;
+  outline: none;
+  color: whitesmoke;
+  border: 5px solid #ff6700;
+  transition: all 0.5s;
+  order: 1;
+  box-shadow: 2px 2px 4px black;
+}
+
+.searchInput:focus {
+  background-color: #ff6700;
+  border-color: #484e47;
+}
+
+.searchRadio,
+.searchBtn {
+  margin: 2rem;
+  background-color: #484e47;
+  color: whitesmoke;
+  border: 5px solid #ff6700;
+  border-radius: 2rem;
+  width: 20rem;
+  font-size: 3rem;
+  box-shadow: 2px 2px 4px black;
+}
+
+.searchRadio {
+  order: 3;
+  list-style: none;
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.searchRadio > :first-child {
+  margin-left: -2rem;
+}
+
+.searchBtn {
+  order: 2;
+  padding: 2.2rem 0;
 }

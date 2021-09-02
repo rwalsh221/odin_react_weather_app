@@ -6,7 +6,12 @@
     rgba(255, 103, 0, 1) 48%,
     rgba(0, 0, 0, 1) 91%
   ); */
-  background-color: yellow;
+  background: rgba(255, 173, 0, 1);
+  background: radial-gradient(
+    circle,
+    rgba(255, 173, 0, 1) 14%,
+    rgba(0, 0, 0, 0.8) 45%
+  );
   height: 70rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
