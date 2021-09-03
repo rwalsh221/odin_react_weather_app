@@ -13,11 +13,24 @@ const Main = (props) => {
   const [searchQuery, setSearchQuery] = useState(null);
   const [metric, setMetric] = useState(true);
   const [imperial, setImperial] = useState(false);
+  const [weatherLocations, setWeatherLocations] = useState([
+    { location: 'london', unit: 'metric', weatherCardGridPositon: '5' },
+  ]);
   // const [hover, setHover] = useState('');
 
   // const setHoverClass = () => {
   //   setHover({ bigSmallAnimation: 'circleHover', bigCircle: 'bigCircle' });
   // };
+
+  console.log(weatherLocations);
+
+  const addWeatherLocation = (location, unit, weatherCardGridPositon) => {
+    const weatherLocationsCopy = [...weatherLocations];
+
+    weatherLocationsCopy.push({ location, unit, weatherCardGridPositon });
+
+    setWeatherLocations(weatherLocationsCopy);
+  };
 
   const searchQueryfactory = (query) => {
     const id = new Date();
@@ -126,7 +139,7 @@ const Main = (props) => {
           </div>
           <button className={classes.locationSearchBtn}>SEARCH</button>
         </form>
-        <Search />
+        <Search addWeatherLocationProps={addWeatherLocation} />
         <div className={classes.weatherContainer}>
           <WeatherCardGrid />
           {renderWeatherLocation()}

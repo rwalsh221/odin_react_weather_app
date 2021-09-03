@@ -1,15 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './Search.module.css';
 
-const Search = () => {
+const Search = ({ addWeatherLocationProps }) => {
+  const [location, setLocation] = useState();
+  const [radioUnit, setRadioUnit] = useState('metric');
+  console.log(location);
+  console.log(radioUnit);
+  const searchChangeHandler = (event) => {
+    setLocation(event.target.value);
+  };
+
+  const radioChangeHandler = (unit) => {
+    if (unit === 'metric') {
+      setRadioUnit('metric');
+    }
+    if (unit === 'imperial') {
+      setRadioUnit('imperial');
+    }
+  };
+
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
+    addWeatherLocationProps(location, radioUnit, '1');
+  };
+
   return (
     <section className={classes.searchSection}>
-      <form className={classes.searchForm}>
+      <form className={classes.searchForm} onSubmit={formSubmitHandler}>
         <input
           className={classes.searchInput}
           type={'text'}
           name={'searchInput'}
           id={'seachInput'}
+          onChange={searchChangeHandler}
         ></input>
         <ul className={classes.searchRadio}>
           <li>
@@ -17,6 +40,10 @@ const Search = () => {
               type={'radio'}
               name={'radioMetric'}
               id={'radioMetric'}
+              checked={radioUnit === 'metric' ? true : false}
+              onChange={() => {
+                radioChangeHandler('metric');
+              }}
             ></input>
             <label htmlFor={'radioMetric'}>Metric</label>
           </li>
@@ -25,6 +52,10 @@ const Search = () => {
               type={'radio'}
               name={'radioImperial'}
               id={'radioImperial'}
+              checked={radioUnit === 'imperial' ? true : false}
+              onChange={() => {
+                radioChangeHandler('imperial');
+              }}
             ></input>
             <label htmlFor={'radioImperial'}>Imperial</label>
           </li>
