@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import classes from './WeatherCardGrid.module.css';
 
+import WeatherCardContainer from '../WeatherCardContainer/WeatherCardContainer';
 import WeatherCardBig from '../WeatherCardBig/WeatherCardBig';
 import WeatherCardSmall from '../WeatherCardSmall/WeatherCardSmall';
 
-const WeatherCardGrid = (props) => {
+const WeatherCardGrid = ({ weatherLocationsProps }) => {
   const [animationObj, setAnimationObj] = useState({
     clicked: false,
     style: {},
@@ -25,20 +26,25 @@ const WeatherCardGrid = (props) => {
 
   return (
     <section className={classes.weatherCardGrid}>
-      <div className={classes.cardContainer}>
+      <WeatherCardContainer
+        clickedProps={animationObj.clicked}
+        onClickAnimationProps={onClickAnimation}
+        animationStyleProps={animationObj.style}
+        weatherLocationProps={weatherLocationsProps[0].location}
+      />
+      {/* <div className={classes.cardContainer}>
         <WeatherCardSmall
           clickedProps={animationObj.clicked}
           onClickAnimationProps={onClickAnimation}
           animationStyleProps={animationObj.style}
+          weatherLocationProps={weatherLocationsProps[0].location}
         />
         <WeatherCardBig
           clicked={animationObj.clicked}
           onClickAnimation={onClickAnimation}
           animationStyle={animationObj.style}
         />
-      </div>
-
-      {/* <WeatherCardSmall /> */}
+      </div> */}
     </section>
   );
 };

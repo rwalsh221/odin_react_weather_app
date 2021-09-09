@@ -9,6 +9,28 @@ import WeatherCardGrid from '../WeatherCardGrid/WeatherCardGrid';
 // TODO: ADD DEFAULT TEXT TO SEARCH BAR
 // TODO: FIX BTN HOVER ON MOBILE. FIX IN CV APP ASWELL
 
+// ON FORM SUBMIT SET WAETHERLOCATIONS STATE. SEND THIS STATE TO WEATHERCARDGRID. FOREACH ON STATE TO GENERTATE SMALL AND BIG CARD WITH PROPS -- CREATE DELETE FUNCTION TO REMOVE <LOCATION FROM STATE AND PASS DOWN.
+
+let unavaliableGridPosition = [];
+
+const getGridPosition = () => {
+  const gridPosition = Math.floor(Math.random() * 9) + 1;
+
+  if (
+    unavaliableGridPosition.indexOf(gridPosition) === -1 &&
+    gridPosition !== 5
+  ) {
+    console.log(gridPosition);
+    unavaliableGridPosition.push(gridPosition);
+    console.log(unavaliableGridPosition);
+    console.log(unavaliableGridPosition.length);
+  } else if (unavaliableGridPosition.length >= 8) {
+    console.log('arr complete');
+  } else {
+    getGridPosition();
+  }
+};
+
 const Main = (props) => {
   const [searchQuery, setSearchQuery] = useState(null);
   const [metric, setMetric] = useState(true);
@@ -23,6 +45,7 @@ const Main = (props) => {
   // };
 
   console.log(weatherLocations);
+  console.log(searchQuery);
 
   const addWeatherLocation = (location, unit, weatherCardGridPositon) => {
     const weatherLocationsCopy = [...weatherLocations];
@@ -141,7 +164,7 @@ const Main = (props) => {
         </form>
         <Search addWeatherLocationProps={addWeatherLocation} />
         <div className={classes.weatherContainer}>
-          <WeatherCardGrid />
+          <WeatherCardGrid weatherLocationsProps={weatherLocations} />
           {renderWeatherLocation()}
         </div>
       </div>

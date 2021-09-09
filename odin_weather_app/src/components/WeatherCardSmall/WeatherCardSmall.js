@@ -5,6 +5,9 @@ const WeatherCardSmall = ({
   clickedProps,
   onClickAnimationProps,
   animationStyleProps,
+  weatherLocationProps,
+  weatherTypeImgProps,
+  weatherTempProps,
 }) => {
   let elementClassName = clickedProps
     ? `${classes.cardSmallContainer} ${classes.cardSmallContainerClick} ${classes.red}`
@@ -19,13 +22,15 @@ const WeatherCardSmall = ({
       }}
     >
       <div className={classes.cardSmall}>
-        <h3 className={classes.cardSmallHeading}>LONDON</h3>
-        <div className={classes.cardSmallImg}></div>
-        <p className={classes.cardSmallTemp}>20&#8451;</p>
+        <h3 className={classes.cardSmallHeading}>{weatherLocationProps}</h3>
+        <div className={classes.cardSmallImg}>
+          <img src={weatherTypeImgProps} alt={'weather type'} />
+        </div>
+        <p className={classes.cardSmallTemp}>{weatherTempProps}&#8451;</p>
       </div>
       {/* CARD BACK */}
       <div className={classes.cardSmallBack}>
-        <h3 className={classes.cardSmallHeading}>LONDON</h3>
+        <h3 className={classes.cardSmallHeading}>{weatherLocationProps}</h3>
         <div className={classes.cardSmallBtnContainer}>
           <button>X</button>
         </div>

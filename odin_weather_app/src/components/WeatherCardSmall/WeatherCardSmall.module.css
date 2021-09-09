@@ -63,7 +63,7 @@
 .cardSmallImg {
   height: 50%;
   width: 50%;
-  background-color: whitesmoke;
+  background-color: black;
   border-radius: 25%;
 }
 
@@ -74,7 +74,7 @@
 .cardSmallBtnContainer {
   height: 50%;
   width: 50%;
-  background-color: whitesmoke;
+  background-color: black;
   border-radius: 25%;
   display: flex;
   justify-content: center;

@@ -1,17 +1,24 @@
 import React from 'react';
 import classes from './WeatherCardBig.module.css';
 
-const WeatherCardBig = (props) => {
-  let elementClassName = props.clicked
+const WeatherCardBig = ({
+  clickedProps,
+  onClickAnimationProps,
+  animationStyleProps,
+  // PROPS FOR WEATHER
+  currentWeatherDataProps,
+  futureWeatherDataProps,
+}) => {
+  let elementClassName = clickedProps
     ? `${classes.weatherCardBig} ${classes.circleHover} `
     : `${classes.weatherCardBig}`;
 
   return (
     <div
       className={elementClassName}
-      style={props.animationStyle}
+      style={animationStyleProps}
       onClick={(e) => {
-        props.onClickAnimation(e);
+        onClickAnimationProps(e);
       }}
     >
       {/* CARD ROW 1 */}
@@ -21,64 +28,98 @@ const WeatherCardBig = (props) => {
             name="compass-outline"
             className={classes.compassOutline}
           ></ion-icon>
-          London
+          {currentWeatherDataProps.name}
         </h2>
-        <p className={classes.cardDate}>23/08/2021</p>
+        <p className={classes.cardDate}>{currentWeatherDataProps.dt}</p>
       </div>
 
       {/* CARD ROW 2 */}
-      <div className={classes.cardWeatherImage}></div>
+      <div className={classes.cardWeatherImage}>
+        <img
+          src={`http://openweathermap.org/img/wn/${currentWeatherDataProps.weather[0].icon}@2x.png`}
+          alt={'current weather'}
+        />
+      </div>
       <div className={classes.cardTemperature}>
-        <div>21</div>
+        <div>{Math.round(currentWeatherDataProps.main.temp)}</div>
         <ul>
-          <li>23</li>
-          <li>19</li>
+          <li>{Math.round(currentWeatherDataProps.main.temp_max)}</li>
+          <li>{Math.round(currentWeatherDataProps.main.temp_min)}</li>
         </ul>
       </div>
-      <div className={classes.cardWeatherDescription}>Broken Clouds</div>
+      <div className={classes.cardWeatherDescription}>
+        {currentWeatherDataProps.weather[0].description}
+      </div>
 
       {/* CARD ROW 345 LEFT */}
       <div className={classes.cardChanceRain}>
         <ion-icon name="umbrella-outline"></ion-icon>
-        <p>&ensp;20%</p>
+        <p>&ensp;{Math.round(futureWeatherDataProps.daily[0].pop * 100)}%</p>
       </div>
       <div className={classes.cardWind}>
         <ion-icon name="arrow-up-circle-outline"></ion-icon>
-        <p>&ensp;10 m/s</p>
+        <p>&ensp;{Math.round(currentWeatherDataProps.wind.speed)} m/s</p>
       </div>
       <div className={classes.cardSun}>
-        <p>6:59:04</p>
+        <p>{currentWeatherDataProps.sys.sunrise}</p>
         <div className={classes.cardSunIcon}>
           <ion-icon name="chevron-up-outline"></ion-icon>
           <ion-icon name="sunny-outline"></ion-icon>
           <ion-icon name="chevron-down-outline"></ion-icon>
         </div>
-        <p>6:59:04</p>
+        <p>{currentWeatherDataProps.sys.sunset}</p>
       </div>
 
       {/* CARD ROW 345 RIGHT */}
       <div className={classes.weatherFutureOne}>
-        <p>24/08/2021</p>
-        <div className={classes.weatherFutureImg}></div>
+        <p>{futureWeatherDataProps.daily[1].dt}</p>
+        <div className={classes.weatherFutureImg}>
+          <img
+            src={`http://openweathermap.org/img/wn/${futureWeatherDataProps.daily[1].weather[0].icon}@2x.png`}
+            alt={'future weather'}
+          />
+        </div>
         <ul>
-          <li>23 &#8451;</li>
-          <li>13 &#8451;</li>
+          <li>
+            {Math.round(futureWeatherDataProps.daily[1].temp.min)} &#8451;
+          </li>
+          <li>
+            {Math.round(futureWeatherDataProps.daily[1].temp.max)} &#8451;
+          </li>
         </ul>
       </div>
       <div className={classes.weatherFutureTwo}>
-        <p>24/08/2021</p>
-        <div className={classes.weatherFutureImg}></div>
+        <p>{futureWeatherDataProps.daily[2].dt}</p>
+        <div className={classes.weatherFutureImg}>
+          <img
+            src={`http://openweathermap.org/img/wn/${futureWeatherDataProps.daily[2].weather[0].icon}@2x.png`}
+            alt={'future weather'}
+          />
+        </div>
         <ul>
-          <li>23 &#8451;</li>
-          <li>13 &#8451;</li>
+          <li>
+            {Math.round(futureWeatherDataProps.daily[2].temp.min)} &#8451;
+          </li>
+          <li>
+            {Math.round(futureWeatherDataProps.daily[2].temp.max)} &#8451;
+          </li>
         </ul>
       </div>
       <div className={classes.weatherFutureThree}>
-        <p>24/08/2021</p>
-        <div className={classes.weatherFutureImg}></div>
+        <p>{futureWeatherDataProps.daily[3].dt}</p>
+        <div className={classes.weatherFutureImg}>
+          <img
+            src={`http://openweathermap.org/img/wn/${futureWeatherDataProps.daily[3].weather[0].icon}@2x.png`}
+            alt={'future weather'}
+          />
+        </div>
         <ul>
-          <li>23 &#8451;</li>
-          <li>13 &#8451;</li>
+          <li>
+            {Math.round(futureWeatherDataProps.daily[3].temp.min)} &#8451;
+          </li>
+          <li>
+            {Math.round(futureWeatherDataProps.daily[3].temp.max)} &#8451;
+          </li>
         </ul>
       </div>
     </div>

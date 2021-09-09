@@ -4,8 +4,6 @@ import classes from './Search.module.css';
 const Search = ({ addWeatherLocationProps }) => {
   const [location, setLocation] = useState();
   const [radioUnit, setRadioUnit] = useState('metric');
-  console.log(location);
-  console.log(radioUnit);
   const searchChangeHandler = (event) => {
     setLocation(event.target.value);
   };
