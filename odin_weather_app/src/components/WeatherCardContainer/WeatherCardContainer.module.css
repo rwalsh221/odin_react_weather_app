@@ -1,0 +1,12 @@
+.cardContainer {
+  /* background-color: black; */
+
+  height: 20rem;
+  width: 20rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 1;
+  grid-row: 1;
+}

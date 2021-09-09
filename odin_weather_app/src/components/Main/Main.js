@@ -36,7 +36,7 @@ const Main = (props) => {
   const [metric, setMetric] = useState(true);
   const [imperial, setImperial] = useState(false);
   const [weatherLocations, setWeatherLocations] = useState([
-    { location: 'london', unit: 'metric', weatherCardGridPositon: '5' },
+    { location: 'liverpool', unit: 'metric', weatherCardGridPositon: 'cc' },
   ]);
   // const [hover, setHover] = useState('');
 

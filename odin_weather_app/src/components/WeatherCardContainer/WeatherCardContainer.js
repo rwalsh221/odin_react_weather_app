@@ -10,6 +10,8 @@ const WeatherCardContainer = ({
   onClickAnimationProps,
   animationStyleProps,
   weatherLocationProps,
+  weatherLocationUnitProps,
+  weatherLocationPositionProps,
 }) => {
   //   const [weatherLocations, setWeatherLocations] = useState([
   //     { location: 'london', unit: 'metric', weatherCardGridPositon: '5' },
@@ -84,7 +86,14 @@ const WeatherCardContainer = ({
     <Spinner />
   );
 
-  return <div className={classes.cardContainer}>{content}</div>;
+  return (
+    <div
+      className={classes.cardContainer}
+      style={{ gridArea: `${weatherLocationPositionProps}` }}
+    >
+      {content}
+    </div>
+  );
 };
 
 export default WeatherCardContainer;

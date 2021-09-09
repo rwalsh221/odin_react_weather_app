@@ -31,6 +31,10 @@ const WeatherCardGrid = ({ weatherLocationsProps }) => {
         onClickAnimationProps={onClickAnimation}
         animationStyleProps={animationObj.style}
         weatherLocationProps={weatherLocationsProps[0].location}
+        weatherLocationUnitProps={weatherLocationsProps[0].unit}
+        weatherLocationPositionProps={
+          weatherLocationsProps[0].weatherCardGridPositon
+        }
       />
       {/* <div className={classes.cardContainer}>
         <WeatherCardSmall

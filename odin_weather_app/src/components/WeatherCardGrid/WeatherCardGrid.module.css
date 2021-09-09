@@ -14,10 +14,16 @@
   );
   height: 70rem;
   display: grid;
+  grid-template-areas:
+    'tl tc tr'
+    'cl cc cr'
+    'bl bc br';
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   width: 100%;
   position: relative;
+  align-items: center;
+  justify-items: center;
 }
 
 .cardContainer {
