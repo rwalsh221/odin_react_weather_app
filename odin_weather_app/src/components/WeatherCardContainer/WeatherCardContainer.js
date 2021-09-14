@@ -6,14 +6,17 @@ import WeatherCardBig from '../WeatherCardBig/WeatherCardBig';
 import Spinner from '../Spinner/Spinner';
 
 const WeatherCardContainer = ({
+  id,
   clickedProps,
   onClickAnimationProps,
   animationStyleProps,
   weatherLocationProps,
-  weatherLocationUnitProps,
-  weatherLocationPositionProps,
 }) => {
   const [weatherData, setWeatherData] = useState({});
+  const [animationObj, setAnimationObj] = useState({
+    clicked: false,
+    style: {},
+  });
 
   const apikey = 'b0ea585de7608342c1947e606b266dd4';
   console.log(weatherLocationProps);
@@ -58,21 +61,41 @@ const WeatherCardContainer = ({
   console.log(weatherData.currentWeatherData);
   console.log(weatherData.futureWeatherData);
 
+  const onClickAnimation = (element) => {
+    // const el = document.getElementById(`${element.target.id}`);
+    // console.log(el);
+    const elementPosition = element.target.getBoundingClientRect(); // GET POSITION OF ELEMENT
+    // el.style.position = 'fixed';
+    // el.style.top = elementPosition.top;
+    // el.style.left = elementPosition.left;
+
+    setAnimationObj({
+      clicked: true,
+      style: {
+        position: 'fixed',
+        top: elementPosition.top,
+        left: elementPosition.left,
+      },
+    });
+    // setAnimationObj({ clicked: true });
+  };
+
   const content = weatherData.currentWeatherData ? (
     <React.Fragment>
       <WeatherCardSmall
-        clickedProps={clickedProps}
-        onClickAnimationProps={onClickAnimationProps}
-        animationStyleProps={animationStyleProps}
+        id={id}
+        clickedProps={animationObj.clicked}
+        onClickAnimationProps={onClickAnimation}
+        animationStyleProps={animationObj.style}
         // PROPS FOR WEATHER
         weatherLocationProps={weatherData.currentWeatherData.name}
         weatherTypeImgProps={`http://openweathermap.org/img/wn/${weatherData.currentWeatherData.weather[0].icon}@2x.png`}
         weatherTempProps={weatherData.currentWeatherData.main.temp}
       />
       <WeatherCardBig
-        clickedProps={clickedProps}
-        onClickAnimationProps={onClickAnimationProps}
-        animationStyleProps={animationStyleProps}
+        clickedProps={animationObj.clicked}
+        onClickAnimationProps={onClickAnimation}
+        animationStyleProps={animationObj.style}
         // PROPS FOR WEATHER
         currentWeatherDataProps={weatherData.currentWeatherData}
         futureWeatherDataProps={weatherData.futureWeatherData}

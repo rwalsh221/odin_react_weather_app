@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './WeatherCardSmall.module.css';
 
 const WeatherCardSmall = ({
+  id,
   clickedProps,
   onClickAnimationProps,
   animationStyleProps,
@@ -10,11 +11,12 @@ const WeatherCardSmall = ({
   weatherTempProps,
 }) => {
   let elementClassName = clickedProps
-    ? `${classes.cardSmallContainer} ${classes.cardSmallContainerClick} ${classes.red}`
+    ? `${classes.cardSmallContainer} ${classes.cardSmallContainerClick}`
     : `${classes.cardSmallContainer}`;
 
   return (
     <div
+      id={'card' + id}
       style={animationStyleProps}
       className={elementClassName}
       onClick={(e) => {

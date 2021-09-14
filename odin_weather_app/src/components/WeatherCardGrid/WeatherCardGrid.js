@@ -15,25 +15,32 @@ const WeatherCardGrid = ({
   console.log(userWeatherLocationProps);
 
   const onClickAnimation = (element) => {
-    const elementPosition = element.target.getBoundingClientRect(); // GET POSITION OF ELEMENT
-
-    setAnimationObj({
-      clicked: true,
-      style: {
-        position: 'fixed',
-        top: elementPosition.top,
-        left: elementPosition.left,
-      },
-    });
+    // const el = document.getElementById(`${element.target.id}`);
+    // console.log(el);
+    // const elementPosition = element.target.getBoundingClientRect(); // GET POSITION OF ELEMENT
+    // el.style.position = 'fixed';
+    // el.style.top = elementPosition.top;
+    // el.style.left = elementPosition.left;
+    // setAnimationObj({
+    //   clicked: true,
+    //   style: {
+    //     position: 'fixed',
+    //     top: elementPosition.top,
+    //     left: elementPosition.left,
+    //   },
+    // });
+    // setAnimationObj({ clicked: true });
   };
 
   // RENDER CARDS IF WEATHERLOACTIONPROPS HAS ELEMENTS
   const renderWeatherLocations = () => {
     const content = weatherLocationsProps
-      ? weatherLocationsProps.map((element) => {
+      ? weatherLocationsProps.map((element, index) => {
           console.log(element);
           return (
             <WeatherCardContainer
+              key={index}
+              id={index}
               clickedProps={animationObj.clicked}
               onClickAnimationProps={onClickAnimation}
               animationStyleProps={animationObj.style}
@@ -68,6 +75,7 @@ const WeatherCardGrid = ({
     <section className={classes.weatherCardGrid}>
       {userWeatherLocationProps ? (
         <WeatherCardContainer
+          id={'user'}
           clickedProps={animationObj.clicked}
           onClickAnimationProps={onClickAnimation}
           animationStyleProps={animationObj.style}
