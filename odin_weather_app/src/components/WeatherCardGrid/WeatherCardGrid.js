@@ -2,14 +2,17 @@ import React, { useState } from 'react';
 import classes from './WeatherCardGrid.module.css';
 
 import WeatherCardContainer from '../WeatherCardContainer/WeatherCardContainer';
-import WeatherCardBig from '../WeatherCardBig/WeatherCardBig';
-import WeatherCardSmall from '../WeatherCardSmall/WeatherCardSmall';
 
-const WeatherCardGrid = ({ weatherLocationsProps }) => {
+const WeatherCardGrid = ({
+  userWeatherLocationProps,
+  weatherLocationsProps,
+}) => {
   const [animationObj, setAnimationObj] = useState({
     clicked: false,
     style: {},
   });
+
+  console.log(userWeatherLocationProps);
 
   const onClickAnimation = (element) => {
     const elementPosition = element.target.getBoundingClientRect(); // GET POSITION OF ELEMENT
@@ -24,31 +27,54 @@ const WeatherCardGrid = ({ weatherLocationsProps }) => {
     });
   };
 
+  // RENDER CARDS IF WEATHERLOACTIONPROPS HAS ELEMENTS
+  const renderWeatherLocations = () => {
+    const content = weatherLocationsProps
+      ? weatherLocationsProps.map((element) => {
+          console.log(element);
+          return (
+            <WeatherCardContainer
+              clickedProps={animationObj.clicked}
+              onClickAnimationProps={onClickAnimation}
+              animationStyleProps={animationObj.style}
+              weatherLocationProps={element}
+            />
+          );
+        })
+      : null;
+
+    return content;
+  };
+
+  // const renderUserWeatherLocations = () => {
+  //   const content = userWeatherLocationsProps
+  //     ? weatherLocationsProps.map((element) => {
+  //         console.log(element);
+  //         return (
+  //           <WeatherCardContainer
+  //             clickedProps={animationObj.clicked}
+  //             onClickAnimationProps={onClickAnimation}
+  //             animationStyleProps={animationObj.style}
+  //             weatherLocationProps={element}
+  //           />
+  //         );
+  //       })
+  //     : null;
+
+  //   return content;
+  // };
+
   return (
     <section className={classes.weatherCardGrid}>
-      <WeatherCardContainer
-        clickedProps={animationObj.clicked}
-        onClickAnimationProps={onClickAnimation}
-        animationStyleProps={animationObj.style}
-        weatherLocationProps={weatherLocationsProps[0].location}
-        weatherLocationUnitProps={weatherLocationsProps[0].unit}
-        weatherLocationPositionProps={
-          weatherLocationsProps[0].weatherCardGridPositon
-        }
-      />
-      {/* <div className={classes.cardContainer}>
-        <WeatherCardSmall
+      {userWeatherLocationProps ? (
+        <WeatherCardContainer
           clickedProps={animationObj.clicked}
           onClickAnimationProps={onClickAnimation}
           animationStyleProps={animationObj.style}
-          weatherLocationProps={weatherLocationsProps[0].location}
+          weatherLocationProps={userWeatherLocationProps}
         />
-        <WeatherCardBig
-          clicked={animationObj.clicked}
-          onClickAnimation={onClickAnimation}
-          animationStyle={animationObj.style}
-        />
-      </div> */}
+      ) : null}
+      {renderWeatherLocations()}
     </section>
   );
 };

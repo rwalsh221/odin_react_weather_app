@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import classes from './Main.module.css';
 import Search from '../Search/Search';
 import WeatherLocationContainer from '../WeatherLocationContainer/WeatherLocationContainer';
 import WeatherCardGrid from '../WeatherCardGrid/WeatherCardGrid';
+import getGridPosition from '../../utilities/gridposition';
 
 // TODO: ADD ERROR HANDLING FOR CITY NOT FOUND
 // TODO: ADD DEFAULT TEXT TO SEARCH BAR
@@ -11,32 +12,33 @@ import WeatherCardGrid from '../WeatherCardGrid/WeatherCardGrid';
 
 // ON FORM SUBMIT SET WAETHERLOCATIONS STATE. SEND THIS STATE TO WEATHERCARDGRID. FOREACH ON STATE TO GENERTATE SMALL AND BIG CARD WITH PROPS -- CREATE DELETE FUNCTION TO REMOVE <LOCATION FROM STATE AND PASS DOWN.
 
-let unavaliableGridPosition = [];
+// const getGridPosition = () => {
+//   const gridPosition = Math.floor(Math.random() * 9) + 1;
 
-const getGridPosition = () => {
-  const gridPosition = Math.floor(Math.random() * 9) + 1;
-
-  if (
-    unavaliableGridPosition.indexOf(gridPosition) === -1 &&
-    gridPosition !== 5
-  ) {
-    console.log(gridPosition);
-    unavaliableGridPosition.push(gridPosition);
-    console.log(unavaliableGridPosition);
-    console.log(unavaliableGridPosition.length);
-  } else if (unavaliableGridPosition.length >= 8) {
-    console.log('arr complete');
-  } else {
-    getGridPosition();
-  }
-};
+//   if (
+//     unavaliableGridPosition.indexOf(gridPosition) === -1 &&
+//     gridPosition !== 5
+//   ) {
+//     console.log(gridPosition);
+//     unavaliableGridPosition.push(gridPosition);
+//     console.log(unavaliableGridPosition);
+//     console.log(unavaliableGridPosition.length);
+//   } else if (unavaliableGridPosition.length >= 8) {
+//     console.log('arr complete');
+//   } else {
+//     getGridPosition();
+//   }
+// };
 
 const Main = (props) => {
   const [searchQuery, setSearchQuery] = useState(null);
   const [metric, setMetric] = useState(true);
   const [imperial, setImperial] = useState(false);
+  const [userWeatherLocation, setUserWeatherLocation] = useState();
   const [weatherLocations, setWeatherLocations] = useState([
-    { location: 'liverpool', unit: 'metric', weatherCardGridPositon: 'cc' },
+    // { location: 'liverpool', unit: 'metric', weatherCardGridPositon: 'bl' },
+    // { location: 'liverpool', unit: 'metric', weatherCardGridPositon: 'tl' },
+    // { location: 'liverpool', unit: 'metric', weatherCardGridPositon: 'tr' },
   ]);
   // const [hover, setHover] = useState('');
 
@@ -44,8 +46,57 @@ const Main = (props) => {
   //   setHover({ bigSmallAnimation: 'circleHover', bigCircle: 'bigCircle' });
   // };
 
-  console.log(weatherLocations);
-  console.log(searchQuery);
+  console.log(navigator.geolocation);
+  console.log('render');
+  // console.log(latitude);
+  // const getLocation = () => {
+  //   navigator.geolocation.getCurrentPosition(reverseGeoLoc);
+  // };
+
+  useEffect(() => {
+    const getLocation = () => {
+      // getCurrentPostion(successCallback, failCallback)
+      navigator.geolocation.getCurrentPosition(
+        (position) => reverseGeoLoc(position),
+        () =>
+          setUserWeatherLocation({
+            location: 'london',
+            unit: 'metric',
+            weatherCardGridPositon: 'cc',
+          })
+      );
+    };
+
+    const reverseGeoLoc = async (position) => {
+      console.log('run');
+      try {
+        const getLocation = await fetch(
+          `https://eu1.locationiq.com/v1/reverse.php?key=${'pk.252799e8c85697a3838b079587a0eca3'}&lat=${
+            position.coords.latitude
+          }&lon=${position.coords.longitude}&format=json`
+        );
+
+        const getLocationData = await getLocation.json();
+        console.log(getLocationData);
+        console.log(getLocationData.address.city);
+
+        setUserWeatherLocation({
+          location: getLocationData.address.city,
+          unit: 'metric',
+          weatherCardGridPositon: 'cc',
+        });
+      } catch (error) {
+        setUserWeatherLocation({
+          location: 'london',
+          unit: 'metric',
+          weatherCardGridPositon: 'cc',
+        });
+        console.error(error);
+      }
+    };
+
+    getLocation();
+  }, [weatherLocations]);
 
   const addWeatherLocation = (location, unit, weatherCardGridPositon) => {
     const weatherLocationsCopy = [...weatherLocations];
@@ -164,7 +215,10 @@ const Main = (props) => {
         </form>
         <Search addWeatherLocationProps={addWeatherLocation} />
         <div className={classes.weatherContainer}>
-          <WeatherCardGrid weatherLocationsProps={weatherLocations} />
+          <WeatherCardGrid
+            userWeatherLocationProps={userWeatherLocation}
+            weatherLocationsProps={weatherLocations}
+          />
           {renderWeatherLocation()}
         </div>
       </div>

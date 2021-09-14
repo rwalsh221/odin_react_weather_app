@@ -13,10 +13,6 @@ const WeatherCardContainer = ({
   weatherLocationUnitProps,
   weatherLocationPositionProps,
 }) => {
-  //   const [weatherLocations, setWeatherLocations] = useState([
-  //     { location: 'london', unit: 'metric', weatherCardGridPositon: '5' },
-  //   ]);
-
   const [weatherData, setWeatherData] = useState({});
 
   const apikey = 'b0ea585de7608342c1947e606b266dd4';
@@ -27,7 +23,7 @@ const WeatherCardContainer = ({
         try {
           // GET CURRENT WEATHER AND LONG LAT FOR FUTUREWEATHER
           const currentWeather = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${weatherLocationProps}&units=${'metric'}&appid=${apikey}`
+            `https://api.openweathermap.org/data/2.5/weather?q=${weatherLocationProps.location}&units=${weatherLocationProps.unit}&appid=${apikey}`
           );
 
           let currentWeatherData = await currentWeather.json();
@@ -89,7 +85,7 @@ const WeatherCardContainer = ({
   return (
     <div
       className={classes.cardContainer}
-      style={{ gridArea: `${weatherLocationPositionProps}` }}
+      style={{ gridArea: `${weatherLocationProps.weatherCardGridPositon}` }}
     >
       {content}
     </div>
