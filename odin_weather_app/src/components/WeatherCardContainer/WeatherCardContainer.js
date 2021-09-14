@@ -5,13 +5,7 @@ import WeatherCardSmall from '../WeatherCardSmall/WeatherCardSmall';
 import WeatherCardBig from '../WeatherCardBig/WeatherCardBig';
 import Spinner from '../Spinner/Spinner';
 
-const WeatherCardContainer = ({
-  id,
-  clickedProps,
-  onClickAnimationProps,
-  animationStyleProps,
-  weatherLocationProps,
-}) => {
+const WeatherCardContainer = ({ weatherLocationProps }) => {
   const [weatherData, setWeatherData] = useState({});
   const [animationObj, setAnimationObj] = useState({
     clicked: false,
@@ -19,7 +13,7 @@ const WeatherCardContainer = ({
   });
 
   const apikey = 'b0ea585de7608342c1947e606b266dd4';
-  console.log(weatherLocationProps);
+
   useEffect(() => {
     const fetchData = async () => {
       if (weatherLocationProps) {
@@ -47,8 +41,6 @@ const WeatherCardContainer = ({
               currentWeatherData: { ...currentWeatherData },
               futureWeatherData: { ...futureWeatherData },
             });
-            // setFutureWeatherData({ ...futureWeatherData });
-            // setCurrentWeatherData({ ...currentWeatherData });
           }
         } catch (error) {
           console.error(error);
@@ -58,16 +50,8 @@ const WeatherCardContainer = ({
     fetchData();
   }, [weatherLocationProps]);
 
-  console.log(weatherData.currentWeatherData);
-  console.log(weatherData.futureWeatherData);
-
   const onClickAnimation = (element) => {
-    // const el = document.getElementById(`${element.target.id}`);
-    // console.log(el);
     const elementPosition = element.target.getBoundingClientRect(); // GET POSITION OF ELEMENT
-    // el.style.position = 'fixed';
-    // el.style.top = elementPosition.top;
-    // el.style.left = elementPosition.left;
 
     setAnimationObj({
       clicked: true,
@@ -77,13 +61,11 @@ const WeatherCardContainer = ({
         left: elementPosition.left,
       },
     });
-    // setAnimationObj({ clicked: true });
   };
 
   const content = weatherData.currentWeatherData ? (
     <React.Fragment>
       <WeatherCardSmall
-        id={id}
         clickedProps={animationObj.clicked}
         onClickAnimationProps={onClickAnimation}
         animationStyleProps={animationObj.style}
