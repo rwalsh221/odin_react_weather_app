@@ -53,6 +53,7 @@ const Main = (props) => {
   //   navigator.geolocation.getCurrentPosition(reverseGeoLoc);
   // };
 
+  // GET USER LOCATION FROM BROWSER AND FIND LOCAL WEATHER. DEFAULTS TO LONDON IF DENIED ACCSESS TO LOCATION
   useEffect(() => {
     const getLocation = () => {
       // getCurrentPostion(successCallback, failCallback)
@@ -98,12 +99,28 @@ const Main = (props) => {
     getLocation();
   }, [weatherLocations]);
 
-  const addWeatherLocation = (location, unit, weatherCardGridPositon) => {
+  // ADDS WEATHER LOCATION ON SEARCH SUBMIT
+  const addWeatherLocation = (location, unit, weatherCardGridPositon, id) => {
     const weatherLocationsCopy = [...weatherLocations];
 
-    weatherLocationsCopy.push({ location, unit, weatherCardGridPositon });
+    weatherLocationsCopy.push({ location, unit, weatherCardGridPositon, id });
 
     setWeatherLocations(weatherLocationsCopy);
+  };
+
+  // REMOVES WEATHER LOCATION
+  const removeWeatherLocation = (id) => {
+    console.log(id);
+    const weatherLocationsCopy = [...weatherLocations];
+
+    for (let i = 0; i <= weatherLocationsCopy.length; i++) {
+      if (id === weatherLocationsCopy[i].id) {
+        weatherLocationsCopy.splice(i, 1);
+        break;
+      }
+    }
+
+    setWeatherLocations([...weatherLocationsCopy]);
   };
 
   const searchQueryfactory = (query) => {
@@ -218,6 +235,7 @@ const Main = (props) => {
           <WeatherCardGrid
             userWeatherLocationProps={userWeatherLocation}
             weatherLocationsProps={weatherLocations}
+            removeWeatherLocationProps={removeWeatherLocation}
           />
           {renderWeatherLocation()}
         </div>

@@ -6,6 +6,7 @@ import WeatherCardContainer from '../WeatherCardContainer/WeatherCardContainer';
 const WeatherCardGrid = ({
   userWeatherLocationProps,
   weatherLocationsProps,
+  removeWeatherLocationProps,
 }) => {
   // RENDER CARDS IF WEATHERLOACTIONPROPS HAS ELEMENTS
   const renderWeatherLocations = () => {
@@ -13,7 +14,11 @@ const WeatherCardGrid = ({
       ? weatherLocationsProps.map((element, index) => {
           console.log(element);
           return (
-            <WeatherCardContainer key={index} weatherLocationProps={element} />
+            <WeatherCardContainer
+              key={element.id}
+              weatherLocationProps={element}
+              removeWeatherLocationProps={removeWeatherLocationProps}
+            />
           );
         })
       : null;
@@ -24,7 +29,10 @@ const WeatherCardGrid = ({
   return (
     <section className={classes.weatherCardGrid}>
       {userWeatherLocationProps ? (
-        <WeatherCardContainer weatherLocationProps={userWeatherLocationProps} />
+        <WeatherCardContainer
+          weatherLocationProps={userWeatherLocationProps}
+          removeWeatherLocationProps={removeWeatherLocationProps}
+        />
       ) : null}
       {renderWeatherLocations()}
     </section>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { nanoid } from 'nanoid';
 import classes from './Search.module.css';
 
 const Search = ({ addWeatherLocationProps }) => {
@@ -19,7 +20,7 @@ const Search = ({ addWeatherLocationProps }) => {
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    addWeatherLocationProps(location, radioUnit, getGridPosition());
+    addWeatherLocationProps(location, radioUnit, getGridPosition(), nanoid());
   };
 
   let unavaliableGridPosition = [];
@@ -33,6 +34,7 @@ const Search = ({ addWeatherLocationProps }) => {
 
     if (unavaliableGridPosition.indexOf(gridPositionNum) === -1) {
       unavaliableGridPosition.push(gridPositionNum);
+      console.log(unavaliableGridPosition);
     } else if (unavaliableGridPosition.length >= 8) {
       // DELETE FIRST ELEMENT IN LOCATIONS ARRAY AND REPLACE
       console.log('arr complete');

@@ -5,12 +5,17 @@ import WeatherCardSmall from '../WeatherCardSmall/WeatherCardSmall';
 import WeatherCardBig from '../WeatherCardBig/WeatherCardBig';
 import Spinner from '../Spinner/Spinner';
 
-const WeatherCardContainer = ({ weatherLocationProps }) => {
+const WeatherCardContainer = ({
+  weatherLocationProps,
+  removeWeatherLocationProps,
+}) => {
   const [weatherData, setWeatherData] = useState({});
   const [animationObj, setAnimationObj] = useState({
     clicked: false,
     style: {},
   });
+
+  console.log(weatherLocationProps);
 
   const apikey = 'b0ea585de7608342c1947e606b266dd4';
 
@@ -69,10 +74,10 @@ const WeatherCardContainer = ({ weatherLocationProps }) => {
         clickedProps={animationObj.clicked}
         onClickAnimationProps={onClickAnimation}
         animationStyleProps={animationObj.style}
+        removeWeatherLocationProps={removeWeatherLocationProps}
+        locationIDProps={weatherLocationProps.id}
         // PROPS FOR WEATHER
-        weatherLocationProps={weatherData.currentWeatherData.name}
-        weatherTypeImgProps={`http://openweathermap.org/img/wn/${weatherData.currentWeatherData.weather[0].icon}@2x.png`}
-        weatherTempProps={weatherData.currentWeatherData.main.temp}
+        currentWeatherDataProps={weatherData.currentWeatherData}
       />
       <WeatherCardBig
         clickedProps={animationObj.clicked}
