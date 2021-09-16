@@ -19,9 +19,7 @@ const WeatherCardSmall = ({
     removeWeatherLocationProps(e.target.id);
   };
 
-  const test = (e) => {
-    console.log(e);
-  };
+  console.log('RENDER CARD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
 
   return (
     <div

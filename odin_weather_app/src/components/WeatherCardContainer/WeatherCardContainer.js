@@ -15,8 +15,6 @@ const WeatherCardContainer = ({
     style: {},
   });
 
-  console.log(weatherLocationProps);
-
   const apikey = 'b0ea585de7608342c1947e606b266dd4';
 
   useEffect(() => {

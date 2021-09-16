@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import classes from './Search.module.css';
-import test from '../../utilities/gridposition';
+import CSSGridPosition from '../../utilities/gridposition';
 
 const Search = ({ addWeatherLocationProps }) => {
   const [location, setLocation] = useState();
@@ -22,7 +22,13 @@ const Search = ({ addWeatherLocationProps }) => {
   const formSubmitHandler = (e) => {
     e.preventDefault();
 
-    const gridPos = test();
+    const gridPos = CSSGridPosition();
+
+    if (gridPos === 'ARRAY EMPTY') {
+      // NEED TO REMOVE FIRST ITEM IN LOACTION ARRAY AND REPLACE WITH NEW LOACTION
+      console.log(gridPos);
+    }
+
     addWeatherLocationProps(location, radioUnit, gridPos, nanoid());
   };
 

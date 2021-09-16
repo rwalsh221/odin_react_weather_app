@@ -40,18 +40,6 @@ const Main = (props) => {
     // { location: 'liverpool', unit: 'metric', weatherCardGridPositon: 'tl' },
     // { location: 'liverpool', unit: 'metric', weatherCardGridPositon: 'tr' },
   ]);
-  // const [hover, setHover] = useState('');
-
-  // const setHoverClass = () => {
-  //   setHover({ bigSmallAnimation: 'circleHover', bigCircle: 'bigCircle' });
-  // };
-
-  console.log(navigator.geolocation);
-  console.log('render');
-  // console.log(latitude);
-  // const getLocation = () => {
-  //   navigator.geolocation.getCurrentPosition(reverseGeoLoc);
-  // };
 
   // GET USER LOCATION FROM BROWSER AND FIND LOCAL WEATHER. DEFAULTS TO LONDON IF DENIED ACCSESS TO LOCATION
   useEffect(() => {
@@ -78,8 +66,6 @@ const Main = (props) => {
         );
 
         const getLocationData = await getLocation.json();
-        console.log(getLocationData);
-        console.log(getLocationData.address.city);
 
         setUserWeatherLocation({
           location: getLocationData.address.city,
