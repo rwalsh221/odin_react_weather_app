@@ -86,10 +86,40 @@ const Main = (props) => {
   }, [weatherLocations]);
 
   // ADDS WEATHER LOCATION ON SEARCH SUBMIT
-  const addWeatherLocation = (location, unit, weatherCardGridPositon, id) => {
+  const addWeatherLocation = (
+    location,
+    unit,
+    weatherCardGridPositon,
+    id,
+    timeStamp
+  ) => {
     const weatherLocationsCopy = [...weatherLocations];
 
-    weatherLocationsCopy.push({ location, unit, weatherCardGridPositon, id });
+    weatherLocationsCopy.push({
+      location,
+      unit,
+      weatherCardGridPositon,
+      id,
+      timeStamp,
+    });
+
+    setWeatherLocations(weatherLocationsCopy);
+  };
+
+  // REPLACES FIRST WEATHER LOCATION WHEN GRID IS FULL. GRID IS FULL AT EIGHT ELEMENTS
+
+  const replaceWeatherLocation = (location, unit, id, timeStamp) => {
+    const weatherLocationsCopy = [...weatherLocations];
+    // SORT ARRAY BY TIMESTAMP TO REPLACE OLDEST LOCATION
+    weatherLocationsCopy.sort((a, b) => a.timeStamp - b.timeStamp);
+
+    weatherLocationsCopy[0] = {
+      ...weatherLocationsCopy[0],
+      location,
+      unit,
+      id,
+      timeStamp,
+    };
 
     setWeatherLocations(weatherLocationsCopy);
   };
@@ -216,7 +246,10 @@ const Main = (props) => {
           </div>
           <button className={classes.locationSearchBtn}>SEARCH</button>
         </form>
-        <Search addWeatherLocationProps={addWeatherLocation} />
+        <Search
+          addWeatherLocationProps={addWeatherLocation}
+          replaceWeatherLocationProps={replaceWeatherLocation}
+        />
         <div className={classes.weatherContainer}>
           <WeatherCardGrid
             userWeatherLocationProps={userWeatherLocation}

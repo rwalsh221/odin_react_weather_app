@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import classes from './Search.module.css';
 import CSSGridPosition from '../../utilities/gridposition';
 
-const Search = ({ addWeatherLocationProps }) => {
+const Search = ({ addWeatherLocationProps, replaceWeatherLocationProps }) => {
   const [location, setLocation] = useState();
   const [radioUnit, setRadioUnit] = useState('metric');
   const searchChangeHandler = (event) => {
@@ -23,13 +23,18 @@ const Search = ({ addWeatherLocationProps }) => {
     e.preventDefault();
 
     const gridPos = CSSGridPosition();
+    const timeStamp = new Date().getTime();
+    const id = nanoid();
+    console.log(timeStamp);
 
     if (gridPos === 'ARRAY EMPTY') {
       // NEED TO REMOVE FIRST ITEM IN LOACTION ARRAY AND REPLACE WITH NEW LOACTION
       console.log(gridPos);
+      replaceWeatherLocationProps(location, radioUnit, id, timeStamp);
+      return;
     }
 
-    addWeatherLocationProps(location, radioUnit, gridPos, nanoid());
+    addWeatherLocationProps(location, radioUnit, gridPos, id, timeStamp);
   };
 
   let unavaliableGridPosition = [];
