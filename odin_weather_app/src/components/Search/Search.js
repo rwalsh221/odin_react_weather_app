@@ -4,8 +4,9 @@ import classes from './Search.module.css';
 import CSSGridPosition from '../../utilities/gridposition';
 
 const Search = ({ addWeatherLocationProps, replaceWeatherLocationProps }) => {
-  const [location, setLocation] = useState();
+  const [location, setLocation] = useState('');
   const [radioUnit, setRadioUnit] = useState('metric');
+
   const searchChangeHandler = (event) => {
     setLocation(event.target.value);
   };
@@ -25,64 +26,16 @@ const Search = ({ addWeatherLocationProps, replaceWeatherLocationProps }) => {
     const gridPos = CSSGridPosition();
     const timeStamp = new Date().getTime();
     const id = nanoid();
-    console.log(timeStamp);
 
+    // REMOVE FIRST ITEM IN LOACTION ARRAY AND REPLACE WITH NEW LOACTION
     if (gridPos === 'ARRAY EMPTY') {
-      // NEED TO REMOVE FIRST ITEM IN LOACTION ARRAY AND REPLACE WITH NEW LOACTION
-      console.log(gridPos);
       replaceWeatherLocationProps(location, radioUnit, id, timeStamp);
+      setLocation('');
       return;
     }
-
     addWeatherLocationProps(location, radioUnit, gridPos, id, timeStamp);
+    setLocation('');
   };
-
-  let unavaliableGridPosition = [];
-
-  const getGridPosition = () => {
-    //   GRID POSITION STRINGS FOR CSS STYLE
-    const gridPositionCSS = ['tl', 'tc', 'tr', 'cl', 'cr', 'bl', 'bc', 'br'];
-
-    //   GET RANDOM NUMBER FOR CSSPOSITION ARRAY
-    const gridPositionNum = Math.floor(Math.random() * 8) + 1;
-
-    if (unavaliableGridPosition.indexOf(gridPositionNum) === -1) {
-      unavaliableGridPosition.push(gridPositionNum);
-      console.log(unavaliableGridPosition);
-    } else if (unavaliableGridPosition.length >= 8) {
-      // DELETE FIRST ELEMENT IN LOCATIONS ARRAY AND REPLACE
-      console.log('arr complete');
-    } else {
-      getGridPosition();
-    }
-    return gridPositionCSS[gridPositionNum - 1];
-  };
-
-  // const gridPositionTest = () => {
-  //   let unavaliableGridPosition = [];
-  //   const getGridPos = () => {
-  //     //   GRID POSITION STRINGS FOR CSS STYLE
-  //     const gridPositionCSS = ['tl', 'tc', 'tr', 'cl', 'cr', 'bl', 'bc', 'br'];
-
-  //     //   GET RANDOM NUMBER FOR CSSPOSITION ARRAY
-  //     const gridPositionNum = Math.floor(Math.random() * 8) + 1;
-
-  //     if (unavaliableGridPosition.indexOf(gridPositionNum) === -1) {
-  //       unavaliableGridPosition.push(gridPositionNum);
-  //       console.log(unavaliableGridPosition);
-  //     } else if (unavaliableGridPosition.length >= 8) {
-  //       // DELETE FIRST ELEMENT IN LOCATIONS ARRAY AND REPLACE
-  //       console.log('arr complete');
-  //     } else {
-  //       getGridPos();
-  //     }
-  //     return gridPositionCSS[gridPositionNum - 1];
-  //   };
-
-  //   return getGridPos;
-  // };
-
-  // const test = gridPositionTest();
 
   return (
     <section className={classes.searchSection}>
@@ -93,6 +46,7 @@ const Search = ({ addWeatherLocationProps, replaceWeatherLocationProps }) => {
           name={'searchInput'}
           id={'seachInput'}
           onChange={searchChangeHandler}
+          value={location}
         ></input>
         <ul className={classes.searchRadio}>
           <li>
