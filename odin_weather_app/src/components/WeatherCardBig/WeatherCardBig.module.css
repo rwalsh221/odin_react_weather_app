@@ -4,8 +4,18 @@
 }
 
 .circleHover {
+  /* display: grid !important; */
   animation: clickAnimation 2s forwards;
 }
+
+.circleMinimize {
+  animation: minimizeAnimation 2s forwards;
+}
+
+.cardInit {
+  display: none;
+}
+
 .weatherCardBig {
   color: #ff6700;
   background-color: #ff6700;
@@ -29,6 +39,7 @@
   gap: 5px;
   border: 5px solid #ff6700;
   overflow: hidden;
+  /* display: none; */
 }
 
 .cardHeading {
@@ -177,6 +188,15 @@
   width: 6rem;
   border: 2px solid black;
 }
+
+.minimize {
+  grid-area: locationTitle;
+  z-index: 1000;
+  width: 10rem;
+  height: 10rem;
+  justify-self: center;
+}
+
 @keyframes clickAnimation {
   0% {
     height: 20rem;
@@ -205,6 +225,49 @@
     position: fixed;
     height: 80rem;
     width: 80rem;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+  }
+}
+
+@keyframes minimizeAnimation {
+  0% {
+    height: 80rem;
+    width: 80rem;
+    position: fixed;
+
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+  }
+
+  50% {
+    height: 10rem;
+    width: 10rem;
+    position: fixed;
+
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+  }
+
+  75% {
+    height: 0rem;
+    width: 0rem;
+    position: fixed;
+
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+  }
+
+  100% {
+    border: 0;
+    height: 0rem;
+    width: 0rem;
+    position: fixed;
+
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;

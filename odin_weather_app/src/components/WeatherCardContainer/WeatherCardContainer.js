@@ -54,6 +54,7 @@ const WeatherCardContainer = ({
   }, [weatherLocationProps]);
 
   const onClickAnimation = (element) => {
+    console.log('trigger');
     const elementPosition = element.target.getBoundingClientRect(); // GET POSITION OF ELEMENT
 
     setAnimationObj({
@@ -66,6 +67,45 @@ const WeatherCardContainer = ({
     });
   };
 
+  const onMinimizeAnimation = (element) => {
+    console.log('mimizeANIMATION');
+    setAnimationObj({
+      clicked: 'minimize',
+
+      // style: {
+      //   position: 'absolute',
+      // },
+    });
+    setTimeout(() => {
+      setAnimationObj({
+        clicked: false,
+      });
+    }, 2000);
+  };
+
+  let openForm = function () {
+    // document.getElementById('book-form').style.display = 'inline-block';
+    // document.getElementById('body__blur').style.filter = 'blur(60px)';
+    // addClickOutsideListener('body__blur');
+    // addClickOutsideListener('header');
+  };
+
+  let closeForm = function () {
+    // document.getElementById('book-form').style.display = 'none';
+    // document.getElementById('body__blur').style.filter = 'blur(0px)';
+    // removeClickOutsideListener('body__blur');
+    // removeClickOutsideListener('header');
+    console.log('CLOSEPOPUP');
+  };
+
+  const addClickOutsideListener = function (id) {
+    console.log(id);
+    document.getElementById(`${id}`).addEventListener('click', closeForm);
+  };
+  const removeClickOutsideListener = function (id) {
+    document.getElementById(`${id}`).removeEventListener('click', closeForm);
+  };
+
   const content = weatherData.currentWeatherData ? (
     <React.Fragment>
       <WeatherCardSmall
@@ -76,10 +116,12 @@ const WeatherCardContainer = ({
         locationIDProps={weatherLocationProps.id}
         // PROPS FOR WEATHER
         currentWeatherDataProps={weatherData.currentWeatherData}
+        addClickOutsideListenerProps={addClickOutsideListener}
       />
       <WeatherCardBig
         clickedProps={animationObj.clicked}
         onClickAnimationProps={onClickAnimation}
+        onMinimizeAnimationProps={onMinimizeAnimation}
         animationStyleProps={animationObj.style}
         // PROPS FOR WEATHER
         currentWeatherDataProps={weatherData.currentWeatherData}

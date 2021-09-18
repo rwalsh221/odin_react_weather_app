@@ -14,6 +14,7 @@
   justify-content: center;
   align-items: center;
   box-shadow: 2px 2px 4px black;
+  animation: fadeIn 0.5s forwards;
 }
 
 .cardSmallContainerClick {
@@ -152,5 +153,19 @@
 
   100% {
     transform: rotateY(180deg);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

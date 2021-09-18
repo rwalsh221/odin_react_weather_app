@@ -5,10 +5,11 @@ import Search from '../Search/Search';
 import WeatherLocationContainer from '../WeatherLocationContainer/WeatherLocationContainer';
 import WeatherCardGrid from '../WeatherCardGrid/WeatherCardGrid';
 
-// TODO: ADD ERROR HANDLING FOR CITY NOT FOUND
-// TODO: ADD DEFAULT TEXT TO SEARCH BAR
+// TODO: ADD ERROR HANDLING FOR CITY NOT FOUND. AND REMOVE FROM ARRAY
 // TODO: FIX BTN HOVER ON MOBILE. FIX IN CV APP ASWELL
 // TODO: REFACTOR TIME UTILITIES.
+// TODO: REVERSE ANIMATION.
+// TODO: TIDY CARD.
 
 const Main = (props) => {
   const [searchQuery, setSearchQuery] = useState(null);

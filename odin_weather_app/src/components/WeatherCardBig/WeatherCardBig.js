@@ -4,23 +4,50 @@ import classes from './WeatherCardBig.module.css';
 const WeatherCardBig = ({
   clickedProps,
   onClickAnimationProps,
+  onMinimizeAnimationProps,
   animationStyleProps,
   // PROPS FOR WEATHER
   currentWeatherDataProps,
   futureWeatherDataProps,
 }) => {
-  let elementClassName = clickedProps
-    ? `${classes.weatherCardBig} ${classes.circleHover} `
-    : `${classes.weatherCardBig}`;
+  console.log(clickedProps);
+  // let elementClassName = clickedProps
+  //   ? `${classes.weatherCardBig} ${classes.circleHover} `
+  //   : `${classes.weatherCardBig} ${classes.circleMinimize}`;
+  let elementClassName;
+
+  if (clickedProps) {
+    elementClassName = `${classes.weatherCardBig} ${classes.circleHover} `;
+  }
+  if (!clickedProps) {
+    elementClassName = `${classes.cardInit}`;
+  }
+  if (clickedProps === 'minimize') {
+    elementClassName = `${classes.weatherCardBig} ${classes.circleMinimize}`;
+  }
+
+  const minimizeHandler = () => {
+    console.log('minimize');
+  };
+
+  console.log(clickedProps);
 
   return (
     <div
       className={elementClassName}
       style={animationStyleProps}
       onClick={(e) => {
-        onClickAnimationProps(e);
+        // onClickAnimationProps(e);
       }}
     >
+      <button
+        className={classes.minimize}
+        onClick={(e) => {
+          onMinimizeAnimationProps(e);
+        }}
+      >
+        MINIMIZE
+      </button>
       {/* CARD ROW 1 */}
       <div className={classes.cardHeading}>
         <h2>
