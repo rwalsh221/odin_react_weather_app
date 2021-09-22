@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './WeatherCardBig.module.css';
+import { formatDate, formatTime } from '../../utilities/utilities';
 
 const WeatherCardBig = ({
   clickedProps,
@@ -26,11 +27,8 @@ const WeatherCardBig = ({
     elementClassName = `${classes.weatherCardBig} ${classes.circleMinimize}`;
   }
 
-  const minimizeHandler = () => {
-    console.log('minimize');
-  };
-
-  console.log(clickedProps);
+  console.log(currentWeatherDataProps);
+  console.log(futureWeatherDataProps);
 
   return (
     <div
@@ -57,7 +55,12 @@ const WeatherCardBig = ({
           ></ion-icon>
           {currentWeatherDataProps.name}
         </h2>
-        <p className={classes.cardDate}>{currentWeatherDataProps.dt}</p>
+        <p className={classes.cardDate}>
+          {formatDate(
+            currentWeatherDataProps.dt,
+            currentWeatherDataProps.timezone
+          )}
+        </p>
       </div>
 
       {/* CARD ROW 2 */}
@@ -88,18 +91,33 @@ const WeatherCardBig = ({
         <p>&ensp;{Math.round(currentWeatherDataProps.wind.speed)} m/s</p>
       </div>
       <div className={classes.cardSun}>
-        <p>{currentWeatherDataProps.sys.sunrise}</p>
+        <p>
+          {formatTime(
+            currentWeatherDataProps.sys.sunrise,
+            currentWeatherDataProps.timezone
+          )}
+        </p>
         <div className={classes.cardSunIcon}>
           <ion-icon name="chevron-up-outline"></ion-icon>
           <ion-icon name="sunny-outline"></ion-icon>
           <ion-icon name="chevron-down-outline"></ion-icon>
         </div>
-        <p>{currentWeatherDataProps.sys.sunset}</p>
+        <p>
+          {formatTime(
+            currentWeatherDataProps.sys.sunset,
+            currentWeatherDataProps.timezone
+          )}
+        </p>
       </div>
 
       {/* CARD ROW 345 RIGHT */}
       <div className={classes.weatherFutureOne}>
-        <p>{futureWeatherDataProps.daily[1].dt}</p>
+        <p>
+          {formatDate(
+            futureWeatherDataProps.daily[1].dt,
+            currentWeatherDataProps.timezone
+          )}
+        </p>
         <div className={classes.weatherFutureImg}>
           <img
             src={`http://openweathermap.org/img/wn/${futureWeatherDataProps.daily[1].weather[0].icon}@2x.png`}
@@ -116,7 +134,12 @@ const WeatherCardBig = ({
         </ul>
       </div>
       <div className={classes.weatherFutureTwo}>
-        <p>{futureWeatherDataProps.daily[2].dt}</p>
+        <p>
+          {formatDate(
+            futureWeatherDataProps.daily[2].dt,
+            currentWeatherDataProps.timezone
+          )}
+        </p>
         <div className={classes.weatherFutureImg}>
           <img
             src={`http://openweathermap.org/img/wn/${futureWeatherDataProps.daily[2].weather[0].icon}@2x.png`}
@@ -133,7 +156,12 @@ const WeatherCardBig = ({
         </ul>
       </div>
       <div className={classes.weatherFutureThree}>
-        <p>{futureWeatherDataProps.daily[3].dt}</p>
+        <p>
+          {formatDate(
+            futureWeatherDataProps.daily[3].dt,
+            currentWeatherDataProps.timezone
+          )}
+        </p>
         <div className={classes.weatherFutureImg}>
           <img
             src={`http://openweathermap.org/img/wn/${futureWeatherDataProps.daily[3].weather[0].icon}@2x.png`}

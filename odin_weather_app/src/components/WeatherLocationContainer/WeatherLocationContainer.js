@@ -76,6 +76,8 @@ const WeatherLocationContainer = (props) => {
     const temperatureUnit = props.unit === 'metric' ? '\u2103' : '\u2109';
 
     if (currentWeatherData) {
+      console.log(currentWeatherData);
+      console.log(currentWeatherData.sys.sunrise);
       content = (
         <React.Fragment>
           <div
