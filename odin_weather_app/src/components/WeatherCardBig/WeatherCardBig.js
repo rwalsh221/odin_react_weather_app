@@ -40,16 +40,16 @@ const WeatherCardBig = ({
         // onClickAnimationProps(e);
       }}
     >
-      <button
-        className={classes.minimize}
-        onClick={(e) => {
-          onMinimizeAnimationProps(e);
-        }}
-      >
-        MINIMIZE
-      </button>
       {/* CARD ROW 1 */}
       <div className={classes.cardHeading}>
+        <button
+          className={classes.minimizeBtn}
+          onClick={(e) => {
+            onMinimizeAnimationProps(e);
+          }}
+        >
+          _
+        </button>
         <h2>
           <ion-icon
             name="compass-outline"

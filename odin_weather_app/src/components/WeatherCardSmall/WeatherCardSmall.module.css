@@ -89,6 +89,7 @@
     height: 20rem;
     width: 20rem;
     border: 5px solid #ff6700;
+    z-index: 10001;
   }
 
   50% {
@@ -99,6 +100,7 @@
     top: 50%;
     left: 50%;
     border: 5px solid #ff6700;
+    z-index: 10001;
   }
 
   75% {
@@ -112,6 +114,7 @@
     transform-origin: center;
     border: 5px solid #ff6700;
     border: none;
+    z-index: 10001;
   }
 
   100% {
@@ -124,6 +127,7 @@
     transform: translate(-50%, -50%);
     transform-origin: center;
     border: none;
+    z-index: 10001;
   }
 }
 
