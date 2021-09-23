@@ -4,17 +4,13 @@ import { formatDate, formatTime } from '../../utilities/utilities';
 
 const WeatherCardBig = ({
   clickedProps,
-  onClickAnimationProps,
   onMinimizeAnimationProps,
   animationStyleProps,
   // PROPS FOR WEATHER
+  tempUnitProps,
   currentWeatherDataProps,
   futureWeatherDataProps,
 }) => {
-  console.log(clickedProps);
-  // let elementClassName = clickedProps
-  //   ? `${classes.weatherCardBig} ${classes.circleHover} `
-  //   : `${classes.weatherCardBig} ${classes.circleMinimize}`;
   let elementClassName;
 
   if (clickedProps) {
@@ -27,17 +23,10 @@ const WeatherCardBig = ({
     elementClassName = `${classes.weatherCardBig} ${classes.circleMinimize}`;
   }
 
-  console.log(currentWeatherDataProps);
-  console.log(futureWeatherDataProps);
+  const tempUnit = tempUnitProps === 'metric' ? '\u2103' : '\u2109';
 
   return (
-    <div
-      className={elementClassName}
-      style={animationStyleProps}
-      onClick={(e) => {
-        // onClickAnimationProps(e);
-      }}
-    >
+    <div className={elementClassName} style={animationStyleProps}>
       {/* CARD ROW 1 */}
       <div className={classes.cardHeading}>
         <button
@@ -46,7 +35,7 @@ const WeatherCardBig = ({
             onMinimizeAnimationProps(e);
           }}
         >
-          _
+          X
         </button>
         <h2>
           <ion-icon
@@ -71,10 +60,16 @@ const WeatherCardBig = ({
         />
       </div>
       <div className={classes.cardTemperature}>
-        <div>{Math.round(currentWeatherDataProps.main.temp)}</div>
+        <div>{`${Math.round(
+          currentWeatherDataProps.main.temp
+        )}${tempUnit}`}</div>
         <ul>
-          <li>{Math.round(currentWeatherDataProps.main.temp_max)}</li>
-          <li>{Math.round(currentWeatherDataProps.main.temp_min)}</li>
+          <li>{`${Math.round(
+            currentWeatherDataProps.main.temp_max
+          )}${tempUnit}`}</li>
+          <li>{`${Math.round(
+            currentWeatherDataProps.main.temp_min
+          )}${tempUnit}`}</li>
         </ul>
       </div>
       <div className={classes.cardWeatherDescription}>
@@ -126,10 +121,14 @@ const WeatherCardBig = ({
         </div>
         <ul>
           <li>
-            {Math.round(futureWeatherDataProps.daily[1].temp.min)} &#8451;
+            {`${Math.round(
+              futureWeatherDataProps.daily[1].temp.min
+            )}${tempUnit}`}
           </li>
           <li>
-            {Math.round(futureWeatherDataProps.daily[1].temp.max)} &#8451;
+            {`${Math.round(
+              futureWeatherDataProps.daily[1].temp.max
+            )}${tempUnit}`}
           </li>
         </ul>
       </div>
@@ -148,10 +147,14 @@ const WeatherCardBig = ({
         </div>
         <ul>
           <li>
-            {Math.round(futureWeatherDataProps.daily[2].temp.min)} &#8451;
+            {`${Math.round(
+              futureWeatherDataProps.daily[2].temp.min
+            )}${tempUnit}`}
           </li>
           <li>
-            {Math.round(futureWeatherDataProps.daily[2].temp.max)} &#8451;
+            {`${Math.round(
+              futureWeatherDataProps.daily[2].temp.max
+            )}${tempUnit}`}
           </li>
         </ul>
       </div>
@@ -170,10 +173,14 @@ const WeatherCardBig = ({
         </div>
         <ul>
           <li>
-            {Math.round(futureWeatherDataProps.daily[3].temp.min)} &#8451;
+            {`${Math.round(
+              futureWeatherDataProps.daily[3].temp.min
+            )}${tempUnit}`}
           </li>
           <li>
-            {Math.round(futureWeatherDataProps.daily[3].temp.max)} &#8451;
+            {`${Math.round(
+              futureWeatherDataProps.daily[3].temp.max
+            )}${tempUnit}`}
           </li>
         </ul>
       </div>

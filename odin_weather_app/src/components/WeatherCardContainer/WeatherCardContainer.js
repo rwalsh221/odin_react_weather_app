@@ -124,6 +124,7 @@ const WeatherCardContainer = ({
         onMinimizeAnimationProps={onMinimizeAnimation}
         animationStyleProps={animationObj.style}
         // PROPS FOR WEATHER
+        tempUnitProps={weatherLocationProps.unit}
         currentWeatherDataProps={weatherData.currentWeatherData}
         futureWeatherDataProps={weatherData.futureWeatherData}
       />
