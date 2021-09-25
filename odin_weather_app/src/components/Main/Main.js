@@ -4,6 +4,7 @@ import classes from './Main.module.css';
 import Search from '../Search/Search';
 import WeatherLocationContainer from '../WeatherLocationContainer/WeatherLocationContainer';
 import WeatherCardGrid from '../WeatherCardGrid/WeatherCardGrid';
+import ErrorPopup from '../ErrorPopup/ErrorPopup';
 
 // TODO: ADD ERROR HANDLING FOR CITY NOT FOUND. AND REMOVE FROM ARRAY
 // TODO: FIX BTN HOVER ON MOBILE. FIX IN CV APP ASWELL
@@ -19,6 +20,7 @@ const Main = (props) => {
     // { location: 'liverpool', unit: 'metric', weatherCardGridPositon: 'tl' },
     // { location: 'liverpool', unit: 'metric', weatherCardGridPositon: 'tr' },
   ]);
+  const [error, setError] = useState('none');
 
   // GET USER LOCATION FROM BROWSER AND FIND LOCAL WEATHER. DEFAULTS TO LONDON IF DENIED ACCSESS TO LOCATION
   useEffect(() => {
@@ -166,6 +168,18 @@ const Main = (props) => {
     setSearchQuery([...copySearchQuery]);
   };
 
+  const errorHandler = () => {
+    const weatherLocationsCopy = [...weatherLocations];
+    weatherLocationsCopy.splice(-1, 1);
+
+    setWeatherLocations(weatherLocationsCopy);
+
+    setError('block');
+    setTimeout(() => {
+      setError('none');
+    }, 5000);
+  };
+
   const renderWeatherLocation = () => {
     const content = searchQuery
       ? searchQuery.map((element) => {
@@ -225,6 +239,7 @@ const Main = (props) => {
           </div>
           <button className={classes.locationSearchBtn}>SEARCH</button>
         </form>
+        <ErrorPopup showErrorProps={error} />
         <Search
           addWeatherLocationProps={addWeatherLocation}
           replaceWeatherLocationProps={replaceWeatherLocation}
@@ -234,6 +249,7 @@ const Main = (props) => {
             userWeatherLocationProps={userWeatherLocation}
             weatherLocationsProps={weatherLocations}
             removeWeatherLocationProps={removeWeatherLocation}
+            errorHandlerProps={errorHandler}
           />
           {renderWeatherLocation()}
         </div>

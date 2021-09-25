@@ -1,0 +1,9 @@
+.errorPopup {
+  background-color: black;
+  color: red;
+  font-size: 5rem;
+  width: 50%;
+  text-align: center;
+  margin: 0 auto;
+  display: none;
+}

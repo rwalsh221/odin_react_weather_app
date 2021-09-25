@@ -7,6 +7,7 @@ const WeatherCardGrid = ({
   userWeatherLocationProps,
   weatherLocationsProps,
   removeWeatherLocationProps,
+  errorHandlerProps,
 }) => {
   // RENDER CARDS IF WEATHERLOACTIONPROPS HAS ELEMENTS
   const renderWeatherLocations = () => {
@@ -18,6 +19,7 @@ const WeatherCardGrid = ({
               key={element.id}
               weatherLocationProps={element}
               removeWeatherLocationProps={removeWeatherLocationProps}
+              errorHandlerProps={errorHandlerProps}
             />
           );
         })

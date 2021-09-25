@@ -8,6 +8,7 @@ import Spinner from '../Spinner/Spinner';
 const WeatherCardContainer = ({
   weatherLocationProps,
   removeWeatherLocationProps,
+  errorHandlerProps,
 }) => {
   const [weatherData, setWeatherData] = useState({});
   const [animationObj, setAnimationObj] = useState({
@@ -46,6 +47,7 @@ const WeatherCardContainer = ({
             });
           }
         } catch (error) {
+          errorHandlerProps();
           console.error(error);
         }
       }
