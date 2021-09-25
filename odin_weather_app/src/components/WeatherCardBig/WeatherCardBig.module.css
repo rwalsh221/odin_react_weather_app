@@ -18,8 +18,9 @@
 }
 
 .weatherCardBig {
-  color: #ff6700;
+  color: #251003;
   background-color: #ff6700;
+  font-weight: bold;
   border-radius: 50%;
   height: 20rem;
   width: 20rem;
@@ -46,6 +47,7 @@
 .weatherCardBig > * {
   background-color: var(--main-bg-color);
   border: var(--inner-border);
+  box-shadow: 2px 2px 2px black;
 }
 
 .cardHeading {
@@ -138,10 +140,23 @@
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-end;
   font-size: 4rem;
-  padding: 1rem;
+  padding: 2rem;
+}
+
+.cardSun p {
+  text-align: center;
+  width: 40%;
+}
+
+.cardSunIcon {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin: 0.5rem 0; */
 }
 
 .weatherFutureOne {
@@ -154,9 +169,18 @@
 .weatherFutureOne,
 .weatherFutureTwo {
   display: flex;
-  justify-content: center;
   align-items: center;
   font-size: 4rem;
+}
+
+.weatherFutureOne ul li,
+.weatherFutureTwo ul li {
+  display: flex;
+  align-items: center;
+}
+.weatherFutureOne ul li ion-icon,
+.weatherFutureTwo ul li ion-icon {
+  margin: 0 0.5rem;
 }
 
 .weatherFutureOne ul,
@@ -164,6 +188,7 @@
 .weatherFutureThree ul {
   list-style: none;
   font-size: 2rem;
+  vertical-align: center;
 }
 .weatherFutureThree {
   grid-area: day3;
@@ -176,9 +201,19 @@
 }
 
 .weatherFutureImg {
-  background-color: tomato;
+  background-color: black;
+  margin: 0 1rem;
   height: 6rem;
   width: 6rem;
+}
+
+.weatherFutureDate {
+  margin: 0 0.5rem;
+}
+
+.weatherFutureIconUp {
+}
+.weatherFutureIconDown {
 }
 
 .minimizeBtn {

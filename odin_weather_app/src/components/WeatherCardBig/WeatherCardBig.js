@@ -107,7 +107,7 @@ const WeatherCardBig = ({
 
       {/* CARD ROW 345 RIGHT */}
       <div className={classes.weatherFutureOne}>
-        <p>
+        <p className={classes.weatherFutureDate}>
           {formatDate(
             futureWeatherDataProps.daily[1].dt,
             currentWeatherDataProps.timezone
@@ -121,19 +121,27 @@ const WeatherCardBig = ({
         </div>
         <ul>
           <li>
+            <ion-icon
+              name="chevron-up-outline"
+              className={classes.weatherFutureIconUp}
+            ></ion-icon>
             {`${Math.round(
-              futureWeatherDataProps.daily[1].temp.min
+              futureWeatherDataProps.daily[1].temp.max
             )}${tempUnit}`}
           </li>
           <li>
+            <ion-icon
+              name="chevron-down-outline"
+              className={classes.weatherFutureIconDown}
+            ></ion-icon>
             {`${Math.round(
-              futureWeatherDataProps.daily[1].temp.max
+              futureWeatherDataProps.daily[1].temp.min
             )}${tempUnit}`}
           </li>
         </ul>
       </div>
       <div className={classes.weatherFutureTwo}>
-        <p>
+        <p className={classes.weatherFutureDate}>
           {formatDate(
             futureWeatherDataProps.daily[2].dt,
             currentWeatherDataProps.timezone
@@ -147,13 +155,21 @@ const WeatherCardBig = ({
         </div>
         <ul>
           <li>
+            <ion-icon
+              name="chevron-up-outline"
+              className={classes.weatherFutureIconUp}
+            ></ion-icon>
             {`${Math.round(
-              futureWeatherDataProps.daily[2].temp.min
+              futureWeatherDataProps.daily[2].temp.max
             )}${tempUnit}`}
           </li>
           <li>
+            <ion-icon
+              name="chevron-down-outline"
+              className={classes.weatherFutureIconDown}
+            ></ion-icon>
             {`${Math.round(
-              futureWeatherDataProps.daily[2].temp.max
+              futureWeatherDataProps.daily[2].temp.min
             )}${tempUnit}`}
           </li>
         </ul>

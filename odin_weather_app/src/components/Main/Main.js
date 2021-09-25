@@ -6,9 +6,9 @@ import WeatherLocationContainer from '../WeatherLocationContainer/WeatherLocatio
 import WeatherCardGrid from '../WeatherCardGrid/WeatherCardGrid';
 import ErrorPopup from '../ErrorPopup/ErrorPopup';
 
-// TODO: ADD ERROR HANDLING FOR CITY NOT FOUND. AND REMOVE FROM ARRAY
 // TODO: FIX BTN HOVER ON MOBILE. FIX IN CV APP ASWELL
 // TODO: TIDY CARD.
+// TODO: MOVE ASYNC CALL FROM CONATINER TO PREVENT UNESSERCERY CALLS TO API
 
 const Main = (props) => {
   const [searchQuery, setSearchQuery] = useState(null);
