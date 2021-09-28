@@ -59,6 +59,7 @@
 
 .cardSmallHeading {
   font-size: 2rem;
+  font-weight: bold;
 }
 
 .cardSmallImg {
@@ -80,6 +81,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.cardSmallBtnContainer button {
+  background-color: red;
+  border: none;
+  height: 70%;
+  width: 70%;
+  border-radius: 25%;
+  font-size: 3rem;
+  border: 2px solid #ff6700;
 }
 
 /* ANIMATION FOR POPUP */

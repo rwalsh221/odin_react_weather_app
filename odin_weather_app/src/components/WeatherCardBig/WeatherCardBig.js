@@ -37,13 +37,13 @@ const WeatherCardBig = ({
         >
           X
         </button>
-        <h2>
+        <h3>
           <ion-icon
             name="compass-outline"
             className={classes.compassOutline}
           ></ion-icon>
           {currentWeatherDataProps.name}
-        </h2>
+        </h3>
         <p className={classes.cardDate}>
           {formatDate(
             currentWeatherDataProps.dt,
@@ -115,7 +115,7 @@ const WeatherCardBig = ({
         </p>
         <div className={classes.weatherFutureImg}>
           <img
-            src={`http://openweathermap.org/img/wn/${futureWeatherDataProps.daily[1].weather[0].icon}@2x.png`}
+            src={`https://openweathermap.org/img/wn/${futureWeatherDataProps.daily[1].weather[0].icon}@2x.png`}
             alt={'future weather'}
           />
         </div>
@@ -149,7 +149,7 @@ const WeatherCardBig = ({
         </p>
         <div className={classes.weatherFutureImg}>
           <img
-            src={`http://openweathermap.org/img/wn/${futureWeatherDataProps.daily[2].weather[0].icon}@2x.png`}
+            src={`https://openweathermap.org/img/wn/${futureWeatherDataProps.daily[2].weather[0].icon}@2x.png`}
             alt={'future weather'}
           />
         </div>
@@ -183,7 +183,7 @@ const WeatherCardBig = ({
         </p>
         <div className={classes.weatherFutureImg}>
           <img
-            src={`http://openweathermap.org/img/wn/${futureWeatherDataProps.daily[3].weather[0].icon}@2x.png`}
+            src={`https://openweathermap.org/img/wn/${futureWeatherDataProps.daily[3].weather[0].icon}@2x.png`}
             alt={'future weather'}
           />
         </div>

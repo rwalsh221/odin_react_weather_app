@@ -8,36 +8,30 @@ const WeatherCardSmall = ({
   removeWeatherLocationProps,
   locationIDProps,
   currentWeatherDataProps,
-  addClickOutsideListenerProps,
 }) => {
   let elementClassName = clickedProps
     ? `${classes.cardSmallContainer} ${classes.cardSmallContainerClick}`
     : `${classes.cardSmallContainer}`;
 
   const deleteBtnHandler = (e) => {
-    console.log(e);
     removeWeatherLocationProps(e.target.id);
   };
 
-  console.log('RENDER CARD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-
   return (
     <div
-      id={'card' + locationIDProps}
       style={animationStyleProps}
       className={elementClassName}
       onClick={(e) => {
         onClickAnimationProps(e);
-        // addClickOutsideListenerProps('card' + locationIDProps);
       }}
     >
       <div className={classes.cardSmall}>
-        <h3 className={classes.cardSmallHeading}>
+        <h2 className={classes.cardSmallHeading}>
           {currentWeatherDataProps.name}
-        </h3>
+        </h2>
         <div className={classes.cardSmallImg}>
           <img
-            src={`http://openweathermap.org/img/wn/${currentWeatherDataProps.weather[0].icon}@2x.png`}
+            src={`https://openweathermap.org/img/wn/${currentWeatherDataProps.weather[0].icon}@2x.png`}
             alt={'weather type'}
           />
         </div>
@@ -47,9 +41,9 @@ const WeatherCardSmall = ({
       </div>
       {/* CARD BACK */}
       <div className={classes.cardSmallBack}>
-        <h3 className={classes.cardSmallHeading}>
+        <h2 className={classes.cardSmallHeading}>
           {currentWeatherDataProps.name}
-        </h3>
+        </h2>
         <div className={classes.cardSmallBtnContainer}>
           <button onClick={deleteBtnHandler} id={locationIDProps}>
             X
