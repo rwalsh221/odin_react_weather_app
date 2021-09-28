@@ -8,7 +8,6 @@
 
 .searchForm {
   width: 80%;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,7 +22,6 @@
   border-radius: 2rem;
   background-color: #484e47;
   outline: none;
-  color: whitesmoke;
   border: 5px solid #ff6700;
   transition: all 0.5s;
   order: 1;
@@ -51,12 +49,26 @@
   order: 3;
   list-style: none;
   text-align: center;
-  /* padding: 0.5rem 0; */
+
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+input[type='radio'] {
+  margin: 0;
+}
+
+.searchRadio li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchRadio li label {
+  margin-left: 1rem;
 }
 
 .searchRadio > :first-child {
@@ -65,7 +77,6 @@
 
 .searchBtn {
   order: 2;
-  /* padding: 2.2rem 0; */
   height: 100%;
 }
 
