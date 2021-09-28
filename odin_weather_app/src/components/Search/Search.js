@@ -51,35 +51,37 @@ const Search = ({ addWeatherLocationProps, replaceWeatherLocationProps }) => {
           spellCheck={true}
           value={location}
         ></input>
-        <ul className={classes.searchRadio}>
-          <li>
-            <input
-              type={'radio'}
-              name={'radioMetric'}
-              id={'radioMetric'}
-              checked={radioUnit === 'metric' ? true : false}
-              onChange={() => {
-                radioChangeHandler('metric');
-              }}
-            ></input>
-            <label htmlFor={'radioMetric'}>Metric</label>
-          </li>
-          <li>
-            <input
-              type={'radio'}
-              name={'radioImperial'}
-              id={'radioImperial'}
-              checked={radioUnit === 'imperial' ? true : false}
-              onChange={() => {
-                radioChangeHandler('imperial');
-              }}
-            ></input>
-            <label htmlFor={'radioImperial'}>Imperial</label>
-          </li>
-        </ul>
-        <button className={classes.searchBtn} type={'submit'}>
-          Search
-        </button>
+        <div className={classes.btnContainer}>
+          <ul className={classes.searchRadio}>
+            <li>
+              <input
+                type={'radio'}
+                name={'radioMetric'}
+                id={'radioMetric'}
+                checked={radioUnit === 'metric' ? true : false}
+                onChange={() => {
+                  radioChangeHandler('metric');
+                }}
+              ></input>
+              <label htmlFor={'radioMetric'}>Metric</label>
+            </li>
+            <li>
+              <input
+                type={'radio'}
+                name={'radioImperial'}
+                id={'radioImperial'}
+                checked={radioUnit === 'imperial' ? true : false}
+                onChange={() => {
+                  radioChangeHandler('imperial');
+                }}
+              ></input>
+              <label htmlFor={'radioImperial'}>Imperial</label>
+            </li>
+          </ul>
+          <button className={classes.searchBtn} type={'submit'}>
+            Search
+          </button>
+        </div>
       </form>
     </section>
   );

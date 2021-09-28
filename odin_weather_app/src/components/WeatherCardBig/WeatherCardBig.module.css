@@ -4,7 +4,7 @@
   --inner-border: 2px solid black;
 }
 
-.circleHover {
+.circleClick {
   /* display: grid !important; */
   animation: clickAnimation 2s forwards;
 }
@@ -132,6 +132,7 @@
 
 .cardChanceRain {
   grid-area: chanceRain;
+  border-left: none;
 }
 
 .cardWind {
@@ -166,6 +167,14 @@
   display: flex;
   align-items: center;
   font-size: 4rem;
+  border-right: none;
+}
+
+.weatherFutureOne ul,
+.weatherFutureTwo ul,
+.weatherFutureThree ul {
+  list-style: none;
+  font-size: 2rem;
 }
 
 .weatherFutureOne ul li,
@@ -177,13 +186,6 @@
 .weatherFutureOne ul li ion-icon,
 .weatherFutureTwo ul li ion-icon {
   margin: 0 0.5rem;
-}
-
-.weatherFutureOne ul,
-.weatherFutureTwo ul,
-.weatherFutureThree ul {
-  list-style: none;
-  font-size: 2rem;
 }
 
 .weatherFutureOne {
@@ -278,6 +280,44 @@
   }
 }
 
+@keyframes clickAnimationSmallSCR {
+  0% {
+    height: 20rem;
+    width: 20rem;
+    z-index: 10000;
+  }
+
+  50% {
+    position: fixed;
+    height: 40rem;
+    width: 40rem;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    z-index: 10000;
+  }
+
+  75% {
+    position: fixed;
+    height: 40rem;
+    width: 40rem;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    z-index: 10000;
+  }
+
+  100% {
+    position: fixed;
+    height: 99vw;
+    width: 99vw;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    z-index: 10000;
+  }
+}
+
 @keyframes minimizeAnimation {
   0% {
     height: 80rem;
@@ -320,5 +360,59 @@
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
+  }
+}
+
+/* MEDAI QUERIES */
+
+@media (max-width: 680px) {
+  .cardWeatherImage img {
+    height: 60%;
+    width: 60%;
+  }
+}
+
+@media (max-width: 615px) {
+  .weatherFutureImg {
+    margin: 0 0.5rem;
+  }
+}
+
+@media (max-width: 460px) {
+  .circleClick {
+    animation: clickAnimationSmallSCR 2s forwards;
+  }
+
+  .weatherFutureOne ul,
+  .weatherFutureTwo ul,
+  .weatherFutureThree ul {
+    display: none;
+  }
+
+  .cardHeading h3 {
+    font-size: 5rem;
+  }
+
+  .cardHeading p {
+    font-size: 3rem;
+  }
+
+  .cardTemperature {
+    font-size: 4rem;
+  }
+
+  .cardWeatherDescription {
+    font-size: 2rem;
+  }
+
+  .cardWind,
+  .cardChanceRain {
+    font-size: 4rem;
+  }
+
+  .minimizeBtn {
+    width: 50rem;
+
+    top: -1rem;
   }
 }

@@ -16,8 +16,8 @@
 }
 
 .searchInput {
-  width: 50%;
-  margin: 0 25%;
+  width: 80%;
+  margin: 0 auto;
   font-size: 5rem;
   padding: 1rem;
   border-radius: 2rem;
@@ -42,7 +42,7 @@
   color: whitesmoke;
   border: 5px solid #ff6700;
   border-radius: 2rem;
-  width: 20rem;
+  width: 30%;
   font-size: 3rem;
   box-shadow: 2px 2px 4px black;
 }
@@ -51,7 +51,12 @@
   order: 3;
   list-style: none;
   text-align: center;
-  padding: 0.5rem 0;
+  /* padding: 0.5rem 0; */
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .searchRadio > :first-child {
@@ -60,5 +65,74 @@
 
 .searchBtn {
   order: 2;
-  padding: 2.2rem 0;
+  /* padding: 2.2rem 0; */
+  height: 100%;
+}
+
+.btnContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  order: 2;
+  height: 10rem;
+  margin: 2rem;
+}
+
+@media (max-width: 985px) {
+  h3 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 835px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media (max-width: 680px) {
+  html {
+    font-size: 45%;
+  }
+}
+
+@media (max-width: 545px) {
+  .btnContainer {
+    height: 15rem;
+  }
+}
+
+@media (max-width: 460px) {
+  .searchInput,
+  .searchRadio,
+  .searchBtn {
+    border: 3px solid #ff6700;
+  }
+
+  .searchRadio {
+    padding: 0.5rem 0;
+  }
+
+  .searchBtn {
+    padding: 3rem 0;
+  }
+}
+
+@media (max-width: 410px) {
+  html {
+    font-size: 30%;
+  }
+}
+
+@media (max-width: 355px) {
+  .searchInput {
+    font-size: 8rem;
+    width: 100%;
+  }
+
+  .searchRadio,
+  .searchBtn {
+    width: 40%;
+  }
 }

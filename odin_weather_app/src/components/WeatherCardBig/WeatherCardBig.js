@@ -14,7 +14,7 @@ const WeatherCardBig = ({
   let elementClassName;
 
   if (clickedProps) {
-    elementClassName = `${classes.weatherCardBig} ${classes.circleHover} `;
+    elementClassName = `${classes.weatherCardBig} ${classes.circleClick} `;
   }
   if (!clickedProps) {
     elementClassName = `${classes.cardInit}`;
