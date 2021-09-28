@@ -2,24 +2,18 @@
   background-color: #484e47;
   border-radius: 50%;
   height: 20rem;
-  width: 20rem;
+  width: 21rem;
   border: 5px solid #ff6700;
-  transition: all 1s ease;
-  position: absolute;
-  z-index: 2000;
-  left: 0rem;
-  top: 0rem;
-
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 2px 2px 4px black;
   animation: fadeIn 0.5s forwards;
+  position: relative;
 }
 
 .cardSmallContainerClick {
   animation: clickShowPopup 2s forwards;
-  transition: all 10s;
   height: 1rem;
   width: 1rem;
   position: absolute;
@@ -187,5 +181,11 @@
 
   100% {
     opacity: 1;
+  }
+}
+
+@media (max-width: 414px) {
+  .cardSmallContainer {
+    border: 3px solid #ff6700;
   }
 }

@@ -96,21 +96,18 @@ input[type='radio'] {
   }
 }
 
-@media (max-width: 835px) {
-  html {
-    font-size: 50%;
-  }
-}
-
-@media (max-width: 680px) {
-  html {
-    font-size: 45%;
-  }
-}
-
 @media (max-width: 545px) {
   .btnContainer {
     height: 15rem;
+  }
+
+  .searchInput {
+    width: 100%;
+  }
+
+  .searchRadio,
+  .searchBtn {
+    width: 40%;
   }
 }
 
@@ -127,12 +124,6 @@ input[type='radio'] {
 
   .searchBtn {
     padding: 3rem 0;
-  }
-}
-
-@media (max-width: 410px) {
-  html {
-    font-size: 30%;
   }
 }
 

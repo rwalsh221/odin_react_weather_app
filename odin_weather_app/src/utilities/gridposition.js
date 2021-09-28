@@ -2,6 +2,7 @@ const getCSSGridPosition = () => {
   const gridPositionCSS = ['tl', 'tc', 'tr', 'cl', 'cr', 'bl', 'bc', 'br'];
 
   const getGridPos = () => {
+    console.log(gridPositionCSS);
     if (gridPositionCSS.length === 0) {
       return 'ARRAY EMPTY';
     }

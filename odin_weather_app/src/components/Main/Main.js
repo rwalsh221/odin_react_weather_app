@@ -5,6 +5,7 @@ import Search from '../Search/Search';
 import WeatherCardGrid from '../WeatherCardGrid/WeatherCardGrid';
 import ErrorPopup from '../ErrorPopup/ErrorPopup';
 
+// TODO: add grid area back into array if location not found
 // TODO: FIX BTN HOVER ON MOBILE. FIX IN CV APP ASWELL
 // TODO: MOVE ASYNC CALL FROM CONATINER TO PREVENT UNESSERCERY CALLS TO API
 

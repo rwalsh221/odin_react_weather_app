@@ -1,12 +1,5 @@
 .weatherCardGrid {
-  /* background: rgb(72, 78, 71);
-  background: linear-gradient(
-    90deg,
-    rgba(72, 78, 71, 1) 1%,
-    rgba(255, 103, 0, 1) 48%,
-    rgba(0, 0, 0, 1) 91%
-  ); */
-  background: rgba(255, 173, 0, 1);
+  background-color: rgba(255, 173, 0, 1);
   background: radial-gradient(
     circle,
     rgba(255, 173, 0, 1) 14%,
@@ -37,4 +30,18 @@
   align-items: center;
   grid-column: 1;
   grid-row: 1;
+}
+
+@media (max-width: 414px) {
+  .weatherCardGrid {
+    grid-template-areas:
+      'tl tr'
+      'tc cl'
+      'cc cc'
+      'bc cr'
+      'bl br';
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    height: max-content;
+  }
 }
