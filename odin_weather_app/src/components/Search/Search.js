@@ -46,6 +46,9 @@ const Search = ({ addWeatherLocationProps, replaceWeatherLocationProps }) => {
           name={'searchInput'}
           id={'seachInput'}
           onChange={searchChangeHandler}
+          title={'Search for the weather here'}
+          aria-label={'Search'}
+          spellCheck={true}
           value={location}
         ></input>
         <ul className={classes.searchRadio}>
