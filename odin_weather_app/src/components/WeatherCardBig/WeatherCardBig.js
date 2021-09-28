@@ -189,11 +189,19 @@ const WeatherCardBig = ({
         </div>
         <ul>
           <li>
+            <ion-icon
+              name="chevron-up-outline"
+              className={classes.weatherFutureIconUp}
+            ></ion-icon>
             {`${Math.round(
               futureWeatherDataProps.daily[3].temp.min
             )}${tempUnit}`}
           </li>
           <li>
+            <ion-icon
+              name="chevron-down-outline"
+              className={classes.weatherFutureIconUp}
+            ></ion-icon>
             {`${Math.round(
               futureWeatherDataProps.daily[3].temp.max
             )}${tempUnit}`}

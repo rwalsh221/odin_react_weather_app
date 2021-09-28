@@ -53,7 +53,7 @@ const WeatherCardContainer = ({
       }
     };
     fetchData();
-  }, [weatherLocationProps]);
+  }, [weatherLocationProps, errorHandlerProps]);
 
   const onClickAnimation = (element) => {
     console.log('trigger');

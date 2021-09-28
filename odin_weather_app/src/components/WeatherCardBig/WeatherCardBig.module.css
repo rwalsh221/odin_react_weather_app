@@ -41,7 +41,6 @@
   gap: 5px;
   border: 5px solid #ff6700;
   overflow: hidden;
-  /* display: none; */
 }
 
 .weatherCardBig > * {
@@ -81,6 +80,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.cardWeatherImage img {
+  background-color: black;
 }
 
 .cardTemperature {
@@ -137,13 +140,13 @@
 
 .cardSun {
   grid-area: sun;
-
+  border-bottom: none;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-end;
   font-size: 4rem;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .cardSun p {
@@ -156,14 +159,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin: 0.5rem 0; */
-}
-
-.weatherFutureOne {
-  grid-area: day1;
-}
-.weatherFutureTwo {
-  grid-area: day2;
 }
 
 .weatherFutureOne,
@@ -174,7 +169,8 @@
 }
 
 .weatherFutureOne ul li,
-.weatherFutureTwo ul li {
+.weatherFutureTwo ul li,
+.weatherFutureThree ul li {
   display: flex;
   align-items: center;
 }
@@ -188,16 +184,35 @@
 .weatherFutureThree ul {
   list-style: none;
   font-size: 2rem;
-  vertical-align: center;
 }
+
+.weatherFutureOne {
+  grid-area: day1;
+}
+
+.weatherFutureTwo {
+  grid-area: day2;
+}
+
 .weatherFutureThree {
   grid-area: day3;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  flex-wrap: wrap;
+  align-content: flex-start;
   font-size: 4rem;
-  padding: 2rem;
+  padding: 0.5rem;
+  border-bottom: none;
+}
+
+.weatherFutureThree p {
+  height: max-content;
+  width: 80%;
+  margin: 1rem;
+}
+
+.weatherFutureThree ul {
+  flex-direction: column;
+  align-self: center;
 }
 
 .weatherFutureImg {
