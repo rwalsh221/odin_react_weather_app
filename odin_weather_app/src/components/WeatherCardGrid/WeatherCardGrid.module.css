@@ -3,9 +3,9 @@
   background: radial-gradient(
     circle,
     rgba(255, 173, 0, 1) 14%,
-    rgba(0, 0, 0, 0.8) 45%
+    rgba(0, 0, 0, 0.8) 38%
   );
-  height: 70rem;
+  /* height: 70rem; */
   display: grid;
   grid-template-areas:
     'tl tc tr'
@@ -17,6 +17,7 @@
   position: relative;
   align-items: center;
   justify-items: center;
+  padding: 5rem;
 }
 
 .cardContainer {
@@ -41,7 +42,7 @@
       'bc cr'
       'bl br';
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(5, minmax(15rem, max-content));
     height: max-content;
   }
 }

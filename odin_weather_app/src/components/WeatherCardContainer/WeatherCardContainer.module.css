@@ -1,6 +1,4 @@
 .cardContainer {
-  /* background-color: black; */
-
   height: 20rem;
   width: 20rem;
   position: relative;
@@ -9,4 +7,12 @@
   align-items: center;
   grid-column: 1;
   grid-row: 1;
+  margin: 1rem;
+}
+
+@media screen and (max-width: 414px) {
+  .cardContainer {
+    width: 100%;
+    height: 100%;
+  }
 }

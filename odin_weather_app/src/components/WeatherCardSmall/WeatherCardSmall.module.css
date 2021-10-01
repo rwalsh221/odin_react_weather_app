@@ -19,7 +19,7 @@
   position: absolute;
 }
 
-.cardSmall,
+.cardSmallFront,
 .cardSmallBack {
   background-color: #ff6700;
   height: 75%;
@@ -36,7 +36,7 @@
   animation-timing-function: cubic-bezier(0.7, 0.05, 1, -0.2);
 }
 
-.cardSmall {
+.cardSmallFront {
   animation: rotateCardFront 10s forwards infinite;
   z-index: 2;
 }
@@ -46,7 +46,7 @@
   animation: rotateCardBack 10s forwards infinite;
 }
 
-.cardSmall > *,
+.cardSmallFront > *,
 .cardSmallBack > * {
   margin: 0.5rem;
 }
@@ -187,5 +187,16 @@
 @media (max-width: 414px) {
   .cardSmallContainer {
     border: 3px solid #ff6700;
+    width: 30rem;
+    height: 30rem;
+    font-size: 2rem;
+  }
+
+  .cardSmallHeading {
+    font-size: 3rem;
+  }
+
+  .cardSmallTemp {
+    font-size: 2.5rem;
   }
 }

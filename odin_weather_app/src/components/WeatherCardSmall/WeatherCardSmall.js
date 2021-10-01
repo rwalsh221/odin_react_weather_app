@@ -25,7 +25,7 @@ const WeatherCardSmall = ({
         onClickAnimationProps(e);
       }}
     >
-      <div className={classes.cardSmall}>
+      <div className={classes.cardSmallFront}>
         <h2 className={classes.cardSmallHeading}>
           {currentWeatherDataProps.name}
         </h2>

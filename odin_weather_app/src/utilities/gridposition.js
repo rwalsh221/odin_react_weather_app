@@ -1,10 +1,12 @@
 const getCSSGridPosition = () => {
   const gridPositionCSS = ['tl', 'tc', 'tr', 'cl', 'cr', 'bl', 'bc', 'br'];
 
+  // ADD GRID POSITION BACK TO ARRAY ON DELETE OR ERROR
   const addGridPosition = (input) => {
     gridPositionCSS.push(input);
   };
 
+  // GET GRID POSITION FOR LOCATION
   const getGridPos = () => {
     console.log(gridPositionCSS);
     if (gridPositionCSS.length === 0) {
