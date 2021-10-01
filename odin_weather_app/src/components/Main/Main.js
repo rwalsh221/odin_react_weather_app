@@ -4,6 +4,7 @@ import classes from './Main.module.css';
 import Search from '../Search/Search';
 import WeatherCardGrid from '../WeatherCardGrid/WeatherCardGrid';
 import ErrorPopup from '../ErrorPopup/ErrorPopup';
+import CSSGridPosition from '../../utilities/gridposition';
 
 // TODO: add grid area back into array if location not found
 // TODO: FIX BTN HOVER ON MOBILE. FIX IN CV APP ASWELL
@@ -103,6 +104,9 @@ const Main = (props) => {
 
     for (let i = 0; i <= weatherLocationsCopy.length; i++) {
       if (id === weatherLocationsCopy[i].id) {
+        CSSGridPosition.addGridPosition(
+          weatherLocations[i].weatherCardGridPositon
+        );
         weatherLocationsCopy.splice(i, 1);
         break;
       }

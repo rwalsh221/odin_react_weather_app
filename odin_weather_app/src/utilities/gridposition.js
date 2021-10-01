@@ -1,6 +1,10 @@
 const getCSSGridPosition = () => {
   const gridPositionCSS = ['tl', 'tc', 'tr', 'cl', 'cr', 'bl', 'bc', 'br'];
 
+  const addGridPosition = (input) => {
+    gridPositionCSS.push(input);
+  };
+
   const getGridPos = () => {
     console.log(gridPositionCSS);
     if (gridPositionCSS.length === 0) {
@@ -14,7 +18,7 @@ const getCSSGridPosition = () => {
     return gridPos;
   };
 
-  return getGridPos;
+  return { addGridPosition, getGridPos };
 };
 
 const CSSGridPosition = getCSSGridPosition();

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classes from './WeatherCardContainer.module.css';
 
+import CSSGridPosition from '../../utilities/gridposition';
 import WeatherCardSmall from '../WeatherCardSmall/WeatherCardSmall';
 import WeatherCardBig from '../WeatherCardBig/WeatherCardBig';
 import Spinner from '../Spinner/Spinner';
@@ -48,6 +49,9 @@ const WeatherCardContainer = ({
           }
         } catch (error) {
           errorHandlerProps();
+          CSSGridPosition.addGridPosition(
+            weatherLocationProps.weatherCardGridPositon
+          );
           console.error(error);
         }
       }

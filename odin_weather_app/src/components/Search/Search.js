@@ -23,7 +23,7 @@ const Search = ({ addWeatherLocationProps, replaceWeatherLocationProps }) => {
   const formSubmitHandler = (e) => {
     e.preventDefault();
 
-    const gridPos = CSSGridPosition();
+    const gridPos = CSSGridPosition.getGridPos();
     const timeStamp = new Date().getTime();
     const id = nanoid();
 
