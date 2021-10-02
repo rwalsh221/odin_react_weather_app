@@ -7,6 +7,7 @@ const WeatherCardSmall = ({
   animationStyleProps,
   removeWeatherLocationProps,
   locationIDProps,
+  tempUnitProps,
   currentWeatherDataProps,
 }) => {
   let elementClassName = clickedProps
@@ -16,6 +17,8 @@ const WeatherCardSmall = ({
   const deleteBtnHandler = (e) => {
     removeWeatherLocationProps(e.target.id);
   };
+
+  const tempUnit = tempUnitProps === 'metric' ? '\u2103' : '\u2109';
 
   return (
     <div
@@ -36,7 +39,7 @@ const WeatherCardSmall = ({
           />
         </div>
         <p className={classes.cardSmallTemp}>
-          {Math.round(currentWeatherDataProps.main.temp)}&#8451;
+          {`${Math.round(currentWeatherDataProps.main.temp)}${tempUnit}`};
         </p>
       </div>
       {/* CARD BACK */}

@@ -57,6 +57,16 @@
   flex-direction: column;
 }
 
+.searchRadio div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchRadio div input {
+  margin: 0 0.5rem;
+}
+
 input[type='radio'] {
   margin: 0;
 }

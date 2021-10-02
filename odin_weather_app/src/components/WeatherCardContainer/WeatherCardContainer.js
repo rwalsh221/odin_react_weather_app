@@ -98,6 +98,7 @@ const WeatherCardContainer = ({
         removeWeatherLocationProps={removeWeatherLocationProps}
         locationIDProps={weatherLocationProps.id}
         // PROPS FOR WEATHER
+        tempUnitProps={weatherLocationProps.unit}
         currentWeatherDataProps={weatherData.currentWeatherData}
       />
       <WeatherCardBig
