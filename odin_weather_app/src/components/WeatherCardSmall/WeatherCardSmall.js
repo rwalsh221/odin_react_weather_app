@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classes from './WeatherCardSmall.module.css';
 
 const WeatherCardSmall = ({
@@ -10,7 +11,7 @@ const WeatherCardSmall = ({
   tempUnitProps,
   currentWeatherDataProps,
 }) => {
-  let elementClassName = clickedProps
+  const elementClassName = clickedProps
     ? `${classes.cardSmallContainer} ${classes.cardSmallContainerClick}`
     : `${classes.cardSmallContainer}`;
 
@@ -22,11 +23,17 @@ const WeatherCardSmall = ({
 
   return (
     <div
+      // TEST FOR TAB INDEX AND KEY PRESS
       style={animationStyleProps}
       className={elementClassName}
       onClick={(e) => {
         onClickAnimationProps(e);
       }}
+      onKeyDown={(e) => {
+        onClickAnimationProps(e);
+      }}
+      role="button"
+      tabIndex={0}
     >
       <div className={classes.cardSmallFront}>
         <h2 className={classes.cardSmallHeading}>
@@ -35,7 +42,7 @@ const WeatherCardSmall = ({
         <div className={classes.cardSmallImg}>
           <img
             src={`https://openweathermap.org/img/wn/${currentWeatherDataProps.weather[0].icon}@2x.png`}
-            alt={'weather type'}
+            alt="weather type"
           />
         </div>
         <p className={classes.cardSmallTemp}>
@@ -48,7 +55,7 @@ const WeatherCardSmall = ({
           {currentWeatherDataProps.name}
         </h2>
         <div className={classes.cardSmallBtnContainer}>
-          <button onClick={deleteBtnHandler} id={locationIDProps}>
+          <button type="button" onClick={deleteBtnHandler} id={locationIDProps}>
             X
           </button>
         </div>
@@ -56,6 +63,16 @@ const WeatherCardSmall = ({
       </div>
     </div>
   );
+};
+
+WeatherCardSmall.propTypes = {
+  clickedProps: PropTypes.bool.isRequired,
+  onClickAnimationProps: PropTypes.func.isRequired,
+  animationStyleProps: PropTypes.objectOf(PropTypes.obj()).isRequired,
+  removeWeatherLocationProps: PropTypes.func.isRequired,
+  locationIDProps: PropTypes.string.isRequired,
+  tempUnitProps: PropTypes.string.isRequired,
+  currentWeatherDataProps: PropTypes.objectOf(PropTypes.obj()).isRequired,
 };
 
 export default WeatherCardSmall;

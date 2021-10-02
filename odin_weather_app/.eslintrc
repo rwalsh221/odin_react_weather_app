@@ -7,8 +7,11 @@
     "prettier/prettier": [
       "error",
       {
-        "semi": false
+        "semi": true,
+        "singleQuote": true
       }
-    ]
+    ],
+    "quotes": [2, "single"],
+    "consistent-return": "off"
   }
 }
