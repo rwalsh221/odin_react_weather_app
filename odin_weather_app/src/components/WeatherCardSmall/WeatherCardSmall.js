@@ -68,11 +68,15 @@ const WeatherCardSmall = ({
 WeatherCardSmall.propTypes = {
   clickedProps: PropTypes.bool.isRequired,
   onClickAnimationProps: PropTypes.func.isRequired,
-  animationStyleProps: PropTypes.objectOf(PropTypes.obj()).isRequired,
+  animationStyleProps: PropTypes.instanceOf(Object).isRequired,
   removeWeatherLocationProps: PropTypes.func.isRequired,
-  locationIDProps: PropTypes.string.isRequired,
+  locationIDProps: PropTypes.string,
   tempUnitProps: PropTypes.string.isRequired,
-  currentWeatherDataProps: PropTypes.objectOf(PropTypes.obj()).isRequired,
+  currentWeatherDataProps: PropTypes.instanceOf(Object).isRequired,
+};
+
+WeatherCardSmall.defaultProps = {
+  locationIDProps: '',
 };
 
 export default WeatherCardSmall;

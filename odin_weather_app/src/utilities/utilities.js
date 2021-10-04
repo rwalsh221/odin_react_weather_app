@@ -6,7 +6,7 @@ export const formatTime = (unixTimestamp, unixTimeZone) => {
   // Hours part from the timestamp
   const hours = date.getHours().toString();
   // Minutes part from the timestamp
-  const minutes = '0' + date.getMinutes();
+  const minutes = `'0'${date.getMinutes()}`;
 
   // Will display time in 10:30:23 format
   return `${hours.length < 2 ? `0${hours}` : hours} : ${minutes.substr(-2)}`;

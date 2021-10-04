@@ -214,10 +214,10 @@ const WeatherCardBig = ({
 WeatherCardBig.propTypes = {
   clickedProps: PropTypes.bool.isRequired,
   onMinimizeAnimationProps: PropTypes.func.isRequired,
-  animationStyleProps: PropTypes.objectOf(PropTypes.obj()).isRequired,
+  animationStyleProps: PropTypes.instanceOf(Object).isRequired,
   tempUnitProps: PropTypes.string.isRequired,
-  currentWeatherDataProps: PropTypes.objectOf(PropTypes.obj()).isRequired,
-  futureWeatherDataProps: PropTypes.objectOf(PropTypes.obj()).isRequired,
+  currentWeatherDataProps: PropTypes.instanceOf(Object).isRequired,
+  futureWeatherDataProps: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default WeatherCardBig;

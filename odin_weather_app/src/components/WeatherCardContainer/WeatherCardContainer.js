@@ -125,7 +125,7 @@ const WeatherCardContainer = ({
 WeatherCardContainer.propTypes = {
   errorHandlerProps: PropTypes.func.isRequired,
   removeWeatherLocationProps: PropTypes.func.isRequired,
-  weatherLocationProps: PropTypes.objectOf(PropTypes.obj()).isRequired,
+  weatherLocationProps: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default WeatherCardContainer;

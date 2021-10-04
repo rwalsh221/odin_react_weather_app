@@ -32,6 +32,7 @@ const WeatherCardGrid = ({
         <WeatherCardContainer
           weatherLocationProps={userWeatherLocationProps}
           removeWeatherLocationProps={removeWeatherLocationProps}
+          errorHandlerProps={errorHandlerProps}
         />
       ) : null}
       {renderWeatherLocations()}
@@ -42,8 +43,12 @@ const WeatherCardGrid = ({
 WeatherCardGrid.propTypes = {
   errorHandlerProps: PropTypes.func.isRequired,
   removeWeatherLocationProps: PropTypes.func.isRequired,
-  weatherLocationsProps: PropTypes.objectOf(PropTypes.obj()).isRequired,
-  userWeatherLocationProps: PropTypes.objectOf(PropTypes.obj()).isRequired,
+  weatherLocationsProps: PropTypes.instanceOf(Object).isRequired,
+  userWeatherLocationProps: PropTypes.instanceOf(Object),
+};
+
+WeatherCardGrid.defaultProps = {
+  userWeatherLocationProps: undefined,
 };
 
 export default WeatherCardGrid;
