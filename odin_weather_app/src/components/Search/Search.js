@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import classes from './Search.module.css';
 import CSSGridPosition from '../../utilities/gridposition';
@@ -42,72 +43,46 @@ const Search = ({ addWeatherLocationProps, replaceWeatherLocationProps }) => {
       <form className={classes.searchForm} onSubmit={formSubmitHandler}>
         <input
           className={classes.searchInput}
-          type={'text'}
-          name={'searchInput'}
-          id={'seachInput'}
+          type="text"
+          name="searchInput"
+          id="seachInput"
           onChange={searchChangeHandler}
-          title={'Search for the weather here'}
-          aria-label={'Search'}
-          spellCheck={true}
+          title="Search for the weather here"
+          aria-label="Search"
+          spellCheck
           value={location}
           onClick={() => {
             setLocation('');
           }}
-        ></input>
+        />
         <div className={classes.btnContainer}>
           <div className={classes.searchRadio}>
             <div>
               <input
-                type={'radio'}
-                name={'radioMetric'}
-                id={'radioMetric'}
-                checked={radioUnit === 'metric' ? true : false}
+                type="radio"
+                name="radioMetric"
+                id="radioMetric"
+                checked={radioUnit === 'metric'}
                 onChange={() => {
                   radioChangeHandler('metric');
                 }}
-              ></input>
-              <label htmlFor={'radioMetric'}>Metric</label>
+              />
+              <label htmlFor="radioMetric">Metric</label>
             </div>
             <div>
               <input
-                type={'radio'}
-                name={'radioImperial'}
-                id={'radioImperial'}
-                checked={radioUnit === 'imperial' ? true : false}
+                type="radio"
+                name="radioImperial"
+                id="radioImperial"
+                checked={radioUnit === 'imperial'}
                 onChange={() => {
                   radioChangeHandler('imperial');
                 }}
-              ></input>
-              <label htmlFor={'radioImperial'}>Imperial</label>
+              />
+              <label htmlFor="radioImperial">Imperial</label>
             </div>
           </div>
-          {/* <ul className={classes.searchRadio}>
-            <li>
-              <input
-                type={'radio'}
-                name={'radioMetric'}
-                id={'radioMetric'}
-                checked={radioUnit === 'metric' ? true : false}
-                onChange={() => {
-                  radioChangeHandler('metric');
-                }}
-              ></input>
-              <label htmlFor={'radioMetric'}>Metric</label>
-            </li>
-            <li>
-              <input
-                type={'radio'}
-                name={'radioImperial'}
-                id={'radioImperial'}
-                checked={radioUnit === 'imperial' ? true : false}
-                onChange={() => {
-                  radioChangeHandler('imperial');
-                }}
-              ></input>
-              <label htmlFor={'radioImperial'}>Imperial</label>
-            </li>
-          </ul> */}
-          <button className={classes.searchBtn} type={'submit'}>
+          <button className={classes.searchBtn} type="submit">
             Search
           </button>
         </div>
@@ -116,4 +91,8 @@ const Search = ({ addWeatherLocationProps, replaceWeatherLocationProps }) => {
   );
 };
 
+Search.propTypes = {
+  addWeatherLocationProps: PropTypes.func.isRequired,
+  replaceWeatherLocationProps: PropTypes.func.isRequired,
+};
 export default Search;
