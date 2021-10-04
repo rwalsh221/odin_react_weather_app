@@ -5,7 +5,7 @@
     rgba(255, 173, 0, 1) 14%,
     rgba(0, 0, 0, 0.8) 38%
   );
-  /* height: 70rem; */
+
   display: grid;
   grid-template-areas:
     'tl tc tr'
@@ -21,8 +21,6 @@
 }
 
 .cardContainer {
-  /* background-color: black; */
-
   height: 20rem;
   width: 20rem;
   position: relative;
