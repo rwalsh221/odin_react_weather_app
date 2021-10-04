@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classes from './WeatherCardBig.module.css';
 import { formatDate, formatTime } from '../../utilities/utilities';
 
@@ -30,6 +31,7 @@ const WeatherCardBig = ({
       {/* CARD ROW 1 */}
       <div className={classes.cardHeading}>
         <button
+          type="button"
           className={classes.minimizeBtn}
           onClick={(e) => {
             onMinimizeAnimationProps(e);
@@ -38,10 +40,7 @@ const WeatherCardBig = ({
           X
         </button>
         <h3>
-          <ion-icon
-            name="compass-outline"
-            className={classes.compassOutline}
-          ></ion-icon>
+          <ion-icon name="compass-outline" className={classes.compassOutline} />
           {currentWeatherDataProps.name}
         </h3>
         <p className={classes.cardDate}>
@@ -56,7 +55,7 @@ const WeatherCardBig = ({
       <div className={classes.cardWeatherImage}>
         <img
           src={`https://openweathermap.org/img/wn/${currentWeatherDataProps.weather[0].icon}@2x.png`}
-          alt={'current weather'}
+          alt="current weather"
         />
       </div>
       <div className={classes.cardTemperature}>
@@ -78,11 +77,11 @@ const WeatherCardBig = ({
 
       {/* CARD ROW 345 LEFT */}
       <div className={classes.cardChanceRain}>
-        <ion-icon name="umbrella-outline"></ion-icon>
+        <ion-icon name="umbrella-outline" />
         <p>&ensp;{Math.round(futureWeatherDataProps.daily[0].pop * 100)}%</p>
       </div>
       <div className={classes.cardWind}>
-        <ion-icon name="arrow-up-circle-outline"></ion-icon>
+        <ion-icon name="arrow-up-circle-outline" />
         <p>&ensp;{Math.round(currentWeatherDataProps.wind.speed)} m/s</p>
       </div>
       <div className={classes.cardSun}>
@@ -93,9 +92,9 @@ const WeatherCardBig = ({
           )}
         </p>
         <div className={classes.cardSunIcon}>
-          <ion-icon name="chevron-up-outline"></ion-icon>
-          <ion-icon name="sunny-outline"></ion-icon>
-          <ion-icon name="chevron-down-outline"></ion-icon>
+          <ion-icon name="chevron-up-outline" />
+          <ion-icon name="sunny-outline" />
+          <ion-icon name="chevron-down-outline" />
         </div>
         <p>
           {formatTime(
@@ -116,7 +115,7 @@ const WeatherCardBig = ({
         <div className={classes.weatherFutureImg}>
           <img
             src={`https://openweathermap.org/img/wn/${futureWeatherDataProps.daily[1].weather[0].icon}@2x.png`}
-            alt={'future weather'}
+            alt="future weather"
           />
         </div>
         <ul>
@@ -124,7 +123,7 @@ const WeatherCardBig = ({
             <ion-icon
               name="chevron-up-outline"
               className={classes.weatherFutureIconUp}
-            ></ion-icon>
+            />
             {`${Math.round(
               futureWeatherDataProps.daily[1].temp.max
             )}${tempUnit}`}
@@ -133,7 +132,7 @@ const WeatherCardBig = ({
             <ion-icon
               name="chevron-down-outline"
               className={classes.weatherFutureIconDown}
-            ></ion-icon>
+            />
             {`${Math.round(
               futureWeatherDataProps.daily[1].temp.min
             )}${tempUnit}`}
@@ -150,7 +149,7 @@ const WeatherCardBig = ({
         <div className={classes.weatherFutureImg}>
           <img
             src={`https://openweathermap.org/img/wn/${futureWeatherDataProps.daily[2].weather[0].icon}@2x.png`}
-            alt={'future weather'}
+            alt="future weather"
           />
         </div>
         <ul>
@@ -158,7 +157,7 @@ const WeatherCardBig = ({
             <ion-icon
               name="chevron-up-outline"
               className={classes.weatherFutureIconUp}
-            ></ion-icon>
+            />
             {`${Math.round(
               futureWeatherDataProps.daily[2].temp.max
             )}${tempUnit}`}
@@ -167,7 +166,7 @@ const WeatherCardBig = ({
             <ion-icon
               name="chevron-down-outline"
               className={classes.weatherFutureIconDown}
-            ></ion-icon>
+            />
             {`${Math.round(
               futureWeatherDataProps.daily[2].temp.min
             )}${tempUnit}`}
@@ -184,7 +183,7 @@ const WeatherCardBig = ({
         <div className={classes.weatherFutureImg}>
           <img
             src={`https://openweathermap.org/img/wn/${futureWeatherDataProps.daily[3].weather[0].icon}@2x.png`}
-            alt={'future weather'}
+            alt="future weather"
           />
         </div>
         <ul>
@@ -192,7 +191,7 @@ const WeatherCardBig = ({
             <ion-icon
               name="chevron-up-outline"
               className={classes.weatherFutureIconUp}
-            ></ion-icon>
+            />
             {`${Math.round(
               futureWeatherDataProps.daily[3].temp.min
             )}${tempUnit}`}
@@ -201,7 +200,7 @@ const WeatherCardBig = ({
             <ion-icon
               name="chevron-down-outline"
               className={classes.weatherFutureIconUp}
-            ></ion-icon>
+            />
             {`${Math.round(
               futureWeatherDataProps.daily[3].temp.max
             )}${tempUnit}`}
@@ -210,6 +209,15 @@ const WeatherCardBig = ({
       </div>
     </div>
   );
+};
+
+WeatherCardBig.propTypes = {
+  clickedProps: PropTypes.bool.isRequired,
+  onMinimizeAnimationProps: PropTypes.func.isRequired,
+  animationStyleProps: PropTypes.objectOf(PropTypes.obj()).isRequired,
+  tempUnitProps: PropTypes.string.isRequired,
+  currentWeatherDataProps: PropTypes.objectOf(PropTypes.obj()).isRequired,
+  futureWeatherDataProps: PropTypes.objectOf(PropTypes.obj()).isRequired,
 };
 
 export default WeatherCardBig;
