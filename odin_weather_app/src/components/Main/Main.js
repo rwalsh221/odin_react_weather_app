@@ -6,10 +6,35 @@ import WeatherCardGrid from '../WeatherCardGrid/WeatherCardGrid';
 import ErrorPopup from '../ErrorPopup/ErrorPopup';
 import CSSGridPosition from '../../utilities/gridposition';
 
-const Main = (props) => {
+const Main = () => {
   const [userWeatherLocation, setUserWeatherLocation] = useState();
   const [weatherLocations, setWeatherLocations] = useState([]);
   const [error, setError] = useState('none');
+
+  const reverseGeoLoc = async (position) => {
+    try {
+      const getUserLocation = await fetch(
+        `https://eu1.locationiq.com/v1/reverse.php?key=${'pk.252799e8c85697a3838b079587a0eca3'}&lat=${
+          position.coords.latitude
+        }&lon=${position.coords.longitude}&format=json`
+      );
+
+      const getUserLocationData = await getUserLocation.json();
+
+      setUserWeatherLocation({
+        location: getUserLocationData.address.city,
+        unit: 'metric',
+        weatherCardGridPositon: 'cc',
+      });
+    } catch (errorMsg) {
+      setUserWeatherLocation({
+        location: 'london',
+        unit: 'metric',
+        weatherCardGridPositon: 'cc',
+      });
+      console.error(errorMsg);
+    }
+  };
 
   // GET USER LOCATION FROM BROWSER AND FIND LOCAL WEATHER. DEFAULTS TO LONDON IF DENIED ACCSESS TO LOCATION
   useEffect(() => {
@@ -24,32 +49,6 @@ const Main = (props) => {
             weatherCardGridPositon: 'cc',
           })
       );
-    };
-
-    const reverseGeoLoc = async (position) => {
-      console.log('run');
-      try {
-        const getLocation = await fetch(
-          `https://eu1.locationiq.com/v1/reverse.php?key=${'pk.252799e8c85697a3838b079587a0eca3'}&lat=${
-            position.coords.latitude
-          }&lon=${position.coords.longitude}&format=json`
-        );
-
-        const getLocationData = await getLocation.json();
-
-        setUserWeatherLocation({
-          location: getLocationData.address.city,
-          unit: 'metric',
-          weatherCardGridPositon: 'cc',
-        });
-      } catch (error) {
-        setUserWeatherLocation({
-          location: 'london',
-          unit: 'metric',
-          weatherCardGridPositon: 'cc',
-        });
-        console.error(error);
-      }
     };
 
     getLocation();
@@ -95,10 +94,9 @@ const Main = (props) => {
 
   // REMOVES WEATHER LOCATION
   const removeWeatherLocation = (id) => {
-    console.log(id);
     const weatherLocationsCopy = [...weatherLocations];
 
-    for (let i = 0; i <= weatherLocationsCopy.length; i++) {
+    for (let i = 0; i <= weatherLocationsCopy.length; i += 1) {
       if (id === weatherLocationsCopy[i].id) {
         CSSGridPosition.addGridPosition(
           weatherLocations[i].weatherCardGridPositon
