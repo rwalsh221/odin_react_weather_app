@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classes from './WeatherCardGrid.module.css';
 
 import WeatherCardContainer from '../WeatherCardContainer/WeatherCardContainer';
@@ -12,17 +13,14 @@ const WeatherCardGrid = ({
   // RENDER CARDS IF WEATHERLOACTIONPROPS HAS ELEMENTS
   const renderWeatherLocations = () => {
     const content = weatherLocationsProps
-      ? weatherLocationsProps.map((element, index) => {
-          console.log(element);
-          return (
-            <WeatherCardContainer
-              key={element.id}
-              weatherLocationProps={element}
-              removeWeatherLocationProps={removeWeatherLocationProps}
-              errorHandlerProps={errorHandlerProps}
-            />
-          );
-        })
+      ? weatherLocationsProps.map((element) => (
+          <WeatherCardContainer
+            key={element.id}
+            weatherLocationProps={element}
+            removeWeatherLocationProps={removeWeatherLocationProps}
+            errorHandlerProps={errorHandlerProps}
+          />
+        ))
       : null;
 
     return content;
@@ -39,6 +37,13 @@ const WeatherCardGrid = ({
       {renderWeatherLocations()}
     </section>
   );
+};
+
+WeatherCardGrid.propTypes = {
+  errorHandlerProps: PropTypes.func.isRequired,
+  removeWeatherLocationProps: PropTypes.func.isRequired,
+  weatherLocationsProps: PropTypes.objectOf(PropTypes.obj()).isRequired,
+  userWeatherLocationProps: PropTypes.objectOf(PropTypes.obj()).isRequired,
 };
 
 export default WeatherCardGrid;
