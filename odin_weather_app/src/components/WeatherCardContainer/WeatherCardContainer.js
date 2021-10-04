@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import classes from './WeatherCardContainer.module.css';
 
 import CSSGridPosition from '../../utilities/gridposition';
@@ -28,7 +29,7 @@ const WeatherCardContainer = ({
             `https://api.openweathermap.org/data/2.5/weather?q=${weatherLocationProps.location}&units=${weatherLocationProps.unit}&appid=${apikey}`
           );
 
-          let currentWeatherData = await currentWeather.json();
+          const currentWeatherData = await currentWeather.json();
 
           // NEEDS LONG LAT FOR SEARCH. GET FROM CURRENTWEATHER.
           const futureWeather = await fetch(
@@ -39,7 +40,7 @@ const WeatherCardContainer = ({
             }&exclude=minutely,hourly,alerts&units=${'metric'}&appid=${apikey}`
           );
 
-          let futureWeatherData = await futureWeather.json();
+          const futureWeatherData = await futureWeather.json();
 
           if (currentWeatherData.cod === 200) {
             setWeatherData({
@@ -60,7 +61,6 @@ const WeatherCardContainer = ({
   }, [weatherLocationProps, errorHandlerProps]);
 
   const onClickAnimation = (element) => {
-    console.log('trigger');
     const elementPosition = element.target.getBoundingClientRect(); // GET POSITION OF ELEMENT
 
     setAnimationObj({
@@ -73,14 +73,9 @@ const WeatherCardContainer = ({
     });
   };
 
-  const onMinimizeAnimation = (element) => {
-    console.log('mimizeANIMATION');
+  const onMinimizeAnimation = () => {
     setAnimationObj({
       clicked: 'minimize',
-
-      // style: {
-      //   position: 'absolute',
-      // },
     });
     setTimeout(() => {
       setAnimationObj({
@@ -90,7 +85,8 @@ const WeatherCardContainer = ({
   };
 
   const content = weatherData.currentWeatherData ? (
-    <React.Fragment>
+    // <> = react.Fragment shorthand
+    <>
       <WeatherCardSmall
         clickedProps={animationObj.clicked}
         onClickAnimationProps={onClickAnimation}
@@ -111,7 +107,7 @@ const WeatherCardContainer = ({
         currentWeatherDataProps={weatherData.currentWeatherData}
         futureWeatherDataProps={weatherData.futureWeatherData}
       />
-    </React.Fragment>
+    </>
   ) : (
     <Spinner />
   );
@@ -124,6 +120,12 @@ const WeatherCardContainer = ({
       {content}
     </div>
   );
+};
+
+WeatherCardContainer.propTypes = {
+  errorHandlerProps: PropTypes.func.isRequired,
+  removeWeatherLocationProps: PropTypes.func.isRequired,
+  weatherLocationProps: PropTypes.objectOf(PropTypes.obj()).isRequired,
 };
 
 export default WeatherCardContainer;
