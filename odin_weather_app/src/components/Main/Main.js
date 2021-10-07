@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import classes from './Main.module.css';
 import Search from '../Search/Search';
@@ -36,23 +36,18 @@ const Main = () => {
     }
   };
 
-  // GET USER LOCATION FROM BROWSER AND FIND LOCAL WEATHER. DEFAULTS TO LONDON IF DENIED ACCSESS TO LOCATION
-  useEffect(() => {
-    const getLocation = () => {
-      // getCurrentPostion(successCallback, failCallback)
-      navigator.geolocation.getCurrentPosition(
-        (position) => reverseGeoLoc(position),
-        () =>
-          setUserWeatherLocation({
-            location: 'london',
-            unit: 'metric',
-            weatherCardGridPositon: 'cc',
-          })
-      );
-    };
-
-    getLocation();
-  }, [weatherLocations]);
+  const getUserLocation = () => {
+    // getCurrentPostion(successCallback, failCallback)
+    navigator.geolocation.getCurrentPosition(
+      (position) => reverseGeoLoc(position),
+      () =>
+        setUserWeatherLocation({
+          location: 'london',
+          unit: 'metric',
+          weatherCardGridPositon: 'cc',
+        })
+    );
+  };
 
   // ADDS WEATHER LOCATION ON SEARCH SUBMIT
   const addWeatherLocation = (
@@ -133,6 +128,7 @@ const Main = () => {
         weatherLocationsProps={weatherLocations}
         removeWeatherLocationProps={removeWeatherLocation}
         errorHandlerProps={errorHandler}
+        getUserLocationProps={getUserLocation}
       />
     </main>
   );

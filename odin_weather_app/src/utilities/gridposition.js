@@ -8,7 +8,6 @@ const getCSSGridPosition = () => {
 
   // GET GRID POSITION FOR LOCATION
   const getGridPos = () => {
-    console.log(gridPositionCSS);
     if (gridPositionCSS.length === 0) {
       return 'ARRAY EMPTY';
     }

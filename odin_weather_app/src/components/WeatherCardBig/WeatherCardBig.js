@@ -212,12 +212,17 @@ const WeatherCardBig = ({
 };
 
 WeatherCardBig.propTypes = {
-  clickedProps: PropTypes.bool.isRequired,
+  clickedProps: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
+    .isRequired,
   onMinimizeAnimationProps: PropTypes.func.isRequired,
-  animationStyleProps: PropTypes.instanceOf(Object).isRequired,
+  animationStyleProps: PropTypes.instanceOf(Object),
   tempUnitProps: PropTypes.string.isRequired,
   currentWeatherDataProps: PropTypes.instanceOf(Object).isRequired,
   futureWeatherDataProps: PropTypes.instanceOf(Object).isRequired,
+};
+
+WeatherCardBig.defaultProps = {
+  animationStyleProps: undefined,
 };
 
 export default WeatherCardBig;
