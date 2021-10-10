@@ -8,9 +8,10 @@ import WeatherCardBig from '../WeatherCardBig/WeatherCardBig';
 import Spinner from '../Spinner/Spinner';
 
 const WeatherCardContainer = ({
+  fetchDataProps,
   weatherLocationProps,
   removeWeatherLocationProps,
-  errorHandlerProps,
+  // errorHandlerProps,
 }) => {
   const [weatherData, setWeatherData] = useState({});
   const [animationObj, setAnimationObj] = useState({
@@ -21,44 +22,55 @@ const WeatherCardContainer = ({
   const apikey = 'b0ea585de7608342c1947e606b266dd4';
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (weatherLocationProps) {
-        try {
-          // GET CURRENT WEATHER AND LONG LAT FOR FUTUREWEATHER
-          const currentWeather = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${weatherLocationProps.location}&units=${weatherLocationProps.unit}&appid=${apikey}`
-          );
+    if (weatherLocationProps) {
+      fetchDataProps(
+        weatherLocationProps,
+        setWeatherData,
+        CSSGridPosition,
+        apikey
+      );
+    }
+  }, [fetchDataProps, weatherLocationProps]);
 
-          const currentWeatherData = await currentWeather.json();
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     if (weatherLocationProps) {
+  //       try {
+  //         // GET CURRENT WEATHER AND LONG LAT FOR FUTUREWEATHER
+  //         const currentWeather = await fetch(
+  //           `https://api.openweathermap.org/data/2.5/weather?q=${weatherLocationProps.location}&units=${weatherLocationProps.unit}&appid=${apikey}`
+  //         );
 
-          // NEEDS LONG LAT FOR SEARCH. GET FROM CURRENTWEATHER.
-          const futureWeather = await fetch(
-            `https://api.openweathermap.org/data/2.5/onecall?lat=${
-              currentWeatherData.coord.lat
-            }&lon=${
-              currentWeatherData.coord.lon
-            }&exclude=minutely,hourly,alerts&units=${'metric'}&appid=${apikey}`
-          );
+  //         const currentWeatherData = await currentWeather.json();
 
-          const futureWeatherData = await futureWeather.json();
+  //         // NEEDS LONG LAT FOR SEARCH. GET FROM CURRENTWEATHER.
+  //         const futureWeather = await fetch(
+  //           `https://api.openweathermap.org/data/2.5/onecall?lat=${
+  //             currentWeatherData.coord.lat
+  //           }&lon=${
+  //             currentWeatherData.coord.lon
+  //           }&exclude=minutely,hourly,alerts&units=${'metric'}&appid=${apikey}`
+  //         );
 
-          if (currentWeatherData.cod === 200) {
-            setWeatherData({
-              currentWeatherData: { ...currentWeatherData },
-              futureWeatherData: { ...futureWeatherData },
-            });
-          }
-        } catch (error) {
-          errorHandlerProps();
-          CSSGridPosition.addGridPosition(
-            weatherLocationProps.weatherCardGridPositon
-          );
-          console.error(error);
-        }
-      }
-    };
-    fetchData();
-  }, [weatherLocationProps, errorHandlerProps]);
+  //         const futureWeatherData = await futureWeather.json();
+
+  //         if (currentWeatherData.cod === 200) {
+  //           setWeatherData({
+  //             currentWeatherData: { ...currentWeatherData },
+  //             futureWeatherData: { ...futureWeatherData },
+  //           });
+  //         }
+  //       } catch (error) {
+  //         errorHandlerProps();
+  //         CSSGridPosition.addGridPosition(
+  //           weatherLocationProps.weatherCardGridPositon
+  //         );
+  //         console.error(error);
+  //       }
+  //     }
+  //   };
+  //   fetchData();
+  // }, [weatherLocationProps, errorHandlerProps]);
 
   const onClickAnimation = (element) => {
     const elementPosition = element.target.getBoundingClientRect(); // GET POSITION OF ELEMENT
@@ -123,7 +135,8 @@ const WeatherCardContainer = ({
 };
 
 WeatherCardContainer.propTypes = {
-  errorHandlerProps: PropTypes.func.isRequired,
+  fetchDataProps: PropTypes.func.isRequired,
+  // errorHandlerProps: PropTypes.func.isRequired,
   removeWeatherLocationProps: PropTypes.func.isRequired,
   weatherLocationProps: PropTypes.instanceOf(Object).isRequired,
 };

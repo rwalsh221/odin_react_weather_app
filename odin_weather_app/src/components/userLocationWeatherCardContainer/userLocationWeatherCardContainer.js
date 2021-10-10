@@ -9,9 +9,10 @@ import UserLocationWeatherCardSmall from '../UserLocationWeatherCardSmall/UserLo
 // import Spinner from '../Spinner/Spinner';
 
 const UserLocationWeatherCardContainer = ({
-  weatherLocationProps,
+  fetchWeatherDataProps,
+  userWeatherLocationProps,
   removeWeatherLocationProps,
-  errorHandlerProps,
+  // errorHandlerProps,
   getUserLocationProps,
 }) => {
   const [weatherData, setWeatherData] = useState({});
@@ -19,48 +20,20 @@ const UserLocationWeatherCardContainer = ({
     clicked: false,
     style: {},
   });
+  const [loading, setLoading] = useState(false);
 
   const apikey = 'b0ea585de7608342c1947e606b266dd4';
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (weatherLocationProps) {
-        try {
-          // GET CURRENT WEATHER AND LONG LAT FOR FUTUREWEATHER
-          const currentWeather = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${weatherLocationProps.location}&units=${weatherLocationProps.unit}&appid=${apikey}`
-          );
-
-          const currentWeatherData = await currentWeather.json();
-
-          // NEEDS LONG LAT FOR SEARCH. GET FROM CURRENTWEATHER.
-          const futureWeather = await fetch(
-            `https://api.openweathermap.org/data/2.5/onecall?lat=${
-              currentWeatherData.coord.lat
-            }&lon=${
-              currentWeatherData.coord.lon
-            }&exclude=minutely,hourly,alerts&units=${'metric'}&appid=${apikey}`
-          );
-
-          const futureWeatherData = await futureWeather.json();
-
-          if (currentWeatherData.cod === 200) {
-            setWeatherData({
-              currentWeatherData: { ...currentWeatherData },
-              futureWeatherData: { ...futureWeatherData },
-            });
-          }
-        } catch (error) {
-          errorHandlerProps();
-          CSSGridPosition.addGridPosition(
-            weatherLocationProps.weatherCardGridPositon
-          );
-          console.error(error);
-        }
-      }
-    };
-    fetchData();
-  }, [weatherLocationProps, errorHandlerProps]);
+    if (userWeatherLocationProps) {
+      fetchWeatherDataProps(
+        userWeatherLocationProps,
+        setWeatherData,
+        CSSGridPosition,
+        apikey
+      );
+    }
+  }, [fetchWeatherDataProps, userWeatherLocationProps]);
 
   const onClickAnimation = (element) => {
     const elementPosition = element.target.getBoundingClientRect(); // GET POSITION OF ELEMENT
@@ -94,9 +67,9 @@ const UserLocationWeatherCardContainer = ({
         onClickAnimationProps={onClickAnimation}
         animationStyleProps={animationObj.style}
         removeWeatherLocationProps={removeWeatherLocationProps}
-        locationIDProps={weatherLocationProps.id}
+        locationIDProps={userWeatherLocationProps.id}
         // PROPS FOR WEATHER
-        tempUnitProps={weatherLocationProps.unit}
+        tempUnitProps={userWeatherLocationProps.unit}
         currentWeatherDataProps={weatherData.currentWeatherData}
       />
       <WeatherCardBig
@@ -105,7 +78,7 @@ const UserLocationWeatherCardContainer = ({
         onMinimizeAnimationProps={onMinimizeAnimation}
         animationStyleProps={animationObj.style}
         // PROPS FOR WEATHER
-        tempUnitProps={weatherLocationProps.unit}
+        tempUnitProps={userWeatherLocationProps.unit}
         currentWeatherDataProps={weatherData.currentWeatherData}
         futureWeatherDataProps={weatherData.futureWeatherData}
       />
@@ -113,7 +86,11 @@ const UserLocationWeatherCardContainer = ({
   ) : (
     <div className={classes.cardSmallContainer}>
       <div className={classes.cardSmallFront}>
-        <button className={classes.getLocationBtn} type="button">
+        <button
+          className={classes.getLocationBtn}
+          type="button"
+          onClick={getUserLocationProps}
+        >
           GET MY WEATHER
         </button>
       </div>
@@ -134,14 +111,15 @@ const UserLocationWeatherCardContainer = ({
 };
 
 UserLocationWeatherCardContainer.propTypes = {
-  errorHandlerProps: PropTypes.func.isRequired,
+  fetchWeatherDataProps: PropTypes.func.isRequired,
+  // errorHandlerProps: PropTypes.func.isRequired,
   removeWeatherLocationProps: PropTypes.func.isRequired,
-  weatherLocationProps: PropTypes.instanceOf(Object),
+  userWeatherLocationProps: PropTypes.instanceOf(Object),
   getUserLocationProps: PropTypes.func.isRequired,
 };
 
 UserLocationWeatherCardContainer.defaultProps = {
-  weatherLocationProps: undefined,
+  userWeatherLocationProps: undefined,
 };
 
 export default UserLocationWeatherCardContainer;
