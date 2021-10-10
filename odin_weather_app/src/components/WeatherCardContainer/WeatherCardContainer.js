@@ -32,46 +32,6 @@ const WeatherCardContainer = ({
     }
   }, [fetchDataProps, weatherLocationProps]);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     if (weatherLocationProps) {
-  //       try {
-  //         // GET CURRENT WEATHER AND LONG LAT FOR FUTUREWEATHER
-  //         const currentWeather = await fetch(
-  //           `https://api.openweathermap.org/data/2.5/weather?q=${weatherLocationProps.location}&units=${weatherLocationProps.unit}&appid=${apikey}`
-  //         );
-
-  //         const currentWeatherData = await currentWeather.json();
-
-  //         // NEEDS LONG LAT FOR SEARCH. GET FROM CURRENTWEATHER.
-  //         const futureWeather = await fetch(
-  //           `https://api.openweathermap.org/data/2.5/onecall?lat=${
-  //             currentWeatherData.coord.lat
-  //           }&lon=${
-  //             currentWeatherData.coord.lon
-  //           }&exclude=minutely,hourly,alerts&units=${'metric'}&appid=${apikey}`
-  //         );
-
-  //         const futureWeatherData = await futureWeather.json();
-
-  //         if (currentWeatherData.cod === 200) {
-  //           setWeatherData({
-  //             currentWeatherData: { ...currentWeatherData },
-  //             futureWeatherData: { ...futureWeatherData },
-  //           });
-  //         }
-  //       } catch (error) {
-  //         errorHandlerProps();
-  //         CSSGridPosition.addGridPosition(
-  //           weatherLocationProps.weatherCardGridPositon
-  //         );
-  //         console.error(error);
-  //       }
-  //     }
-  //   };
-  //   fetchData();
-  // }, [weatherLocationProps, errorHandlerProps]);
-
   const onClickAnimation = (element) => {
     const elementPosition = element.target.getBoundingClientRect(); // GET POSITION OF ELEMENT
 

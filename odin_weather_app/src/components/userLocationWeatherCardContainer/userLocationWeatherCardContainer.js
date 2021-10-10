@@ -6,7 +6,7 @@ import CSSGridPosition from '../../utilities/gridposition';
 // import WeatherCardSmall from '../WeatherCardSmall/WeatherCardSmall';
 import WeatherCardBig from '../WeatherCardBig/WeatherCardBig';
 import UserLocationWeatherCardSmall from '../UserLocationWeatherCardSmall/UserLocationWeatherCardSmall';
-// import Spinner from '../Spinner/Spinner';
+import Spinner from '../Spinner/Spinner';
 
 const UserLocationWeatherCardContainer = ({
   fetchWeatherDataProps,
@@ -59,7 +59,38 @@ const UserLocationWeatherCardContainer = ({
     }, 2000);
   };
 
-  const content = weatherData.currentWeatherData ? (
+  const getLocationClickHandler = () => {
+    setLoading(true);
+    getUserLocationProps();
+  };
+
+  const initContent = loading ? (
+    <Spinner />
+  ) : (
+    <div className={classes.cardSmallContainer}>
+      <div className={classes.cardSmallFront}>
+        <button
+          className={classes.getLocationBtn}
+          type="button"
+          onClick={getLocationClickHandler}
+        >
+          GET MY WEATHER
+        </button>
+      </div>
+      {/* CARD BACK */}
+      <div className={classes.cardSmallBack}>
+        <button
+          className={classes.getLocationBtn}
+          type="button"
+          onClick={getLocationClickHandler}
+        >
+          GET MY WEATHER
+        </button>
+      </div>
+    </div>
+  );
+
+  const weatherContent = weatherData.currentWeatherData ? (
     // <> = react.Fragment shorthand
     <>
       <UserLocationWeatherCardSmall
@@ -83,31 +114,13 @@ const UserLocationWeatherCardContainer = ({
         futureWeatherDataProps={weatherData.futureWeatherData}
       />
     </>
-  ) : (
-    <div className={classes.cardSmallContainer}>
-      <div className={classes.cardSmallFront}>
-        <button
-          className={classes.getLocationBtn}
-          type="button"
-          onClick={getUserLocationProps}
-        >
-          GET MY WEATHER
-        </button>
-      </div>
-      {/* CARD BACK */}
-      <div className={classes.cardSmallBack}>
-        <button
-          className={classes.getLocationBtn}
-          type="button"
-          onClick={getUserLocationProps}
-        >
-          GET MY WEATHER
-        </button>
-      </div>
+  ) : null;
+
+  return (
+    <div className={classes.cardContainer}>
+      {weatherData.currentWeatherData ? weatherContent : initContent}
     </div>
   );
-
-  return <div className={classes.cardContainer}>{content}</div>;
 };
 
 UserLocationWeatherCardContainer.propTypes = {
