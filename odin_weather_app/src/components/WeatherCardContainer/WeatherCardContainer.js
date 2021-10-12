@@ -8,10 +8,11 @@ import WeatherCardBig from '../WeatherCardBig/WeatherCardBig';
 import Spinner from '../Spinner/Spinner';
 
 const WeatherCardContainer = ({
-  fetchDataProps,
+  onClickAnimationProps,
+  onMinimizeAnimationProps,
+  fetchWeatherDataProps,
   weatherLocationProps,
   removeWeatherLocationProps,
-  // errorHandlerProps,
 }) => {
   const [weatherData, setWeatherData] = useState({});
   const [animationObj, setAnimationObj] = useState({
@@ -23,38 +24,18 @@ const WeatherCardContainer = ({
 
   useEffect(() => {
     if (weatherLocationProps) {
-      fetchDataProps(
+      fetchWeatherDataProps(
         weatherLocationProps,
         setWeatherData,
         CSSGridPosition,
         apikey
       );
     }
-  }, [fetchDataProps, weatherLocationProps]);
+  }, [fetchWeatherDataProps, weatherLocationProps]);
 
-  const onClickAnimation = (element) => {
-    const elementPosition = element.target.getBoundingClientRect(); // GET POSITION OF ELEMENT
+  const onClickAnimation = onClickAnimationProps;
 
-    setAnimationObj({
-      clicked: true,
-      style: {
-        position: 'fixed',
-        top: elementPosition.top,
-        left: elementPosition.left,
-      },
-    });
-  };
-
-  const onMinimizeAnimation = () => {
-    setAnimationObj({
-      clicked: 'minimize',
-    });
-    setTimeout(() => {
-      setAnimationObj({
-        clicked: false,
-      });
-    }, 2000);
-  };
+  const onMinimizeAnimation = onMinimizeAnimationProps;
 
   const content = weatherData.currentWeatherData ? (
     // <> = react.Fragment shorthand
@@ -63,6 +44,7 @@ const WeatherCardContainer = ({
         clickedProps={animationObj.clicked}
         onClickAnimationProps={onClickAnimation}
         animationStyleProps={animationObj.style}
+        setAnimationStateProps={setAnimationObj}
         removeWeatherLocationProps={removeWeatherLocationProps}
         locationIDProps={weatherLocationProps.id}
         // PROPS FOR WEATHER
@@ -71,8 +53,8 @@ const WeatherCardContainer = ({
       />
       <WeatherCardBig
         clickedProps={animationObj.clicked}
-        onClickAnimationProps={onClickAnimation}
         onMinimizeAnimationProps={onMinimizeAnimation}
+        setAnimationStateProps={setAnimationObj}
         animationStyleProps={animationObj.style}
         // PROPS FOR WEATHER
         tempUnitProps={weatherLocationProps.unit}
@@ -95,8 +77,9 @@ const WeatherCardContainer = ({
 };
 
 WeatherCardContainer.propTypes = {
-  fetchDataProps: PropTypes.func.isRequired,
-  // errorHandlerProps: PropTypes.func.isRequired,
+  onClickAnimationProps: PropTypes.func.isRequired,
+  onMinimizeAnimationProps: PropTypes.func.isRequired,
+  fetchWeatherDataProps: PropTypes.func.isRequired,
   removeWeatherLocationProps: PropTypes.func.isRequired,
   weatherLocationProps: PropTypes.instanceOf(Object).isRequired,
 };

@@ -6,6 +6,7 @@ const UserLocationWeatherCardSmall = ({
   clickedProps,
   onClickAnimationProps,
   animationStyleProps,
+  setAnimationStateProps,
   tempUnitProps,
   currentWeatherDataProps,
 }) => {
@@ -21,10 +22,10 @@ const UserLocationWeatherCardSmall = ({
       style={animationStyleProps}
       className={elementClassName}
       onClick={(e) => {
-        onClickAnimationProps(e);
+        onClickAnimationProps(e, setAnimationStateProps);
       }}
       onKeyDown={(e) => {
-        onClickAnimationProps(e);
+        onClickAnimationProps(e, setAnimationStateProps);
       }}
       role="button"
       tabIndex={0}
@@ -65,6 +66,7 @@ UserLocationWeatherCardSmall.propTypes = {
     .isRequired,
   onClickAnimationProps: PropTypes.func.isRequired,
   animationStyleProps: PropTypes.instanceOf(Object),
+  setAnimationStateProps: PropTypes.func.isRequired,
   tempUnitProps: PropTypes.string.isRequired,
   currentWeatherDataProps: PropTypes.instanceOf(Object).isRequired,
 };

@@ -6,6 +6,7 @@ import { formatDate, formatTime } from '../../utilities/utilities';
 const WeatherCardBig = ({
   clickedProps,
   onMinimizeAnimationProps,
+  setAnimationStateProps,
   animationStyleProps,
   // PROPS FOR WEATHER
   tempUnitProps,
@@ -26,6 +27,8 @@ const WeatherCardBig = ({
 
   const tempUnit = tempUnitProps === 'metric' ? '\u2103' : '\u2109';
 
+  console.log(currentWeatherDataProps);
+
   return (
     <div className={elementClassName} style={animationStyleProps}>
       {/* CARD ROW 1 */}
@@ -33,8 +36,8 @@ const WeatherCardBig = ({
         <button
           type="button"
           className={classes.minimizeBtn}
-          onClick={(e) => {
-            onMinimizeAnimationProps(e);
+          onClick={() => {
+            onMinimizeAnimationProps(setAnimationStateProps);
           }}
         >
           X
@@ -81,7 +84,12 @@ const WeatherCardBig = ({
         <p>&ensp;{Math.round(futureWeatherDataProps.daily[0].pop * 100)}%</p>
       </div>
       <div className={classes.cardWind}>
-        <ion-icon name="arrow-up-circle-outline" />
+        <ion-icon
+          name="arrow-up-circle-outline"
+          style={{
+            transform: `rotate(${currentWeatherDataProps.wind.deg}deg)`,
+          }}
+        />
         <p>&ensp;{Math.round(currentWeatherDataProps.wind.speed)} m/s</p>
       </div>
       <div className={classes.cardSun}>
@@ -215,6 +223,7 @@ WeatherCardBig.propTypes = {
   clickedProps: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
     .isRequired,
   onMinimizeAnimationProps: PropTypes.func.isRequired,
+  setAnimationStateProps: PropTypes.func.isRequired,
   animationStyleProps: PropTypes.instanceOf(Object),
   tempUnitProps: PropTypes.string.isRequired,
   currentWeatherDataProps: PropTypes.instanceOf(Object).isRequired,

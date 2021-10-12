@@ -3,16 +3,17 @@ import PropTypes from 'prop-types';
 import classes from './userLocationWeatherCardContainer.module.css';
 
 import CSSGridPosition from '../../utilities/gridposition';
-// import WeatherCardSmall from '../WeatherCardSmall/WeatherCardSmall';
 import WeatherCardBig from '../WeatherCardBig/WeatherCardBig';
 import UserLocationWeatherCardSmall from '../UserLocationWeatherCardSmall/UserLocationWeatherCardSmall';
 import Spinner from '../Spinner/Spinner';
 
 const UserLocationWeatherCardContainer = ({
   fetchWeatherDataProps,
+  onClickAnimationProps,
+  onMinimizeAnimationProps,
   userWeatherLocationProps,
   removeWeatherLocationProps,
-  // errorHandlerProps,
+
   getUserLocationProps,
 }) => {
   const [weatherData, setWeatherData] = useState({});
@@ -35,29 +36,9 @@ const UserLocationWeatherCardContainer = ({
     }
   }, [fetchWeatherDataProps, userWeatherLocationProps]);
 
-  const onClickAnimation = (element) => {
-    const elementPosition = element.target.getBoundingClientRect(); // GET POSITION OF ELEMENT
+  const onClickAnimation = onClickAnimationProps;
 
-    setAnimationObj({
-      clicked: true,
-      style: {
-        position: 'fixed',
-        top: elementPosition.top,
-        left: elementPosition.left,
-      },
-    });
-  };
-
-  const onMinimizeAnimation = () => {
-    setAnimationObj({
-      clicked: 'minimize',
-    });
-    setTimeout(() => {
-      setAnimationObj({
-        clicked: false,
-      });
-    }, 2000);
-  };
+  const onMinimizeAnimation = onMinimizeAnimationProps;
 
   const getLocationClickHandler = () => {
     setLoading(true);
@@ -96,6 +77,7 @@ const UserLocationWeatherCardContainer = ({
       <UserLocationWeatherCardSmall
         clickedProps={animationObj.clicked}
         onClickAnimationProps={onClickAnimation}
+        setAnimationStateProps={setAnimationObj}
         animationStyleProps={animationObj.style}
         removeWeatherLocationProps={removeWeatherLocationProps}
         locationIDProps={userWeatherLocationProps.id}
@@ -105,8 +87,8 @@ const UserLocationWeatherCardContainer = ({
       />
       <WeatherCardBig
         clickedProps={animationObj.clicked}
-        onClickAnimationProps={onClickAnimation}
         onMinimizeAnimationProps={onMinimizeAnimation}
+        setAnimationStateProps={setAnimationObj}
         animationStyleProps={animationObj.style}
         // PROPS FOR WEATHER
         tempUnitProps={userWeatherLocationProps.unit}
@@ -125,7 +107,8 @@ const UserLocationWeatherCardContainer = ({
 
 UserLocationWeatherCardContainer.propTypes = {
   fetchWeatherDataProps: PropTypes.func.isRequired,
-  // errorHandlerProps: PropTypes.func.isRequired,
+  onClickAnimationProps: PropTypes.func.isRequired,
+  onMinimizeAnimationProps: PropTypes.func.isRequired,
   removeWeatherLocationProps: PropTypes.func.isRequired,
   userWeatherLocationProps: PropTypes.instanceOf(Object),
   getUserLocationProps: PropTypes.func.isRequired,

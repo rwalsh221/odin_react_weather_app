@@ -53,12 +53,40 @@ const WeatherCardGrid = ({
     }
   };
 
+  // CLICK ANIMATION FUNCTION FOR WEATHER CARDS
+  const onClickAnimation = (element, setAnimationState) => {
+    const elementPosition = element.target.getBoundingClientRect(); // GET POSITION OF ELEMENT
+
+    setAnimationState({
+      clicked: true,
+      style: {
+        position: 'fixed',
+        top: elementPosition.top,
+        left: elementPosition.left,
+      },
+    });
+  };
+
+  // MINIMIZE ANIMATION FOR WEATHER CARDS
+  const onMinimizeAnimation = (setAnimationState) => {
+    setAnimationState({
+      clicked: 'minimize',
+    });
+    setTimeout(() => {
+      setAnimationState({
+        clicked: false,
+      });
+    }, 2000);
+  };
+
   // RENDER CARDS IF WEATHERLOACTIONPROPS HAS ELEMENTS
   const renderWeatherLocations = () => {
     const content = weatherLocationsProps
       ? weatherLocationsProps.map((element) => (
           <WeatherCardContainer
             key={element.id}
+            onClickAnimationProps={onClickAnimation}
+            onMinimizeAnimationProps={onMinimizeAnimation}
             fetchWeatherDataProps={fetchWeatherData}
             weatherLocationProps={element}
             removeWeatherLocationProps={removeWeatherLocationProps}
@@ -73,6 +101,8 @@ const WeatherCardGrid = ({
   return (
     <section className={classes.weatherCardGrid}>
       <UserLocationWeatherCardContainer
+        onClickAnimationProps={onClickAnimation}
+        onMinimizeAnimationProps={onMinimizeAnimation}
         fetchWeatherDataProps={fetchWeatherData}
         userWeatherLocationProps={userWeatherLocationProps}
         removeWeatherLocationProps={removeWeatherLocationProps}
