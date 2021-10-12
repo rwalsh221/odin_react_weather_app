@@ -27,8 +27,6 @@ const WeatherCardBig = ({
 
   const tempUnit = tempUnitProps === 'metric' ? '\u2103' : '\u2109';
 
-  console.log(currentWeatherDataProps);
-
   return (
     <div className={elementClassName} style={animationStyleProps}>
       {/* CARD ROW 1 */}
